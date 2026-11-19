@@ -1,16 +1,96 @@
-## Hi there 👋
+# YunGouCMS 云购夺宝系统
 
-<!--
-**YunGouCMS/yungoucms** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+**版权所有 © YunGouCMS**
 
-Here are some ideas to get you started:
+YunGouCMS（云购夺宝/一元购系统）是一套基于 **PHP + MySQL** 的夺宝电商业务系统。采用单入口 MVC 结构，支持 PATH_INFO 伪静态，便于在 Nginx/Apache 环境下快速部署。系统具备**多语言**与**数据 API 采集**等特色能力，适合多地区运营与第三方数据对接。
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+---
+
+## 系统特点
+
+- **夺宝/一元购业务**：商品分期夺宝、订单、晒单、会员、购物车等完整业务模块
+- **多端支持**：PC 前台（go）、移动端（mobile）、APP 接口（app）、管理后台（admin）
+- **API 与扩展**：验证码、上传、支付、微信等接口模块，便于对接与二次开发
+- **模板与静态资源**：前台模板与静态文件集中在 `statics`，支持多模板切换
+
+### 多语言
+
+- 后台支持**多语言配置**，商品、文章、分类等可按语言区分展示，便于多地区/多语种运营
+- 前台可根据语言切换展示内容与**多币种**（语言与币种联动），提升国际化体验
+- 语言包与模板分离，扩展新语种成本低（如 `system/funcs/languages/` 与后台语言管理）
+
+### 数据 API 采集
+
+- 支持通过**数据 API 采集与对接**：推荐位、行情等可从外部接口获取或同步，便于与第三方数据源、行情接口（如加密货币行情）等对接
+- 内置 HTTP 请求与数据投递能力，支持将本系统数据对外推送或从外部拉取数据入库，方便做数据聚合与多站点同步
+
+---
+
+## 环境要求
+
+| 项目 | 要求 |
+|------|------|
+| Web 服务器 | Nginx / Apache |
+| PHP | ≥ 8.2 |
+| MySQL | 8.0 |
+| PHP 扩展 | pdo、pdo_mysql、json、mbstring、openssl、curl、gd、fileinfo、zip 等 |
+| 建议 | Redis、ionCube、fileinfo（宝塔用户可在 PHP 扩展中安装） |
+
+---
+
+## 目录结构（简要）
+
+```
+/
+├── index.php              # 站点入口
+├── install.php            # 现有安装程序（尚未通过公开发布审查）
+├── system/                # 核心与配置
+│   ├── config/            # 配置文件（含 database.inc.php）
+│   ├── libs/              # 核心类库（路由、模板等）
+│   ├── modules/           # 业务模块（api、go、member、pay、mobile 等）
+│   ├── funcs/             # 公共函数与语言包
+│   └── caches/            # 缓存与日志（需可写）
+├── statics/               # 静态资源、模板；上传目录属于运行时数据
+└── database/              # 当前工作区 SQL 含业务数据，不可直接公开发布
+```
+
+---
+
+## 发布状态与部署边界
+
+**当前仓库工作区不是可直接公开或一键部署的发行包。** 发布审查仍在进行；请勿将当前目录、现有 Git 历史、生产配置或 `database/` 中的 SQL 原样上传。旧历史包含敏感信息，`.gitignore` 不能清除历史提交。拟发布版本须从审查通过的当前文件另建独立历史，不覆盖现有 `main`。
+
+- 后台入口现为 `/admin`，代码位于 `system/modules/admin/`；旧后台目录已废弃，不应从旧历史恢复。机器人会员、刷单、指定中奖功能及后台登录页快捷访问模块已移除，不应按旧文档恢复。
+- 数据库发行物拟仅包含 111 张表的结构和另行审核的匿名示例数据；当前 `database/` 下的业务 SQL **不是**发布数据。隔离审查目录中已生成 `database/schema.sql`，尚未纳入发行包。
+- 数据库与 Redis 的示例配置、微信支付与 QQ 登录的空凭据配置目前仅在隔离审查目录准备，**不在当前生产代码中**；不能将生产 `system/config/database.inc.php`、支付密钥、证书、登录标识或 JWT 签名密钥复制进公开代码。各项集成需在私有环境单独配置，并在启用前检查。
+- 公开候选清单仅供审查，不是发布许可清单。仍有文本阻断项和静态资源待核对；上传目录属于运行时数据，不能整体打包。生产环境既有凭据及历史泄露信息需由负责人核实轮换。
+
+---
+
+## 部署说明（发布审查通过后适用）
+
+1. 将**已审查的发行包**部署到站点根目录，确认包含 `index.php`、`system/modules/admin/` 和所需静态资源；不要从旧 Git 历史补回后台文件。
+2. 在私有环境配置数据库、Redis、支付及第三方登录凭据。未来发行包的数据库示例配置需复制为本地实际配置文件；不要把实际配置提交到仓库。
+3. 配置 PATH_INFO 伪静态。Nginx 示例：
+
+   ```nginx
+   location / {
+       if (!-e $request_filename) {
+           rewrite ^/(.*)$ /index.php/$1 last;
+       }
+   }
+   ```
+
+   Apache 可参考根目录 `.htaccess`。前台访问 `/`，后台访问 `/admin/index`。
+4. `install.php` 尚未完成发布审查；**当前不得将其作为公开发行包的一键安装步骤**。数据库初始化须以通过审查的结构 SQL 与安装流程为准。安装完成后应移除或限制安装入口，按实际运行需要设置缓存及上传目录权限，避免将配置目录长期开放写入。
+
+---
+
+## 相关说明
+
+- 项目入口为根目录 `index.php`，URL 使用 PATH_INFO（例如 `/api/checkcode/image/80_27/`、`/go/index/init`），无需 `/?/` 形式。
+- 对外发布前仍须审查文本、媒体及上传图标的内容和许可；GitHub 授权、提交与上传均未完成。
+
+---
+
+**版权所有 © YunGouCMS**

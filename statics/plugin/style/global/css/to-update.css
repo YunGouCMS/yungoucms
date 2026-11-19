@@ -1,0 +1,109 @@
+.baset{
+	margin: 0 10px;
+	background: #f2f2f2;
+	color: #333333;
+}
+.size16 {
+	font-size: 16px;
+}
+.size14 {
+	font-size: 14px;
+}
+.colorD9001B {
+	color: #D9001B;
+}
+.color666 {
+	color: #666666;
+}
+.baset .dataform {
+	padding: 30px 20px;
+}
+.baset .dataform input {
+	margin: 0 15px;
+	height: 23px;
+	padding-right: 10px;
+	font-size: 13px;
+	border: 1px solid #797979;
+	width: 160px;
+	border-radius: 3px;
+}
+.baset .checkarr {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	font-size: 14px;
+}
+.baset .textchec{
+	display: flex;
+	background: #ffffff;
+	border: 1px solid #cccccc;
+	border-radius: 4px;
+	width: 750px;
+	box-shadow: 0px 0px 4px rgba(153,153,153,0.35);
+	padding: 15px;
+	align-items: center;
+	margin-bottom: 15px;
+}
+.baset .checkarr .namemargin {
+	margin: 0 25px;
+	width: 100px;
+}
+.baset .lengover {
+	width: 285px;
+	height: 6px;
+	position: relative;
+	background: #f2f2f2;
+	border-radius: 5px;
+	overflow: hidden;
+	margin-right: 25px;
+}
+.baset .lengover span {
+	height: 6px;
+	background: #1890ff;
+	display: block;
+	border-radius: 5px;
+}
+.baset .bottomchec {
+	width: 684px;
+	margin: 20px 0 30px;
+}
+
+.baset .bottomchec span {
+	background: #dbeded;
+	padding: 5px 25px;
+	border-radius: 5px;
+	display: inline-block;
+}
+.baset .allnumber {
+	text-align: center;
+	font-size: 14px;
+	padding: 30px 0;
+}
+.baset .allnumber span {
+	font-size: 16px;
+	color: #D9001B;
+}
+.baset .circlewidth {
+	position: relative;
+}
+.baset .chartimg {
+	width: 230px;
+	height: 230px;
+/*	background: #FFFFFF;*/
+/*	border: 5px solid #e9e9e9;*/
+	border-radius: 50%;
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.baset .chartimg span {
+	color: #5f5f5f;
+	font-size: 24px;
+}
+.baset .circleChart {
+	position: absolute!important;
+	top: 0;
+	left: 50%;
+	transform: translate(-50%, 0);
+}

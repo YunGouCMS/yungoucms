@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{wc:$string}</title>
+    <meta name="robots" content="noindex, nofollow" />
+<!--    <script src="{G_GLOBAL_STYLE}/global/js/jquery-1.8.3.min.js"></script>-->
+    <script src="http://www.jq22.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="{G_GLOBAL_STYLE}/global/hsycmsAalert/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="{G_GLOBAL_STYLE}/global/hsycmsAalert/dist/sweetalert2.min.css" type="text/css">
+
+
+<script>
+    setTimeout(()=>{
+        swal({
+            title: '{wc:$string}',
+            type: '{wc:$iserror}',
+            timer: 1500
+        }).then(function(isConfirm) {
+            if (isConfirm === true) {
+                location.href="{wc:$defurl}";
+            } else if (isConfirm === false) {
+
+            } else {
+                // Esc, close button or outside click
+                // isConfirm is undefined
+            }
+        });
+        setTimeout(()=>{
+            location.href="{wc:$defurl}";
+        },1500)
+    },100)
+</script>
+
+
+</head>
+
+
+
+<body>
+
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>{wc:$title} - {wc:$webname}</title>
+<meta content="app-id=518966501" name="apple-itunes-app" />
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<link href="{G_TEMPLATES_CSS}/mobile/comm.css" rel="stylesheet" type="text/css" />
+<script src="{G_TEMPLATES_JS}/mobile/jquery190.js" language="javascript" type="text/javascript"></script>
+<link href="{G_TEMPLATES_CSS}/mobile/switchery.css" rel="stylesheet" type="text/css" />
+<script src="{G_TEMPLATES_JS}/mobile/pageDialog.js" language="javascript" type="text/javascript"></script>
+<script src="{G_TEMPLATES_JS}/mobile/switchery.js" language="javascript" type="text/javascript"></script>
+<script src="{G_TEMPLATES_JS}/mobile/lrz.js" language="javascript" type="text/javascript"></script>
+<script src="{G_TEMPLATES_JS}/mobile/mobileFix.mini.js" language="javascript" type="text/javascript"></script>
+<script src="{G_TEMPLATES_JS}/mobile/exif.js" language="javascript" type="text/javascript"></script>
+<script src="{G_TEMPLATES_JS}/mobile/jquery.md5.js" language="javascript" type="text/javascript"></script>
+<style>
+.sub_nav {clear: both;width: 100%;background-color: #f7f7f7;}
+.marginB {margin-bottom: 15px;}
+.sub_nav a {display: block;height: 48px;line-height: 48px;color: #333;font-size: 16px;padding: 0 10px 0 13px;border-top: 1px solid #dedede;border-bottom: 1px solid #dedede;margin-top: -1px;background-color: #fff;position: relative;}
+.sub_nav i {display: block;position: relative;top: 16px;}
+.sub_nav i {background: url({G_TEMPLATES_IMAGE}/mobile/m_set.png);background-size: 20px auto;}
+.sub_nav i {float: right;background-position: 0 -70px;width: 7px;height: 13px;top: 18px;}
+.always-set span {float: right;}
+.always-set span img {padding: 5px;height: 40px;}
+.file {position: relative;}
+.file input {position: absolute;width: 100%;height: 100%;right: 0;top: 0;opacity: 0;}
+#secret_node {display: none;}
+#secret_node.active {display: block;}
+#secret_node a {padding-left: 30px;}
+.ios-switch {float: right;}
+.ios-switch span{box-sizing: border-box;}
+.sub_nav_content {font-size: 12px;color: #666;margin-right: 8px;}
+.useroutm{margin-top: 15px;}
+.useroutm a {width: 85%;display: block;overflow: hidden;height: 38px;line-height: 38px;text-align: center;color: #febd41;font-size: 18px;background: #fff;margin: 5px auto 20px;letter-spacing: .05rem;border: 1px solid #febd41;border-radius: 5px;}
+</style>
+</head>
+<body>
+<div class="sub_nav marginB">
+    <a href="{WEB_PATH}/mobile/user/profile" class="always-set">昵称<i></i><span class="sub_nav_content">{wc:$member['username']}</span></a>
+	<a href="javascript:void(0)"><b style="float:right;">{wc:$member['uid']}</b>ID</a>
+	<a href="javascript:void(0)"><b style="float:right;color: {THEME_COLOR}!important;">{wc:$member['mobile']}</b>手机号</a>
+
+    <a href="{WEB_PATH}/mobile/user/password" class="always-set">修改密码</a>
+</div>
+<div class="sub_nav marginB">
+    <!--a target="#secret_node" role="tab" class="always-set">隐私设置<i></i><span class="sub_nav_content">个人主页购买信息是否公开</span></a>
+    <div id="secret_node" class="active">
+        {wc:if $member['shop_ permission'] == '4'} 
+        <a>参与记录<div class="ios-switch"><label class="sub_nav_content">所有人可见</label><input data-privacy-type="1" type="checkbox"  checked />
+        {wc:else}
+         <a>参与记录<div class="ios-switch"><label class="sub_nav_content">仅自己可见</label><input data-privacy-type="1" type="checkbox"   />
+        {wc:if:end}
+		</div></a>
+        {wc:if $member['owinshop_permission'] == '4'} 
+        <a>获得记录<div class="ios-switch"><label class="sub_nav_content">所有人可见</label><input data-privacy-type="2" type="checkbox"  checked />
+        {wc:else}
+         <a>获得记录<div class="ios-switch"><label class="sub_nav_content">仅自己可见</label><input data-privacy-type="2" type="checkbox"   />
+        {wc:if:end}
+		</div></a>
+		</div></a>
+    </div></a-->
+    <!-- <div class="useroutm"><a id="btnLogout" href="{WEB_PATH}/mobile/user/cook_end">退出登录</a></div> -->
+</div>
+{wc:templates "mobile/index","footer"}
+<script type="text/javascript">
+    $(function () {
+        var data = {
+            file: {},
+            blob: {}
+        };
+		//头像
+        $('#touimg').change(function () {
+            lrz(this.files[0], {width: 200,height:200}, function (results) {
+                data.file = results.origin;
+                data.blob = results.blob;
+                upload_img(function (file) {
+                    $("#userimg").attr("src",getOSSImage_50(file));
+                });
+            });
+        });
+
+        function upload_img(callback) {
+            var xmlhttp = $.ajax({
+                url: '{WEB_PATH}/index.php/mobile/ajax/userimg_before/',
+                type: "POST",
+                data: {"filename": data.file.name},
+                async: false
+            });
+            var response = xmlhttp.responseText;
+            var obj = eval("(" + response + ")");
+            if (obj.state == 'SUCCESS') {
+                var formData = new FormData();
+                formData.append('key', obj.key);
+                formData.append('policy', obj.policy);
+                formData.append('OSSAccessKeyId', obj.accessid);
+                formData.append('success_action_status', '200'); //让服务端返回200,不然，默认会返回204
+                formData.append('callback', obj.callback);
+                formData.append('signature', obj.signature);
+                formData.append('file', data.blob);
+                $.ajax({
+                    url: 'http://dyyyyg.oss-cn-shenzhen.aliyuncs.com',
+                    type: 'POST',
+                    dataType: 'json',
+                    cache: false,
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (json) {
+                        callback(json.object);
+                    }
+                });
+            } else {
+                alert(obj.state);
+            }
+        }
+
+        $("[role='tab']").click(function () {
+            var target = $(this).attr('target');
+            $(target).toggleClass('active');
+        });
+
+        var elems = Array.prototype.slice.call(document.querySelectorAll('.ios-switch>input'));
+        elems.forEach(function(html) {
+            new Switchery(html);
+             $(html).change(function () { 
+                 var _type = $(this).data('privacy-type'); 
+                 var _status = $(this).is(":checked") ? "4" : "0";              
+                     if(_status == '0' ){ 
+                         $(this).siblings('label').text('仅自己可见'); 
+                     } else { 
+                         $(this).siblings('label').text('所有人可见'); 
+                     } 
+                     $.post("{WEB_PATH}/mobile/mobile/userPrivacy",{type: _type,status:_status},function (data) { 
+                         if(data != 'ok') { 
+                               $.PageDialog.ok("更新失败！");
+                        }else{
+                           
+                             $.PageDialog.ok("更新成功！");   
+                        } 
+                     }); 
+            }); 
+        });
+    });
+</script>
+
+</body>
+</html>

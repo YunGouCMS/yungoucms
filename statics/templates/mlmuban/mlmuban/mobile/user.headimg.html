@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0"/>
+<title>头像修改</title>
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<link href="{G_TEMPLATES_CSS}/mobile/comm.css" rel="stylesheet" type="text/css" />
+<link href="{G_TEMPLATES_CSS}/mobile/password.css" rel="stylesheet" type="text/css" />
+<script src="{G_TEMPLATES_JS}/mobile/jquery190.js" language="javascript" type="text/javascript"></script>
+</head>
+<style type="text/css">
+    .upfile{cursor:pointer;direction:rtl;height:30px;opacity:0;width:90px;filter:alpha(opacity=0); position:absolute;top:0;left:0}
+    a.upf{
+        position:relative;cursor:pointer;display:block;height:30px;cursor:pointer;margin-top:7px;overflow:hidden;width:90px;background:#fefefe;border:1px solid #dcdcdc;line-height:30px;text-align:center;font-size:14px;color:#333!important;text-decoration:none;border-radius:5px;
+        background:-moz-linear-gradient(center top,#ffffff,#f6f6f6 50%,#f6f6f6 50%,#ededed);
+        background:-o-linear-gradient(top left,#ffffff,#f6f6f6 50%,#f6f6f6 50%,#ededed);
+        background:-webkit-gradient(linear,0% 0,0% 100%,from( #ffffff),to( #f6f6f6),color-stop(.5,#f6f6f6),color-stop(.5,#ededed));
+        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',endColorstr='#ededed');
+        -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#ffffff', endColorstr='#ededed')";
+		    margin-bottom: 10px;
+    }
+    a.upf:hover{
+        background:-moz-linear-gradient(center top,#f9f9f9,#efefef 50%,#efefef 50%,#e4e4e4);
+        background:-o-linear-gradient(top left,#f9f9f9,#efefef 50%,#efefef 50%,#e4e4e4);
+        background:-webkit-gradient(linear,0% 0,0% 100%,from( #f9f9f9),to( #efefef),color-stop(.5,#efefef),color-stop(.5,#e4e4e4));
+        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9',endColorstr='#e4e4e4');
+        -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#f9f9f9', endColorstr='#e4e4e4')";
+    }
+	.orange,.Progress-bar .Pro-bar-li li.P-bar01 em,.Progress-bar .Pro-bar-li li.P-bar03 em {color: {THEME_COLOR};}	a.orgBtn,.u-progress .pging,.haveNot .guangguang,#addAll,#addAll p,#btnSave {background: {THEME_COLOR};}	#addAll {box-shadow: 0 0 15px {THEME_COLOR};}
+</style>
+<script type="text/javascript">
+
+    //下面用于多图片上传预览功能
+
+    function setImagePreviews(avalue) {
+
+        var docObj = document.getElementById("doc");
+
+        var dd = document.getElementById("dd");
+
+        dd.innerHTML = "";
+
+        var fileList = docObj.files;
+
+        for (var i = 0; i < fileList.length; i++) {            
+
+
+
+            dd.innerHTML += "<div> <img id='img" + i + "'  /> </div>";
+
+            var imgObjPreview = document.getElementById("img"+i); 
+
+            if (docObj.files && docObj.files[i]) {
+
+                //火狐下，直接设img属性
+
+                imgObjPreview.style.display = 'block';
+
+                imgObjPreview.style.width = '150px';
+
+                imgObjPreview.style.height = '150px';
+
+                //imgObjPreview.src = docObj.files[0].getAsDataURL();
+
+                //火狐7以上版本不能用上面的getAsDataURL()方式获取，需要一下方式
+
+                imgObjPreview.src = window.URL.createObjectURL(docObj.files[i]);
+
+            }
+
+            else {
+
+                //IE下，使用滤镜
+
+                docObj.select();
+
+                var imgSrc = document.selection.createRange().text;
+
+                alert(imgSrc)
+
+                var localImagId = document.getElementById("img" + i);
+
+                //必须设置初始大小
+
+                localImagId.style.width = "150px";
+
+                localImagId.style.height = "180px";
+
+                //图片异常的捕捉，防止用户修改后缀来伪造图片
+
+                try {
+
+                    localImagId.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+
+                    localImagId.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = imgSrc;
+
+                }
+
+                catch (e) {
+
+                    alert("您上传的图片格式不正确，请重新选择!");
+
+                    return false;
+
+                }
+
+                imgObjPreview.style.display = 'none';
+
+                document.selection.empty();
+
+            }
+
+        }  
+
+
+
+        return true;
+
+    }
+</script>
+<body style=" background-color: #f4f4f4;">
+<div class="h5-1yyg-v11">
+  <div class="main-content clearfix">
+    <section style="padding-top: 0px;">
+      <div class="registerCon">
+        <form method="post" enctype="multipart/form-data">
+          <ul class="form">
+		   <a class="upf" href="javascript:void(0);"><input name="Filedata" type="file" class="upfile"  id="doc" onchange="javascript:setImagePreviews();" accept="image/*" /><span>上传头像</span></a>
+		   <li>
+		   <div id="dd" style=" width:990px;"></div>
+		   </li>
+            <li> <a href="javascript:;" id="btnSave" class="nextBtn orgBtn">提交</a> </li>
+          </ul>
+        </form>
+      </div>
+    </section>
+    <script>
+$(function(){
+$('#btnSave').click(function(){
+$('form[enctype="multipart/form-data"]').submit();
+});
+});
+</script>
+  </div>
+  {wc:templates "mobile/index","footer"}
+  <script language="javascript" type="text/javascript">
+  var Path = new Object();
+  Path.Skin="{G_TEMPLATES_STYLE}";  
+  Path.Webpath = "{WEB_PATH}";
+  Path.imgpath = "{G_WEB_PATH}/statics";
+  
+var Base={head:document.getElementsByTagName("head")[0]||document.documentElement,Myload:function(B,A){this.done=false;B.onload=B.onreadystatechange=function(){if(!this.done&&(!this.readyState||this.readyState==="loaded"||this.readyState==="complete")){this.done=true;A();B.onload=B.onreadystatechange=null;if(this.head&&B.parentNode){this.head.removeChild(B)}}}},getScript:function(A,C){var B=function(){};if(C!=undefined){B=C}var D=document.createElement("script");D.setAttribute("language","javascript");D.setAttribute("type","text/javascript");D.setAttribute("src",A);this.head.appendChild(D);this.Myload(D,B)},getStyle:function(A,B){var B=function(){};if(callBack!=undefined){B=callBack}var C=document.createElement("link");C.setAttribute("type","text/css");C.setAttribute("rel","stylesheet");C.setAttribute("href",A);this.head.appendChild(C);this.Myload(C,B)}}
+function GetVerNum(){var D=new Date();return D.getFullYear().toString().substring(2,4)+'.'+(D.getMonth()+1)+'.'+D.getDate()+'.'+D.getHours()+'.'+(D.getMinutes()<10?'0':D.getMinutes().toString().substring(0,1))}
+Base.getScript('{G_TEMPLATES_JS}/mobile/Bottom.js?v='+GetVerNum());
+</script>
+</div>
+</body>
+</html>

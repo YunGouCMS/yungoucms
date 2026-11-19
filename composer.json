@@ -1,0 +1,7 @@
+{
+    "require": {
+        "qiniu/php-sdk": "^7.14",
+        "phpmailer/phpmailer": "5.2.26",
+        "twilio/sdk": "^5.42"
+    }
+}

@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>幸运大转盘</title>
+		<link rel="stylesheet" href="{G_TEMPLATES_CSS}/mobile/swiper.min.css" />
+		<link rel="stylesheet" href="{G_TEMPLATES_CSS}/mobile/winning.css" />
+		<style>
+body,button,input,select,textarea {
+    font-size: 12px;
+    font-family: arial, 微软雅黑;
+	max-width: 640px;
+    margin: 0 auto;
+	background:#fff;
+}
+
+.winning,.luckdraw{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.48);
+    z-index: 100000;
+}
+.winningbox{
+	width: 2.8rem;
+    height: 4.5rem;
+    display: block;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background:url({G_TEMPLATES_IMAGE}/mobile/winning.png) no-repeat;
+    background-size:contain;
+}
+.luckdrawbox{
+    width: 300px;
+    height: 320px;
+    display: block;
+    position: relative;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-40%);
+    background:url({G_TEMPLATES_IMAGE}/mobile/luck_draw.png) no-repeat;
+    background-size: cover;
+}
+.winningbox p{
+    text-align: center;
+}
+.winning-qh{
+    font-size: 14px;
+    color: #fff;
+    width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    position: absolute;
+    left: 50%;
+    top: 16%;
+    transform: translateX(-50%);
+}
+.wining-img{
+    width: 0.68rem;
+    height: 0.68rem;
+    display: block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 26%;
+}
+.wining-code{
+    width: 0.8rem;
+    height: 0.8rem;
+    display: block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 13%;
+}
+.wining-img img,.wining-code img{
+	width: 100%;
+	display: block;
+}
+.wining-num{
+    color: #fff;
+    position: absolute;
+    top: 44%;
+    width: 80%;
+    display: block;
+    margin: 0 10%;
+}
+.winning-or{
+    font-size: 18px;
+    color: #843213;
+    padding-top: 5px;
+    width: 50%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    position: absolute;
+    left: 50%;
+    top: 65%;
+    transform: translate(-50%,-65%);
+}
+.winning-close{
+	width: 0.4rem;
+    height: 0.4rem;
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.balance-close{
+	font-size: 24px;
+    width: 30px;
+    height: 30px;
+    display: block;
+    text-align: center;
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 24px;
+    position: absolute;
+    right: -27px;
+    top: -20px;
+}
+.luckdraw-close{
+    font-size: 24px;
+    width: 30px;
+    height: 30px;
+    display: block;
+    text-align: center;
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 24px;
+    position: absolute;
+    left: 50%;
+    bottom: -15%;
+    transform: translateX(-50%);
+
+}
+.luckdraw-close:before,.balance-close:before {
+    content: "";
+    border-top: 1px solid #fff;
+    width: 18px;
+    height: 0;
+    position: absolute;
+    transform: rotate(-45deg);
+    top: 14px;
+    left: 5px;
+}
+.luckdraw-close:after,.balance-close:after{
+    content: "";
+    border-top: 1px solid #fff;
+    width: 18px;
+    height: 0;
+    position: absolute;
+    transform: rotate(45deg);
+    top: 14px;
+    left: 5px;
+}
+.winning-btn,.luckdraw-btn{
+    width: 80%;
+    height: 24px;
+    line-height: 24px;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translatex(-50%);
+   /* display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;*/
+}
+.luckdraw-btn{
+ 	bottom: 20px;
+
+ }
+.winning-btn a,.luckdraw-btn a{
+    outline: none;
+    text-decoration: none;
+    width: 45%;
+    text-align: center;
+    display: block;
+    font-size: 14px;
+    color: #fff;
+    border: 1px solid #ffd455;
+    border-radius: 25px;
+
+	margin: auto;
+	background: #ffd455;
+    color: #a54b0a;
+    box-shadow: 1px 2px 8px #e04c35;
+}
+.luckdraw-btn a{
+    background: #fefaee;
+  	color:#f04310;
+    box-shadow: 1px 3px 8px #c80814;
+}   
+.luckdraw-btn a.active{
+ 	background:#fee671;
+}
+.winning-btn a.active{
+    background:#F42B2B;
+    border: 1px solid #F42B2B;
+}
+.luckdr_text{
+	position: absolute;
+    width: 90%;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.luckdr_text p{
+	text-align: center;
+    line-height: 34px;
+    font-size: 18px;
+    color: #c56211;
+}
+
+.luckdr_text p:last-child,.luckdr_text p:nth-of-type(3){
+  font-size:12px;
+  color:#000;
+}
+.layui-m-layercont{
+	padding: 10px 30px!important;
+}
+.layui-m-layerchild h3{
+	border-bottom: 1px solid #dedede;
+    color: #9a1d1d;
+}
+.layui-m-layercont p{
+	text-align: left;
+	line-height: 24px;
+}
+.layui-m-layercont p:last-child{
+	color:#9a1d1d;
+}
+.balancebox{
+	width: 240px;
+    height: 298px;
+    display: block;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background:url({G_TEMPLATES_IMAGE}/mobile/balance.png) no-repeat;
+    background-size:contain;
+}
+.balance-hd{
+    color: #bd190a;
+    font-size: 18px;
+    position: absolute;
+    top: 10%;
+    width: 74%;
+    text-align: center;
+    transform: rotate(-7deg);
+}
+.balance-num{
+    color: #753400;
+    font-size: 48px;
+    position: absolute;
+    top: 18%;
+    width: 74%;
+    text-align: center;
+    transform: rotate(-8deg);
+}     
+</style>
+		<script>
+			document.documentElement.style.fontSize=document.documentElement.clientWidth/3.75+'px'
+		</script>
+	</head>
+	<body>
+		<div class="box">
+			<img class="turntable_zj" src="{G_TEMPLATES_IMAGE}/mobile/turntable_zj.png" />			
+			<img class="pointer" src="{G_TEMPLATES_IMAGE}/mobile/point.png" />
+			<!--转盘文字及图片-->
+			<div class="turntable_box">				
+				<img class="turntable_bg" src="{G_TEMPLATES_IMAGE}/mobile/inner.png">
+				{wc:loop $date $k $v}
+              	{wc:if $v['deg'] == 1}
+   				<div class="item" >
+					<div id='{wc:$v['Grade']}'>{wc:$v['name']}</div>
+					<img src="{G_UPLOAD_PATH}/{wc:$v['img']}" />
+				</div>
+              {wc:else}
+				<div class="item" style="transform: rotate({wc:$v['deg']});">
+					<div id='{wc:$v['Grade']}'>{wc:$v['name']}</div>
+					<img src="{G_UPLOAD_PATH}/{wc:$v['img']}" />
+				</div>
+              {wc:if:end}
+				{wc:loop:end}
+			</div>
+			<p class="winning-num">今日剩余次数&nbsp;<span id="zp_num"> {wc:$enum} </span>&nbsp;次,拥有 <span id="zp_num2">{wc:$hnum} </span> 次</p>
+			<!--中奖名单轮播-->
+			<div class="swiper-container list">
+			    <div class="swiper-wrapper">
+			    	{wc:loop $zjsp $a $b}
+				    <div class="swiper-slide">恭喜{wc:$b['name']}抽中（{wc:$b['content']}）</div>
+				    {wc:loop:end}
+			    </div>
+			</div>
+			<div class="transDiv"></div>			
+		</div>
+		{wc:if $zjlist}
+			<div class="winning" id="winning_box" >
+          {wc:else}
+          <div class="winning" id="winning_box" style="display:none;" >
+          {wc:if:end}	
+		    <div class="winningbox">
+		        <p class="winning-qh">恭喜获得{wc:$zjlist['content']}</p>
+		        <div class="wining-img"><img id="wining-img" src="{G_UPLOAD_PATH}/{wc:$zjlist['img']}" /></div>
+		        <p class="wining-num">{wc:$b['Grade']}等奖邀请{wc:$zjlist['ren']}个好友消费后获得</p>
+		        <div class="wining-code"><img  src="{wc:$path_2}" /></div>
+		         <div class="winning-btn">
+		            <a class="winning_a fangqi" href="javascript:;" delid="{wc:$zjlist['id']}">放弃奖品</a> 
+		        </div>
+		        <div class="winning-close"></div>
+		    </div>
+		</div>
+		
+		<div class="winning" id="winning_box2" style="display: none;">
+		    <div class="balancebox">
+		        <p class="balance-hd">积分</p>
+		        <p class='balance-num'>1000</p>
+		        <a href="javascript:;" class="balance-close"></a>
+		    </div>
+		</div>
+		
+			
+	<div class="luckdraw" id="luckdraw_box" style="display:none;">
+		    <div class="luckdrawbox">
+              <div class="luckdr_text">
+                <p>今日抽奖次数&nbsp;<span style="color:#d62443">{wc:$hnum}</span>&nbsp;次</p>
+                <p>今日剩余抽奖次数&nbsp;<span style="color:#d62443">{wc:$enum}</span>&nbsp;次</p>
+                <p>您可以邀请好友消费或充值获得抽奖次数</p>
+                 <p>每人每天只能获得<span style="color:#c56211">10</span>次抽奖机会</p>
+              </div>
+             <a href="javascript:;" class="luckdraw-close"></a>
+		         <div class="luckdraw-btn">
+		            <a class="luckdraw_a" href="{WEB_PATH}/mobile/home/userrecharge" delid="">去充值</a> 
+		            <a class="" href="{WEB_PATH}/mobile/invite/friends" class="active">邀请好友</a> 
+		        </div>
+		    </div>
+		</div>	
+      
+      
+	</body>
+</html>
+<script type="text/javascript" src="{G_TEMPLATES_JS}/mobile/jquery.min.js"></script>
+<script type="text/javascript" src="{G_TEMPLATES_JS}/mobile/jquery.rotate.min.js" ></script>
+<script type="text/javascript" src="{G_TEMPLATES_JS}/mobile/swiper-3.4.2.jquery.min.js" ></script>
+<script type="text/javascript" src="{G_TEMPLATES_JS}/layer/mobile/layer.js" ></script>
+<script>
+  /*
+  layer.open({
+    title: '大转盘参与须知', 
+    content: '<p>1、幸运大转盘每个用户至多参与10次/日；</p><p>2、获得商品后，须邀请好友助力才可获得此商品；</p><p>3、当日成功邀请好友消费，可获得1次转盘机会，可多次叠加；</p><p>4、当日累计充值每满500元，可获得1次转盘机会，可多次叠加；</p><p>5、如所中商品为<span style="border-bottom: 1px dashed #9a1d1d;">“积分”</span>和<span style="border-bottom: 1px dashed #9a1d1d;">“余额”</span>，无需邀请好友助力，系统会自动到帐用户余额；</p><p>6、每日用户所得商品，将于当日23：59系统自动清除，未成功邀请好友助力，视为放弃该商品，平台也不再补发；</p><p><br>注：最终解释权归银航商城所有</p>'
+    ,btn: '我知道了'
+  });
+  */
+	//只需要更换turnplate的id就可以更换相应的奖品
+	var turnplate={
+      	restaraunts:[{wc:$title}],       //大转盘奖品名称
+      	rotateFlag:false,      //false:停止;ture:旋转
+      	//id:0     //抽中的id 1:iphone x  2:100话费红包   3:周大福吊坠 ......
+  	};
+  var num=$("#zp_num").html();
+  var num2=$("#zp_num2").html();
+  	$(document).ready(function(){
+	    //旋转转盘 item:奖品位置; txt：提示语;
+	    var rotateFn = function (item, txt){
+	      	var angles = (item-2) * (360 / turnplate.restaraunts.length) - (360 / (turnplate.restaraunts.length*2));
+	      	if(angles<270){
+	       	 angles = 270 - angles; 
+	      	}else{
+	      	  angles = 360 - angles+270;
+	      	}
+	      	$('.turntable_box').stopRotate();
+	     	$('.turntable_box').rotate({
+	       		angle:0,
+	        	animateTo:angles+1800+22.5,
+	        	duration:8000,
+	       		callback:function (){
+					$.ajax({
+			             type: "POST",
+			             url: "{WEB_PATH}/mobile/user/zpzj",
+			             data: {itemid:item},
+			             dataType: "json",
+			             success: function(data){
+                           if(data == 2){
+                           		$("#luckdraw_box").show(); return;
+                           }
+                           if(data == 0){
+                           		window.location.href="{WEB_PATH}/mobile/user/login";
+                            	 return;
+                           }
+			             	if(data.yaoqingnum){
+                              $("#winning_box").show();
+                              	$(".winning_a").attr('delid',data.id);
+                              	$("#wining-img").attr('src','{G_WEB_PATH}/statics/uploads/'+data.img);
+			             		$(".winning-qh").html("恭喜获得"+data.content);
+                              	$(".wining-num").html(data.Grade+"等奖邀请"+data.yaoqingnum+"个好友消费后获得");
+			             	}else{
+                               $("#winning_box2").show();
+                              if(data.type == 1){
+                             	 $(".balance-hd").html('积分');
+                              }else{
+                              	 $(".balance-hd").html('余额');    
+                              }
+                              $(".balance-num").html(data.money);
+			             		//$(".winning-qh").html("该奖品为积分/余额请在账户查看");
+                              	
+			             	}
+			             	
+							}
+			         });
+	          		turnplate.rotateFlag = !turnplate.rotateFlag;
+	        	}
+	      	});
+	    };
+	    $('.pointer').click(function (){
+          if(num2<= 0){ $("#luckdraw_box").show(); return;}
+	      	if(turnplate.rotateFlag)return;
+	      	turnplate.rotateFlag = !turnplate.rotateFlag;
+	      	var item = turnplate.id;
+	      	if(!item){
+			     $.ajax({
+			             type: "GET",
+			             url: "{WEB_PATH}/mobile/user/r",
+			             data: {},
+			             dataType: "json",
+			             success: function(data){
+			             	//console.log(data);
+                            num=$("#zp_num").html();
+                           num2=$("#zp_num2").html();
+                           	$("#zp_num").html(num -1);
+                           	$("#zp_num2").html(num2 -1);
+			             	item=data;
+			             	rotateFn(item, turnplate.restaraunts[item-1]);
+							}
+			         });
+	      	}else{
+	      		rotateFn(item, turnplate.restaraunts[item-1]);
+	      	}
+	      	//指针落在对应奖品区域的中心角度
+	      	
+	      	
+	    });	   
+	    var swiper = new Swiper('.list', {
+	      	direction: 'vertical',
+	      	autoplay: true,
+	      	speed:1300,
+	      	loop:true
+	    });
+	  
+	}); 
+	$(".fangqi").on('click',function(){
+		var id=$(this).attr('delid');
+		if(confirm("确定放弃吗")){
+			     $.ajax({
+			             type: "GET",
+			             url: "{WEB_PATH}/mobile/user/delete",
+			             data: {id:id},
+			             dataType: "json",
+			             success: function(data){
+			             	$("#winning_box").hide();
+						}
+			         });			
+			
+		}
+	})
+	$(".winning-close").on('click',function(){
+		$("#winning_box").hide();
+	}) 
+  $(".luckdraw-close").on('click',function(){
+ 	 $(".luckdraw").hide();
+  });
+  $(".balance-close").on('click',function(){
+ 	 $("#winning_box2").hide();
+  });
+</script>

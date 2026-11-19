@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="app-id=518966501" name="apple-itunes-app" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0, target-densitydpi=medium-dpi" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<title>账户明细</title>
+<link href="{G_TEMPLATES_CSS}/mobile/comm.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="{G_TEMPLATES_CSS}/mobile/member_index.css"/>
+<script src="{G_TEMPLATES_JS}/mobile/jquery190.js" language="javascript" type="text/javascript"></script>
+<style type="text/css">
+#goods_list{text-align: center;background: #fff;margin-top: 2px;border-top: .5rem solid #eee;}
+#goods_list ul{display: flex;}
+#goods_list ul li{flex: 1;font-size: .5rem;border-bottom: 1px solid #F7F7F7;padding: .5rem 0;color: #333}
+.detail_header{background:#F7F7F7;}
+.detail_header li{font-size: .6rem !important;color: #999 !important;}
+.order-item-btn{background-color: {THEME_COLOR};}
+.active,.order-tab .active,.order-item-state {color: {THEME_COLOR};}
+.order-tab .active span {border-bottom: .1rem solid {THEME_COLOR}}
+.orange,.Progress-bar .Pro-bar-li li.P-bar01 em,.Progress-bar .Pro-bar-li li.P-bar03 em {color: {THEME_COLOR};}a.orgBtn,.u-progress .pging,.haveNot .guangguang,#addAll,#addAll p {background: {THEME_COLOR};}#addAll {box-shadow: 0 0 15px {THEME_COLOR};}
+</style>
+</head>
+<body>
+<div>
+  <div class="rela">
+    <div class="">
+      <div class="order-list-main">
+        <div class="title-area-main">
+          <p class="title-text"> <span> <span class="back-icon iconfont icon-left-arrow" onClick="history.back()"></span> <span class="item-title active">账户明细 </span> </span> </p>
+        </div>
+        <div>
+          <ul class="order-tab">
+            <li state="1" class="order-tab-item active"><span>消费明细</span></li>
+            <li state="2" class="order-tab-item"> <span>充值明细</span></li>
+          </ul>
+        </div>
+        <div class="order-list" id="goods_list" style="position: absolute;width: 100%;padding-bottom: 60px;">
+          <div id="divGoodsLoading" data-page="1" data-isload="yes" style="text-align: center;padding: 1rem;font-size: .7rem;color:#ddd;">正在加载</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{wc:templates "mobile/index","footer"}
+<script type="text/javascript">
+
+        //打开页面加载数据
+        window.onload = function () {
+            glist_json();
+        };
+
+        var elm = $("#divGoodsLoading");
+        //获取数据
+        function glist_json() {
+           var L='{wc:$symbol['symbol_left']}';
+           var R='{wc:$symbol['symbol_right']}';
+           var U='{wc:$symbol['unit']}';
+            if (elm.attr("data-isload") == "yes" && !elm.hasClass("loading")) {
+                elm.addClass("loading");
+                var page = elm.attr("data-page"); 
+                var strnum= (page-1)*15
+                var state=$(".order-tab .active").attr("state");
+				
+				if(state=="1"){
+				var url = '{WEB_PATH}/mobile/shopajax/getUserConsumption/'+strnum;
+				}else{
+				var url = '{WEB_PATH}/mobile/shopajax/getUserRecharge/'+strnum;
+				}
+
+                if(page==1)
+                {
+                    var head_ul="";
+                    if(state=="1")
+                    {
+                        head_ul='<ul class="detail_header">'+
+                                    '<li>消费时间</li>'+
+                                    '<li>消费金额</li>'+
+                                '</ul>';
+                    }
+                    else
+                    {
+                        head_ul='<ul class="detail_header">'+
+                                    '<li>充值时间</li>'+
+                                    '<li>充值金额</li>'+
+                                    '<li>充值渠道</li>'+
+                                '</ul>';                        
+                    }
+                    elm.before(head_ul);
+                }
+                $.getJSON(url, function (data) {
+                    var list = data.listItems;
+
+                    for (var i = 0; i < list.length; i++) {
+                        var detail=list[i];
+                        var ul="";
+                        if(state=="1")
+                        {
+                        	var cont=detail.content;
+                        	if(cont.indexOf("给用户") >= 0 ) { 
+	                              ul='<ul>'+
+	                                    '<li>'+detail.time+'</li>'+
+	                                    '<li>'+detail.content+'</li>'+
+	                          		 '</ul>';   								
+								}else{
+                         			ul='<ul>'+
+                                   	 	'<li>'+detail.time+'</li>'+
+                                    	'<li>花费'+ L +detail.money + R + detail.content + '</li>'+  
+                               		 '</ul>';									
+								}
+    
+                        }
+                        else
+                        {
+                             ul='<ul>'+
+                                    '<li>'+detail.time+'</li>'+
+                                    '<li>'+ L +detail.money+'</li>'+
+                                    '<li>'+detail.content+ '</li>'+
+                                '</ul>';
+                        }
+
+                        elm.before(ul); 
+                    }
+                    if (list.length < 15) {
+                        elm.removeClass("loading").attr("data-isload", "no");
+                        elm.hide();
+                    } else {
+                        elm.removeClass("loading").attr("data-page", parseInt(page) + 1);
+                    }
+                });
+            }
+        }
+
+        $(document).ready(function () {
+            $(window).scroll(function () {
+                var cHeight = document.documentElement.clientHeight;
+                var sTop = $(window).scrollTop();
+                var height = cHeight + sTop;
+                var eTop = elm.offset().top;
+                if (height >= eTop) {
+                    glist_json();
+                }
+            });
+        });
+
+        $(".order-tab-item").click(function(){
+            $(this).addClass("active").siblings().removeClass("active");
+            $("#goods_list ul").remove();
+            elm.attr("data-page","1").attr("data-isload","yes");
+            glist_json();
+        })
+
+    </script>
+<script language="javascript" type="text/javascript">
+  var Path = new Object();
+  Path.Skin="{G_TEMPLATES_STYLE}";  
+  Path.Webpath = "{WEB_PATH}";
+var Base={head:document.getElementsByTagName("head")[0]||document.documentElement,Myload:function(B,A){this.done=false;B.onload=B.onreadystatechange=function(){if(!this.done&&(!this.readyState||this.readyState==="loaded"||this.readyState==="complete")){this.done=true;A();B.onload=B.onreadystatechange=null;if(this.head&&B.parentNode){this.head.removeChild(B)}}}},getScript:function(A,C){var B=function(){};if(C!=undefined){B=C}var D=document.createElement("script");D.setAttribute("language","javascript");D.setAttribute("type","text/javascript");D.setAttribute("src",A);this.head.appendChild(D);this.Myload(D,B)},getStyle:function(A,B){var B=function(){};if(callBack!=undefined){B=callBack}var C=document.createElement("link");C.setAttribute("type","text/css");C.setAttribute("rel","stylesheet");C.setAttribute("href",A);this.head.appendChild(C);this.Myload(C,B)}}
+function GetVerNum(){var D=new Date();return D.getFullYear().toString().substring(2,4)+'.'+(D.getMonth()+1)+'.'+D.getDate()+'.'+D.getHours()+'.'+(D.getMinutes()<10?'0':D.getMinutes().toString().substring(0,1))}
+Base.getScript('{G_TEMPLATES_JS}/mobile/Bottom.js?v='+GetVerNum());
+
+</script>
+</body>
+</html>

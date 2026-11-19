@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>聊天设置</title>
+<link rel="stylesheet" href="{G_TEMPLATES_CSS}/mobile/swiper.min.css" />
+<link rel="stylesheet" href="{G_TEMPLATES_CSS}/mobile/winning.css" />
+<link rel="stylesheet" href="{G_TEMPLATES_CSS}/mobile/yunchat.css" />
+<link href="{G_TEMPLATES_CSS}/mobile/switchery.css" rel="stylesheet" type="text/css" />
+<script src="{G_TEMPLATES_JS}/mobile/jquery190.js" language="javascript" type="text/javascript"></script>
+<script src="{G_TEMPLATES_JS}/mobile/switchery.js" language="javascript" type="text/javascript"></script>
+<style>
+.jianbian{background: -o-linear-gradient(top,{THEME_COLOR_TWO},{THEME_COLOR});}
+.jianbian{background: -webkit-gradient(linear,0 0,0 bottom,from({THEME_COLOR_TWO}),to({THEME_COLOR}));}
+
+.switchup {overflow: hidden;}
+.switchup div {padding: 12px 15px;margin-bottom: 0.5px;background: #fff;display: flex;justify-content: space-between;align-items: center;}
+.switchup span {font-size: 12px;}
+.switchup span.switchery {box-sizing: border-box;height: 23px;width: 40px;}
+.switchup input {}
+.switchery > small {height: 21px;width: 21px;}
+</style>
+</head>
+<body class="bggray">
+<div class="fixed_header pa015 diflex jube alitc">
+	<div class="back-btn" onclick="history.go(-1);"></div><span>聊天设置</span><div class="opcty">0</div>
+</div>
+<!-- <div class="xzparen diflex alitc">
+	<div><img src="http://upos.yungoucms.com/statics/uploads/banner/yungoucms/t6.png"><span class="c999">用户的名字的名字</span></div>
+	<div><div>+</div><span style="opacity: 0;">0</span></div>
+</div> -->
+<div class="switchup">
+	<div><span>拉黑好友</span><input data-privacy-type="1" type="checkbox" /></div>
+	<!-- <div><span>消息免打扰</span><input data-privacy-type="2" type="checkbox"  checked /></div> -->
+</div>
+<div class="qingkmess jianbian giotnu">删除好友</div>
+<div class="numbpar diflex alitc" style="display: none;">
+	<div>
+		<span class="disinblo">确定删除此好友</span>
+		<div><span class="disinblo c999 giotnu size12">取消</span><span onclick="shieldFriends(1504)" class="disinblo jianbian">确定</span></div>
+	</div>
+</div>
+<input type="hidden" id="wcuid" value="{wc:$uid}"/>
+<script>PathWebpath = "{WEB_PATH}";</script>
+<script src="{G_TEMPLATES_JS}/mobile/chatms.js" language="javascript" type="text/javascript"></script>
+<script>
+var locationhref = $(location).attr("href")
+var lohref = locationhref.split('/')
+var tableid = parseInt(lohref[lohref.length-1])
+var forstatus = parseInt(lohref[lohref.length-2])
+if (forstatus == 4) {
+	console.log(4156456)
+	$('.switchup input').prop('checked','true')
+}
+// var elems = Array.prototype.slice.call(document.querySelectorAll('.switchup input'));
+// elems.forEach(function(html) {
+// 	new Switchery(html);
+// });
+var elem = document.querySelector(".switchup input")
+var switchery= new Switchery( elem )
+setTimeout(function () {
+	$('.switchup .switchery').click(function(){
+		var thiss = $(this)
+		var _status = thiss.is(":checked")?thiss.removeAttr('checked'):thiss.prop('checked')
+		shieldFriends(1505);
+	})
+}, 1000)
+$('.giotnu').click(function(){
+	$('.messapar').fadeOut();
+	$('.numbpar').fadeToggle(100);
+})
+
+let port = 'ws://'+Pathpath+':9504/chat?myId=' + wcuid
+ws = new WebSocket(port)
+ws.onopen=()=>{
+	console.log('服务器已连接')
+}
+ws.onclose=()=>{
+	console.log('服务器关闭')
+	clearInterval(Interval50)
+}
+ws.onmessage=(msg)=>{
+	var arr = JSON.parse(msg.data)
+	if (arr.code == 1500) {
+		showmesscon(arr.data)
+		console.log(arr.code,arr)
+	} else {
+		console.log(arr) //监听接受来自服务端的信息
+	}
+}
+// 拉黑/删除
+function shieldFriends(fid){
+	pushMess = `
+		{
+		  "code": ${fid},
+		  "data": {
+			"uid": ${wcuid},
+			"table_id": ${tableid}
+		  }
+		}
+		`
+	console.log(pushMess)
+	ws.send(pushMess)
+	if (fid == 1504) {
+		window.location.href=PathWebpath+"/mobile/yunchat/usermas";
+	}
+}
+</script>
+</body>
+</html>

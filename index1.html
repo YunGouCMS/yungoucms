@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" media="screen" href="/index/static/particles/style.css">
+<style>
+body {margin:0;}
+a {
+    text-decoration: none;
+}
+.root1 {
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    padding: 0 !important;
+    margin: 0;
+    background: #fff url(/index/static/particles/der.6dfbee6b.png) fixed 50%;
+    background-size: cover;
+    position: fixed;
+    left: 0;
+}
+.header {
+    position: relative;
+    height: 76px;
+    background: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    box-shadow: #e8e8e8 .2px .2px 1px .5px;
+    overflow: hidden;
+    display: flex;
+    align-items: content;
+}
+.header .shan {
+    position: absolute;
+    -webkit-animation: changeImg 3s ease 0s;
+    -o-animation: changeImg 3s ease 0s;
+    animation: changeImg 3s ease 0s;
+    top: 0;
+    width: 30%;
+    height: 100%;
+    content: "";
+    background: -webkit-linear-gradient(left, hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, .4) 50%, hsla(0, 0%, 100%, 0));
+    background: -o-linear-gradient(left, hsla(0, 0%, 100%, 0) 0, hsla(0, 0%, 100%, .4) 50%, hsla(0, 0%, 100%, 0) 100%);
+    background: -moz-linear-gradient(left, hsla(0, 0%, 100%, 0) 0, hsla(0, 0%, 100%, .4) 50%, hsla(0, 0%, 100%, 0) 100%);
+    background: linear-gradient(90deg, hsla(0, 0%, 100%, 0) 0, hsla(0, 0%, 100%, .4) 50%, hsla(0, 0%, 100%, 0));
+    -webkit-transform: skewX(-45deg);
+    transform: skewX(-45deg);
+    animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+}
+.headlogo {display: flex;align-items: center;}
+.headlogo img {height:40px;margin-left:10px;}
+.conflex {display: flex;color:#ffffff;flex-direction: column;align-items: center;height: calc(100vh - 76px);justify-content: space-between;padding:30px 0 20px;box-sizing: border-box;position:relative;}
+.conflex img {width: 250px;}
+.conflex h2 {font-size: 35px;}
+.conflex p {font-size: 35px;}
+.fjcac a {font-weight: 700;color: #fff;box-shadow: #c93b6e .2px .2px 1px .5px;background-image: linear-gradient(90deg, #f82a21,#d32d03);border-radius: 100px;padding:20px 30px;font-size: 18px;}
+.fjcac {display: flex;}
+.fjcac a:nth-child(2) {margin:0 30px;}
+.conflexpc .pctop {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    padding-top: 12vh;
+    align-items: center;
+}
+.pctop .pclef {
+    width: 66%;
+}
+.pctop .pclef p {
+    padding-top: 7vh;
+    font-weight: bold;
+}
+.pclef .fjcac {
+    padding-top: 6.5vh;
+}
+.botclas {font-size: 15px;text-align: center;line-height: 25px;}
+.pcerwema {padding-top: 6.5vh;}
+.pcerwema img {
+    width: 170px;
+    border-radius: 20px;
+}
+.conflexh5 {display:none;}
+@-webkit-keyframes changeImg{from{left:-100%}100%{left:150%}}
+@media (max-width: 640px) {
+    html {background:#ffffff;}
+    body {max-width: 640px;margin: 0 auto;background:#ffffff;}
+    div {max-width:640px;position: relative;width:100%;}
+    .root1 {
+        background: #fff url(/index/static/particles/tre.de87b966.png) fixed 50%;
+        background-size: cover;
+    }
+    .header {
+        height: 54px;
+    }
+    .fjcac {justify-content: center;}
+    .fjcac a {font-size: 15px;padding:10px 20px;}
+    .conflex {height: calc(100vh - 54px);}
+    .conflex h2 {font-size: 21px;}
+    .conflex p {font-size: 15px;}
+    .botclas {font-size: 13px;line-height: 20px;}
+    .conflex img {height: calc(100vh - 370px);width: auto;}
+    .conflexpc {display:none;}
+    .conflexh5 {display:flex;}
+    .conflexh5 p {padding: 0 20px;text-align: center;}
+}
+</style>
+</head>
+<body>
+<div style="background: rgb(12, 14, 21);">
+    <div class="root1"><div id="particles-js"></div></div>
+    <div class="header">
+        <div class="headlogo">
+            <img src="/index/static/images/logo.png">
+        </div>
+        <div class="headrigh">
+            <!--text-->
+        </div>
+        <div class="shan"></div>
+    </div>
+    <div class="conflex conflexpc">
+        <div class="pctop">
+            <div class="pclef">
+                <h2 class="titleh5"></h2>
+                <p>YunGouShop mematuhi prinsip keadilan, impartialitas, dan terbuka untuk menyediakan semua orang pengalaman belanja kualitas tinggi!</p>
+                <div class="fjcac">
+                    <a href="/index/" target="_blank">Mobile</a>
+                    <a href="/index/pages/indexs/app/index?id=76" target="_blank">Androld</a>
+                    <a href="/index/pages/indexs/app/index?id=76" target="_blank">IOS</a>
+                </div>
+                <div class="pcerwema">
+                    <img src="/index/static/particles/xcxewm.1a376fff.jpg">
+                </div>
+            </div>
+            <img src="/index/static/particles/homeimg.png">
+        </div>
+        <div class="botclas">
+            ICP备：渝ICP备16004332号-1</br>重庆韬龙网络科技有限公司 2025 @ All Rights Reserved.
+        </div>
+    </div>
+    <div class="conflex conflexh5">
+        <h2 class="titleh5"></h2>
+        <p>YunGouShop mematuhi prinsip keadilan, impartialitas, dan terbuka untuk menyediakan semua orang pengalaman belanja kualitas tinggi!</p>
+        <img src="/index/static/particles/homeimg.png">
+        <div class="fjcac">
+            <a href="/index/" target="_blank">Mobile</a>
+            <a href="/index/pages/indexs/app/index?id=76" target="_blank">Androld</a>
+            <a href="/index/pages/indexs/app/index?id=76" target="_blank">IOS</a>
+        </div>
+        <div class="botclas">
+            ICP备：渝ICP备16004332号-1</br>重庆韬龙网络科技有限公司 2025 @ All Rights Reserved.
+        </div>
+    </div>
+</div>
+<script src="/index/static/particles/particles.min.js"></script>
+<script src="/index/static/particles/app.js"></script>
+<script>
+    function isMobile() {
+        const userAgentInfo = navigator.userAgent;
+        const mobileAgents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+        const mobileFlag = mobileAgents.some((mobileAgent) => {
+            return userAgentInfo.indexOf(mobileAgent) > 0;
+        });
+        return mobileFlag;
+    }
+    if (isMobile()) {
+        window.location.href = '/index/'
+    }
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/app/index/init', true);
+    xhr.onreadystatechange = function () {
+        if (xhr.status == 200) {
+            var datajson = JSON.parse(xhr.responseText).data.config;
+            console.log(datajson.web_name);
+            var element = document.querySelector('.titleh5');
+            element.innerHTML = datajson.web_name;
+            document.title = datajson.web_name;
+        }
+    };
+    xhr.send();
+</script>
+</body>
+</html>

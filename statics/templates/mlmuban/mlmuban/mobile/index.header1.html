@@ -1,0 +1,32 @@
+<style>
+ .g-header {
+            height:44px;
+            background:#fff;
+            border-bottom:1px solid #eee;
+            position:relative;
+            width: 100%;
+            z-index: 99
+        }
+        .g-header img{
+            width: 50%;
+            margin-top: 6px;
+        }
+        .g-header h2 {
+            text-align:center;
+            color:#000;
+            line-height:44px;
+            text-shadow:none;
+            font-size: 19px;
+        }
+</style>
+<header class="g-header">
+        <div class="head-l">
+            <a href="javascript:;" onclick="history.go(-1)" class="z-HReturn"><img src="{G_TEMPLATES_IMAGE}/back.png"></a>
+        </div>
+        <h2>{wc:$webname}</h2>
+        <!-- 栏目页面顶部 -->
+
+        <div class="fr head-r">            
+            <a href="javascript:;" onclick="location.reload()" class="z-HReturn"><img src="{G_TEMPLATES_IMAGE}/refresh.png"></a>
+        </div>          
+    </header>

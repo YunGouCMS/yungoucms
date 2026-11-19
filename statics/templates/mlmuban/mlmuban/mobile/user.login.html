@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>登录 - {wc:$webname}</title>
+<meta content="app-id=518966501" name="apple-itunes-app" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<link href="{G_TEMPLATES_CSS}/mobile/comm.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="{G_TEMPLATES_JS}/layui/css/layui.css">
+
+  <script src="{G_TEMPLATES_JS}/mobile/jquery190.js" language="javascript" type="text/javascript"></script>
+  <script src="{G_TEMPLATES_JS}/layui/layui.js" language="javascript" type="text/javascript"></script>
+  <script src="{G_TEMPLATES_JS}/mobile/base.js" language="javascript" type="text/javascript"></script> 
+    <script src="{G_TEMPLATES_JS}/base.js" language="javascript" type="text/javascript"></script>
+ <script src="{G_TEMPLATES_JS}/mobile/Login.js" language="javascript" type="text/javascript"></script>
+  <script src="{G_TEMPLATES_JS}/mobile/jsencrypt.min.js" language="javascript" type="text/javascript"></script>
+  <script src="{G_TEMPLATES_JS}/mobile/gt.js" language="javascript" type="text/javascript"></script>
+ <style>
+#content .userinfo {background-image: linear-gradient(-180deg,#ffb366 0,#f26549 100%);height: 1.67rem;}
+.userinfo {display: flex;flex-direction: column;align-items: center;overflow: hidden;}
+.userinfo-avatar {width: .62rem;height: .62rem;margin: .28rem .1rem .1rem;position: relative;border-radius: 100%;overflow: hidden;}
+.userinfo-nickname {color: #fff;font-size: .15rem;}
+.userinfo-service {color: #fff;width: 100%;margin-top: .05rem;text-align: center;font-size: .12rem;}
+.registerCon {text-align: left;margin-top:30px}
+.inp {border: 1px solid gray;padding: 0 10px;width: 200px;height: 30px;font-size: 18px;}
+.btn {border: 1px solid gray;width: 100px;height: 30px;font-size: 18px;cursor: pointer;}
+#embed-captcha {width: 100%;margin: 10px auto;}.geetest_holder.geetest_wind{width: 100%!important}
+.show {display: block;}
+.hide {display: none;}
+#notice {color: red;}
+.mydivp {
+    border-radius: 0.3rem;
+    width: 75%;
+    margin: 0 auto;
+    padding: 0.5rem;
+    line-height: 1rem;
+}
+.mydivp {border: 0.1rem solid {THEME_COLOR};}
+.mydivp span,.btnArea .btn-forget,.btnArea .btn-register,.agreement-tips a,.loginType .active,.orange,.Progress-bar .Pro-bar-li li.P-bar01 em,.Progress-bar .Pro-bar-li li.P-bar03 em {color: {THEME_COLOR}!important;}
+.loginType .active{border-bottom:2px solid {THEME_COLOR};}
+#login,.getCode,a.orgBtn,.u-progress .pging,.haveNot .guangguang,#addAll,#addAll p {background: {THEME_COLOR};}
+#addAll {box-shadow: 0 0 15px {THEME_COLOR};}
+</style>
+</head>
+<body>
+<div class="h5-1yyg-v1" id="content">
+  <!-- 栏目页面顶部 -->
+  <!-- 内页顶部 -->
+<!-- 弹出层 -->
+<div id="pageDialogBG" class="pageDialogBG" style="display:none;"></div>
+<div id="pageDialog_confirm" class="pageDialog" style="width:255px;height:126px;position:fixed;z-index:9999;left:50%;top:50%;transform:translate(-50%, -50%);display:none;">
+	<div class="clearfix m-round u-tipsEject">
+		<div class="u-tips-txt"></div>
+		<div class="u-Btn"></div>
+	</div>
+</div>
+
+    <link rel="stylesheet" href="{G_TEMPLATES_CSS}/mobile/login.css">
+
+
+<div class="h5-1yyg-v1" id="content">
+    <form class="layui-form">
+        <div class="registerCon">
+            <ul>
+				<li class="loginType">
+					<div class="accountLogin active">登录</div>
+					<!--div class="mobileCodeLogin">手机验证码登录</div--> 
+				</li>
+                <li class="acc">
+                    <input type="hidden" id="memberId" name="memberId" class="layui-input" value="">
+                    <label for="txtAccount">账号</label>
+                    <input type="tel" id="phone" name="phone" placeholder="手机" class="lEmail">
+                </li>
+                <li class="pwd">
+                    <label for="txtPassword">密码</label>
+                    <input type="password" id="pwd" name="pwd" placeholder="请输入密码" class="lPwd">
+                    <a href="javascript:;">
+                    	<em id="toggle_psw" class="psw_type"></em>
+                    </a>
+                </li>
+				<!-- <li class='Lcodes'>
+				    <div id="embed-captcha"></div>
+					<p id="wait" class="show">正在加载验证码......</p>
+				</li> -->
+				<li class='Lcodes'>
+				    <div id="embed-captcha"></div>
+					<p id="wait" class="show"></p>
+				</li>
+                <li class="code">
+                    <input type="text" id="validCode" name="validCode" placeholder="请输入验证码" class="lcode">
+                    <button id="couter" class="getCode" type="button">获取验证码</button>
+                </li>
+                <li class="btn-login">
+                    <div id="login" class="layui-btn layui-btn-danger" style="width: 100%;font-size:18px;border-radius: 4px;" lay-submit="" lay-filter="login">登 录</div> 
+                </li>
+                <!--<li class="btnArea">-->
+                <!--    <a class="btn-forget" href="{WEB_PATH}/mobile/user/step1">-->
+                <!--        <i></i>-->
+                <!--        <span>忘记密码</span>-->
+                <!--    </a>-->
+                <!--    <a class="btn-register" href="{WEB_PATH}/mobile/user/register">-->
+                <!--        <i></i>-->
+                <!--        <span>快速注册</span>-->
+                <!--    </a>-->
+                <!--</li>-->
+            </ul>
+        </div>
+        <div class="mydivp">
+            <p>新用户首次登录自动注册</p>
+            <p>账号栏请填写正确<span>手机号</span></p>
+            <p>后续登录使用验证码登录即可，无需密码</p>
+        </div>
+        <div class="agreement-tips">
+            <p>登录代表同意
+                <a href="{WEB_PATH}/mobile/mobile/gonggaoxq/31">《{wc:$webname}在线用户服务条款》</a>
+            </p>
+        </div>
+    </form>
+    
+    
+    
+</div>
+
+  {wc:templates "mobile/index","footer"}
+
+
+</div>
+<script type="text/javascript">
+		$(function(){	 
+			$(document).keydown(function(e) {
+				if (e.keyCode == 13) {
+	  				$("#login").click();
+				}
+			});
+		});
+	</script>
+
+  <script>
+    var handlerEmbed = function (captchaObj) {
+        $("#embed-submit").click(function (e) {
+            var validate = captchaObj.getValidate();
+            if (!validate) {
+                $("#notice")[0].className = "show";
+                setTimeout(function () {
+                    $("#notice")[0].className = "hide";
+                }, 2000);
+                e.preventDefault(); 
+            }
+        });
+        // 将验证码加到id为captcha的元素里，同时会有三个input的值：geetest_challenge, geetest_validate, geetest_seccode
+        captchaObj.appendTo("#embed-captcha");
+        captchaObj.onReady(function () {
+            $("#wait")[0].className = "hide";
+        });
+        // 更多接口参考：http://www.geetest.com/install/sections/idx-client-sdk.html
+    };
+    $.ajax({
+        // 获取id，challenge，success（是否启用failback）
+        url: "{WEB_PATH}/mobile/ajax/StartCaptchaServlet/t=" + (new Date()).getTime(), // 加随机数防止缓存
+        type: "get",
+        dataType: "json",
+        success: function (data) {
+            // 使用initGeetest接口
+            // 参数1：配置参数
+            // 参数2：回调，回调的第一个参数验证码对象，之后可以使用它做appendTo之类的事件
+            initGeetest({
+                gt: data.gt,
+                challenge: data.challenge,
+                new_captcha: data.new_captcha,
+                product: "embed", // 产品形式，包括：float，embed，popup。注意只对PC版验证码有效
+                offline: !data.success // 表示用户后台检测极验服务器是否宕机，一般不需要关注
+                // 更多配置参数请参见：http://www.geetest.com/install/sections/idx-client-sdk.html#config
+            }, handlerEmbed);
+        }
+    });
+    $('.registerCon .pwd').css('display','none')
+	$('.registerCon .Lcodes').css('display','block')
+    $('.registerCon .code').css('display','block')
+	loginType=1;
+</script>
+</body>
+
+</html>

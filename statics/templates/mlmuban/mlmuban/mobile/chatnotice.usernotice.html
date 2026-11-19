@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>通知消息</title>
+<link rel="stylesheet" href="{G_TEMPLATES_CSS}/mobile/swiper.min.css" />
+<link rel="stylesheet" href="{G_TEMPLATES_CSS}/mobile/winning.css" />
+<link rel="stylesheet" href="{G_TEMPLATES_CSS}/mobile/yunchat.css" />
+<script src="{G_TEMPLATES_JS}/mobile/jquery190.js" language="javascript" type="text/javascript"></script>
+<style>
+.jianbian{background: -o-linear-gradient(top,{THEME_COLOR_TWO},{THEME_COLOR});}
+.jianbian{background: -webkit-gradient(linear,0 0,0 bottom,from({THEME_COLOR_TWO}),to({THEME_COLOR}));}
+</style>
+</head>
+<body class="bggray">
+<div class="fixed_header pa015 diflex jube alitc pfixed">
+	<div class="back-btn" onclick="history.go(-1);" style="width: 50px;"></div><span>通知消息</span><div class="size12 giotnu opcty">清除未读</div>
+</div>
+<div class="ticeul">
+	<ul>
+		
+	</ul>
+</div>
+<div class="numbpar diflex alitc" style="display: none;">
+	<div>
+		<span class="disinblo">清除所有未读的通知消息？</span>
+		<div><span class="disinblo c999 giotnu size12">取消</span><span class="disinblo jianbian">呼叫</span></div>
+	</div>
+</div>
+<input type="hidden" id="wcuid" value="{wc:$uid}"/>
+<script>PathWebpath = "{WEB_PATH}";</script>
+<script src="{G_TEMPLATES_JS}/mobile/chatms.js" language="javascript" type="text/javascript"></script>
+<script>
+$.post("/mobile/user/getchatmsg",{uid:wcuid},function(s){
+    var data = JSON.parse(s).data
+   $('.ticeul ul').html('')
+	if(data.length==0) {
+		$('.ticeul ul').append("<li style='text-align: center;background: #f5f5f5;'>暂无消息通知</li>")
+	} else {
+		for (var item of data){
+			var val = "<li><a href='"+PathWebpath+"/mobile/yunchat/userdetails/"+item.id+"'>"
+			if (item.status == 0) {
+				val += "<span></span>"
+			}
+			val += "<img src='/statics/uploads/banner/yungoucms/t61.png' class='wid100'><div><span>"+item.titles+"</span><text>"+item.send_time+"</text></div></a></li>"
+			$('.ticeul ul').append(val)
+		}
+	}
+});
+$('.giotnu').click(function(){
+	$('.numbpar').fadeToggle(100);
+})
+</script>
+</body>
+</html>

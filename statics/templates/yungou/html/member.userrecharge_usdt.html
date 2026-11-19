@@ -1,0 +1,218 @@
+{wc:templates "index","header"}
+<link rel="preload" href="{G_TEMPLATES_STYLE}/css/user.css" as="style"/>
+<link rel="preload" href="{G_TEMPLATES_STYLE}/css/user.message.css" as="style"/>
+
+<div class="main-content clearfix">
+{wc:templates "member","left"}
+<link rel="stylesheet" type="text/css" href="{G_TEMPLATES_STYLE}/css/user.css"/>
+<link rel="stylesheet" type="text/css" href="{G_TEMPLATES_STYLE}/css/user.message.css"/>
+<style>
+	.pay-input-item{
+		border: solid #ccc 1px;
+		border-top: 0;
+        padding-top: 1px;
+	}
+	.pay-input-main{
+		/* border: solid #ccc 1px; */
+		height: 25px;
+		line-height: 25px;
+		margin-top: 10px;
+		margin-left: 17px;
+	}
+	.input-chi{
+		margin-left: 7px;
+	}
+	.pay-input-chi{
+		
+		margin: 10px 10px;
+	}
+	.pay-input-main,.pay-input-chi {display:flex;align-items: center;gap: 5px;}
+</style>
+<form id="toPayForm" name="toPayForm" action="{WEB_PATH}/member/cart/addmoney" method="post">
+<div class="R-content">
+	<div class="member-t" style="display: flex;align-items: center;padding-bottom: 15px;">
+		<input  class="bluebut imm"  type="button" onclick="location.href='{WEB_PATH}/member/home/userrecharge'" name="submit" value="{wc:fun:lan('accountrecharge','在线充值')}" title="在线充值">
+		<input  class="bluebut imm" style="margin-left: 10px;" type="button" onclick="location.href='{WEB_PATH}/member/home/userrechargedk'" name="submit" value="{wc:fun:lan('rechargecard','充值卡')}" title="充值卡">
+		<h2 style="margin-left: 10px;">{wc:fun:lan("USDT","USDT")}</h2>
+	</div>
+
+	<div class="charge_money_list">
+	<p class="title gray01">{wc:fun:lan("paymentmethod","请选择支付方式")}</p>
+		<ul class="payment yeepay_click" style="padding:10px;">		
+          {wc:loop $usdt_list  $pay}
+			<li style="display: flex;">
+				<input type="radio" 
+					checked="checked" 
+					class="pay_select" 
+					id="pay_id_{wc:$pay['id']}" 
+					value="{wc:$pay['id']}" 
+					data-pay_monerange='{wc:$pay["pay_monerange"]}' 
+					data-exchange_rate="{wc:$pay['exchange_rate']}"
+					name="id" 
+					style="margin:0;">
+				<div style="display: flex;align-items: center;">
+					<label for="pay_id_{wc:$pay['id']}" style="margin: 0 10px;">{wc:$pay['name']}</label>
+				</div>               
+                
+            </li>
+           {wc:loop:end}
+		</ul>
+		<div class="select" style="padding: 15px 0;">
+			<b class="gray01">{wc:fun:lan("rechargeamount","请您选择充值金额")}</b>
+			<b class="gray01 ranges"></b>
+			<ul id="ulMoneyList"></ul>
+		</div>
+		<div class="select pay_input" style="border-top: solid #ccc 1px;">
+
+		</div>
+		<p class="much">{wc:fun:lan("amountpayable","应付金额")}：<span class="yf"><strong>{wc:fun:getCry()}</strong><span id="Money">0</span></span></p>
+		<h6>			
+				<input type="hidden" id="hidPayName" name="payName" value="">
+				<input type="hidden" id="hidPayBank" name="payBank" value="0">
+				<input type="hidden" id="hidMoney" name="money" value="0">
+				<input id="submit_ok" class="bluebut imm" type="button" name="submit" value="{wc:fun:lan('topupnow','立即充值')}" title="立即充值">
+			</form>
+		</h6>
+		<div id="payAltBox" style="display:none;">
+			<div class="prompt_box">
+				<p class="pic"><em></em>{wc:fun:lan("newlyopened","请您在新开的页面上完成支付！")}</p>
+				<p class="ts">{wc:fun:lan("windowuntil","付款完成之前，请不要关闭本窗口！")}<br>{wc:fun:lan("personalsitua","完成付款后跟据您的个人情况完成此操作！")}</p>
+				<ul>
+					<li><a href="{WEB_PATH}/member/home/userbalance" class="look" title="查看充值记录">{wc:fun:lan("rechargerecords","查看充值记录")} </a></li>
+					<li><a href="javascript:gotoClick();" class="look" id="btnReSelect" title="重选支付方式">{wc:fun:lan("reselectmethod","重选支付方式")}</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>  
+</div>
+</div>
+<script>
+$(function(){
+	var dx=/\D/;
+	var tel=$("#txtOtherMoney").val();
+// 	$("#txtOtherMoney").keyup(function(){	
+	$("#ulMoneyList").on("keyup","#txtOtherMoney",function(){
+		if(dx.test($("#txtOtherMoney").val())){
+			$("#txtOtherMoney").val(tel);			
+		}else{
+			tel=$("#txtOtherMoney").val();
+		}
+		if($("#rdOther").prop("checked")){
+			//四舍五入
+			$("#Money").text(Math.round(tel * exchange_rate));
+			$("#hidMoney").val(tel);
+		}
+	});
+	$("#ulMoneyList").on("click","#rdOther",function(){
+		if(dx.test($("#txtOtherMoney").val())){
+			$("#txtOtherMoney").val(tel);			
+		}else{
+			tel=$("#txtOtherMoney").val();
+		}
+		$("#Money").text(Math.round(tel * exchange_rate));
+		$("#hidMoney").val(tel);
+	});
+
+	$("#ulMoneyList").on("click",".rech_money",function(){
+		var money = $(this).val();
+		money = Math.round(money * exchange_rate)
+		console.log($(this).val());
+		$("#Money").text(money);
+		$("#hidMoney").val($(this).val());
+	})
+
+	function getpayinfo(data){
+		var ranges = data.ranges
+		$(".ranges").html('('+data.range.min+'-'+data.range.max+')');
+		var html = '';
+		$("#ulMoneyList").html(html);
+		for(var i=0;i<ranges.length;i++){
+			html += '<li class="selected" style="margin-left:0;width:auto;"><input  type="radio" id="rd'+ranges[i]+'" class="rech_money" name="money" value="'+ranges[i]+'" > <label for="rd'+ranges[i]+'">{wc:fun:lan("topup","充值")} <strong>{wc:fun:getCry()}</strong><b>'+ranges[i]+'</b></label></li>';
+		}
+		html += '<li class="custom" style="margin-left:0;width:auto;"><input type="radio" value="0" name="money" id="rdOther"> <label for="rdOther">{wc:fun:lan("otheramounts","其它金额")}</label><input value="" id="txtOtherMoney" type="text" class="enter" maxlength="15" /></li>';
+		$("#ulMoneyList").html(html);
+	}
+	var exchange_rate = 0;
+	var pay_monerange = {}
+	$(".pay_select").click(function(){
+		var pay_id=$(this).val();
+		pay_monerange = $(this).data("pay_monerange")
+		// pay_monerange = JSON.parse(pay_monerange);
+		exchange_rate = $(this).data("exchange_rate")
+		$("#Money").text('0');
+		$("#hidMoney").val(0);
+		getpayinfo(pay_monerange);
+	})
+	$(".pay_select").click()
+
+	$(".pay_input").on('click','.pay-input',function(){
+	    $(".input-chi").prop("checked",false);
+		$(this).parents(".pay-input-item").find(".input-chi").eq(0).prop("checked",true);
+	})
+
+	$(".pay_input").on('click','.input-chi',function(){
+		$(".pay-input").prop("checked",false);
+		$(this).parents(".pay-input-item").find(".pay-input").eq(0).prop("checked",true);
+	})
+
+	$("#submit_ok").click(function(){
+		var range = pay_monerange.range;
+		var money = $("#hidMoney").val();
+		var min = parseInt(range.min);
+		var max = parseInt(range.max);
+		if(money<min || money>max){
+			toast("{wc:fun:lan('The amount is not within the recharge range','金额不在充值范围内')}", "error");
+			return false;
+		}
+		var formdata = $("#toPayForm").serialize()+ '&submit=1&dosubmit=1&ajax_from=1';
+		$.post('{WEB_PATH}/member/cart/addmoney_usdt',formdata,function(res){
+			console.log(res);
+			data = JSON.parse(res);
+			if(data.code==0){
+				window.location.href=data.data;
+			}else{
+				toast("请重试", "error");
+			}
+		})
+		return false;
+	});
+	
+});
+</script>
+<script type="text/javascript">
+	$(".yu_ff").mouseover(function(){
+	  $(".h_1yyg_eject").show();
+	})
+	$(".yu_ff").mouseout(function(){
+	  $(".h_1yyg_eject").hide();
+	})
+
+		     $("#m_all_sort").hide();
+	     $(".m_menu_all").mouseenter(function(){
+			    $(".m_all_sort").show();
+	     })
+		 $(".m_menu_all").mouseleave(function(){
+			    $(".m_all_sort").hide();
+	     })
+		 $(".m_all_sort").mouseenter(function(){
+			    $(this).show();
+	     })
+		 $(".m_all_sort").mouseleave(function(){
+			    $(this).hide();
+	     })
+	     $(function(){
+	       $(window).scroll(function() {	
+	      		
+	     		if($(window).scrollTop()>=130&&$(window).scrollTop()<=560){
+	     			$(".head_nav").addClass("fixedNav");	
+	     			$("#m_all_sort").fadeOut();
+	     		}else if($(window).scrollTop()>560){
+	     			$(".head_nav").addClass("fixedNav");
+	     			$("#m_all_sort").fadeOut();
+	     	} else if($(window).scrollTop()<130){
+	     			$(".head_nav").removeClass("fixedNav");
+	     	}
+	           });
+	     });
+</script>
+{wc:templates "index","footer"}

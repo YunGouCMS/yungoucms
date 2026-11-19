@@ -1,0 +1,53 @@
+
+# 忽略整个目录
+system/config/
+statics/uploads/
+statics/plugin/qrcode/
+system/caches/
+codes/
+h5/
+index/
+vendor/
+mobile1/
+.vscode/
+mobilebefore/
+goproject/
+system_backup_20260119_012041/
+
+# 忽略特定文件
+system/config/database.inc.php
+*.log
+*.logs
+*.tar.gz
+*.zip
+*.xlsx
+*.md
+*.gz
+*.zip
+404.php
+taolong_shop_hk3RZy.tar.gz
+ygc.taolong.com_DNr4S.tar.gz
+.git_mTMbk.tar.gz
+ygc.apk
+cron-run
+# 忽略特定文件夹
+/.user.ini
+
+# 公开源码仓库不收录部署凭据和运行数据
+.env
+.env.*
+*.pem
+*.p12
+*.pfx
+*.key
+*.sql
+*.db
+*.bak
+*.map
+*.xls
+/database/
+/system/modules/api/lib/qq/storage/
+/requset.txt
+/success.txt
+!README.md
+!README.en.md

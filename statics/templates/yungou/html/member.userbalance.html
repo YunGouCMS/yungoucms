@@ -1,0 +1,93 @@
+{wc:templates "index","header"}
+<link rel="preload" href="{G_TEMPLATES_STYLE}/css/user.css" as="style"/>
+<link rel="preload" href="{G_TEMPLATES_STYLE}/css/user.message.css" as="style"/>
+
+<div class="main-content clearfix">
+{wc:templates "member","left"}
+<link rel="stylesheet" type="text/css" href="{G_TEMPLATES_STYLE}/css/user.css"/>
+<link rel="stylesheet" type="text/css" href="{G_TEMPLATES_STYLE}/css/user.message.css"/>
+<div class="R-content">
+	<div class="member-t"><h2>{wc:fun:lan("acountdetails","账户明细")}</h2></div>
+	<div class="last">
+		<ul>
+			<li><h3>{wc:fun:lan("availalance","您的账户可用余额为")}：</h3> {wc:fun:getCry()}<b class="orange">{wc:$member['money']}</b> <a href="{WEB_PATH}/member/home/userrecharge" class="bluebut" title="充值">{wc:fun:lan("topup","充值")}</a></li>
+		</ul>
+	</div>
+	<div id="divList0" class="list-tab recordList">
+	<ul class="listTitle">
+		<li class="leftTitle">{wc:fun:lan("rechartime","充值时间")}</li>
+		<li class="price">{wc:fun:lan("fundchannels","资金渠道")}</li>
+		<li class="regard">{wc:fun:lan("income","收入")}/{wc:fun:lan("expenditure","支出")}</li>
+	</ul>
+	{wc:loop $account $at}
+	{wc:php:start}
+   		$account_time = explode(".",$at['time']);
+        $at['time'] = $account_time[0];
+    {wc:php:end}	
+	<ul>
+		<li class="leftTitle fontAri">{wc:fun:getLTF($at['time'],2)} {wc:fun:date("H:i:s",$at['time'])}</li>
+		<li class="price">{wc:fun:lan($at['content'])}</li>
+		<li class="regard">
+		{wc:if $at['type'] == 1}
+			<font color="#0c0">{wc:fun:getCry()}{wc:$at['money']}</font>
+		{wc:else}
+			<font color="red">{wc:fun:getCry()}{wc:$at['money']}</font>
+		{wc:if:end}		
+		</li>
+	</ul>
+	{wc:loop:end}
+	</div>
+    
+        <style>
+			#divPageNav{ padding-top:10px;text-align:right}
+			#divPageNav li a{ padding:5px;}
+		</style>
+		<div id="divPageNav" class="page_nav">
+        	{wc:page:one} <li>{wc:fun:lan("itemtotal1","共")} {wc:$total} {wc:fun:lan("itemtotal2","条")}</li>
+        </div>
+        
+	<div id="divPageNav0" class="page_nav" style="display: none;"> </div>
+	<div id="divList1" class="list-tab recordList" style="display:none;"></div>
+	<div id="divPageNav1" class="page_nav" style="display:none;"></div>
+	<div id="divDetailInfo" class="count" style="display:none;"></div>
+	<div id="divbuyDetail" class="list-tab recordList buyDetail" style="display:none;"></div>
+</div>
+
+</div>
+<script type="text/javascript">
+	$(".yu_ff").mouseover(function(){
+	  $(".h_1yyg_eject").show();
+	})
+	$(".yu_ff").mouseout(function(){
+	  $(".h_1yyg_eject").hide();
+	})
+
+		     $("#m_all_sort").hide();
+	     $(".m_menu_all").mouseenter(function(){
+			    $(".m_all_sort").show();
+	     })
+		 $(".m_menu_all").mouseleave(function(){
+			    $(".m_all_sort").hide();
+	     })
+		 $(".m_all_sort").mouseenter(function(){
+			    $(this).show();
+	     })
+		 $(".m_all_sort").mouseleave(function(){
+			    $(this).hide();
+	     })
+	     $(function(){
+	       $(window).scroll(function() {	
+	      		
+	     		if($(window).scrollTop()>=130&&$(window).scrollTop()<=560){
+	     			$(".head_nav").addClass("fixedNav");	
+	     			$("#m_all_sort").fadeOut();
+	     		}else if($(window).scrollTop()>560){
+	     			$(".head_nav").addClass("fixedNav");
+	     			$("#m_all_sort").fadeOut();
+	     	} else if($(window).scrollTop()<130){
+	     			$(".head_nav").removeClass("fixedNav");
+	     	}
+	           });
+	     });
+</script>
+{wc:templates "index","footer"}

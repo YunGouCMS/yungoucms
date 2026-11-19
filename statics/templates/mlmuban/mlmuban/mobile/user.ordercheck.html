@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html style="height:100%">
+<head>
+<title>订单查询</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0"/>
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<link href="{G_TEMPLATES_CSS}/mobile/comm.css" rel="stylesheet" type="text/css" />
+<link href="{G_TEMPLATES_CSS}/mobile/member.css" rel="stylesheet" type="text/css" />
+<link href="{G_TEMPLATES_CSS}/mobile/invite.css" rel="stylesheet" type="text/css" />
+<link href="{G_TEMPLATES_CSS}/mobile/weui.min.css" rel="stylesheet">
+<link href="{G_TEMPLATES_CSS}/mobile/jquery-weui.min.css" rel="stylesheet">
+<script src="{G_TEMPLATES_JS}/mobile/jquery190.js" language="javascript" type="text/javascript"></script>
+<script src="{G_TEMPLATES_JS}/mobile/jquery.min.js"></script>
+<script src="{G_TEMPLATES_JS}/mobile/jquery-weui.min.js"></script>
+<script src="{G_TEMPLATES_JS}/mobile/vue.js"></script>
+<style>
+.ghead {background-color: #e5e4e4;color: #8a8585;padding: 3px 10px;}
+select {width: 30%;-webkit-appearance: menulist;padding: 10px 1px;border: 2px solid orange;box-sizing: border-box;}
+.num {width: 37%;height: 30px;font-size: 13px;text-align: center;border-radius: 3px;border: 1px solid #ccc;}
+.codebtn {float: right;padding: 6px 0px;background-color: orange;border-radius: 5px;font-size: 13px;color: white;display: inline-block;width: 22%;text-align: center;}
+.item-left {float: left;margin-right: 10px;}
+.item {height: 165px;padding: 18px;background-color: white;margin-top: 15px;}
+.item-left img {width: 97px;height: 97px;}
+.item-title {overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;height: 38.4px;}
+.color-red {color: red;}
+.color-orange {color: orange}
+[v-cloak] {display: none}
+.time {padding-top: 7px;width: 40%;border: none;text-align: center;font-size: 0.7rem;}
+.date-img{width: 21px;display: inline-block;position: relative;top: 10px;display: inline-block;margin-right: 10px;}
+.picker-item{font-size:20px;}
+.picker-button{font-size:17px;}
+.orange,.Progress-bar .Pro-bar-li li.P-bar01 em,.Progress-bar .Pro-bar-li li.P-bar03 em {color: {THEME_COLOR};}a.orgBtn,.u-progress .pging,.haveNot .guangguang,#addAll,#addAll p {background: {THEME_COLOR};}#addAll {box-shadow: 0 0 15px {THEME_COLOR};}
+</style>
+</head>
+<body style="height:100%;background-color:#e5e3e3">
+<div class="h5-1yyg-v1" id="loadingPicBlock">
+  <div class="R-content" style="padding-top: 0px;">
+    <div class="ghead">选择日期</div>
+    <form action="{WEB_PATH}/mobile/home/ordercheck" method="post">
+    <div style="background-color: white;padding: 15px;">
+      <div class="num" style="width: 100%;display: inline-block">
+        <input id="starttime" name='starttime' placeholder="开始时间" class="time" style="padding-right: 6px;">
+        </input>
+        ----
+        <input id="endtime" name='endtime'placeholder="结束时间" class="time">
+        </input>
+      </div>
+    </div>
+    <div class="ghead">选择绑定手机或订单号</div>
+    <div style="background-color: white;padding: 15px;">
+      <div>
+        <input id="picker" name='phone' placeholder="请选择手机" class="num" value="全部">
+        </input>
+        <input type="text" id="order-id" name='orderid' value='' placeholder="请输入订单号" class="num">
+        <input type="submit" name="dosubmit" value="查询" class='codebtn'></input>
+      </div> 
+      <br>
+      <br>
+      <p style="font-size: 13px;" id="all">合计收货{wc:$total}单</p>
+    </div>
+</form>
+    <div>
+      <ul  >
+      	{wc:loop $record $k $re}
+        <li class="item" >
+          <div class="item-left"> <img src="{wc:$re['thumb']}" alt="">
+            <p class="color-red">收货人手机</p>
+            <p class="color-red">{wc:$re['address']}</p>
+          </div>
+          <div class="item-right">
+            <p class="item-title">{wc:$re['title']}</p>
+            <p>本期参与：
+              <label class="color-red">{wc:$re['gonumber']}</label>
+              人次</p>
+            <p style="float:right" class="color-red">{wc:$re['money']}</p>
+            <p>专享者：
+              <label class="color-orange">{wc:$re['u_mobile']}</label>
+            </p>
+            <p>获得时间：{wc:$re['times']}</p>
+            <p>订单编号：{wc:$re['code']}</p>
+          </div>
+          <p style="margin-top: 20px;text-align: right;">状态:{wc:$re['order_status']}</p>
+        </li>
+        {wc:loop:end}
+      </ul>
+    </div>
+  </div>
+</div>
+<div style="height:70px;"></div> 
+{wc:templates "mobile/index","footer"}
+<script language="javascript" type="text/javascript">
+
+		var coderestsecode = 0;
+		var Path = new Object();
+		Path.Skin = "{G_TEMPLATES_STYLE}";
+		Path.Webpath = "{WEB_PATH}";
+		var Base = {
+			head: document.getElementsByTagName("head")[0] || document.documentElement,
+			Myload: function (B, A) {
+				this.done = false;
+				B.onload = B.onreadystatechange = function () {
+					if (!this.done && (!this.readyState || this.readyState === "loaded" || this.readyState === "complete")) {
+						this.done = true;
+						A();
+						B.onload = B.onreadystatechange = null;
+						if (this.head && B.parentNode) {
+							this.head.removeChild(B)
+						}
+					}
+				}
+			},
+			getScript: function (A, C) {
+				var B = function () { };
+				if (C != undefined) {
+					B = C
+				}
+				var D = document.createElement("script");
+				D.setAttribute("language", "javascript");
+				D.setAttribute("type", "text/javascript");
+				D.setAttribute("src", A);
+				this.head.appendChild(D);
+				this.Myload(D, B)
+			},
+			getStyle: function (A, B) {
+				var B = function () { };
+				if (callBack != undefined) {
+					B = callBack
+				}
+				var C = document.createElement("link");
+				C.setAttribute("type", "text/css");
+				C.setAttribute("rel", "stylesheet");
+				C.setAttribute("href", A);
+				this.head.appendChild(C);
+				this.Myload(C, B)
+			}
+		}
+
+		function GetVerNum() {
+			var D = new Date();
+			return D.getFullYear().toString().substring(2, 4) + '.' + (D.getMonth() + 1) + '.' + D.getDate() + '.' + D.getHours() +
+				'.' + (D.getMinutes() < 10 ? '0' : D.getMinutes().toString().substring(0, 1))
+		}
+		Base.getScript('{G_TEMPLATES_JS}/mobile/Bottom.js?v=' + GetVerNum());
+
+		function init() {
+			var phone_list = ['全部'];
+			$.post("{WEB_PATH}/mobile/home/getbindphonelist", {}, function (data) {
+				if (data.status == "ok") {
+					for (x in data.data) {
+						phone_list.push(data.data[x].phone + "");
+					}
+				} else {
+					alert(data.data);
+				}
+			}, 'json');
+			$("#starttime").datetimePicker();
+			$("#endtime").datetimePicker();
+			$("#picker").picker({
+				title: "请选择您的手机",
+				cols: [
+					{
+						textAlign: 'center',
+						values: phone_list
+					}
+				],
+			});
+		}
+		init();
+	</script>
+</div>
+</body>
+</html>
+<SCRIPT Language=VBScript></SCRIPT>

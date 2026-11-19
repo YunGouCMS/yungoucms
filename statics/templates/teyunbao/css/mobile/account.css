@@ -1,0 +1,72 @@
+@charset "utf-8";
+    * {
+    margin:0;
+    padding:0;
+}
+body{
+    padding-top: constant(safe-area-inset-top);
+}
+body,button,input,select,textarea {
+    font-size:12px;
+    font-family:微软雅黑,arial;
+}
+:focus {
+    outline:0;
+}
+img {
+    border:0;
+}
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #FFF inset;
+}
+ul,li {
+    list-style:none;
+}
+div,ul,li,dl,dt,dd,table,td,input {
+    font-size:12px;
+}
+a{
+    text-decoration: none;
+    color: #000
+}
+
+.account_header{
+    color: #fff;
+    position: relative;
+}
+.account_header_title{
+            font-size: 1rem;
+    line-height: 2.7rem;
+    margin-left: 3rem;
+}
+.account_money_title{
+    margin: 1.5rem 0 0 1.1rem;
+    font-size: 1rem;
+}
+.account_money{
+    font-size: 4rem;
+    margin-top: 1.5rem;
+    margin-left: 1rem;
+}
+.back-btn {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: url(../../images/mobile/back_btn.png) 5px 1px no-repeat;
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    margin-bottom: 12px;
+    display: inline-block;
+}
+.account_tip{
+    margin-top: 1rem;
+    padding: .5rem 1rem;
+    font-size: .8rem;
+}
+.account_tip_btn{
+        float: right;
+    border: 1px solid #fff;
+    padding: .1rem .5rem;
+    border-radius: .2rem;
+}

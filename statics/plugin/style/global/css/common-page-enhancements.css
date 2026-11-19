@@ -1,0 +1,426 @@
+/* 后台通用页面增强样式 - 自动应用到所有页面 */
+
+/* 统一表格样式 */
+.table-list table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.table-list table thead {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.table-list table thead th {
+    padding: 14px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 14px;
+    color: #fff;
+    border-bottom: none;
+}
+
+.table-list table tbody tr {
+    transition: all 0.2s ease;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.table-list table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.table-list table tbody tr:hover {
+    background-color: rgba(102, 126, 234, 0.05);
+}
+
+.table-list table tbody td {
+    padding: 12px 16px;
+    font-size: 14px;
+    color: #374151;
+    vertical-align: middle;
+    text-align: center !important;
+}
+
+/* 全局表格内容居中 - 所有列的数据都居中，排除日历弹窗 */
+table tbody td:not(.calendar td):not(.calendar tbody td),
+.table-list table tbody td:not(.calendar td):not(.calendar tbody td),
+table tbody tr td:not(.calendar td):not(.calendar tbody td),
+table td:not(.calendar td):not(.calendar tbody td),
+.table-list table td:not(.calendar td):not(.calendar tbody td) {
+    text-align: center !important;
+}
+
+table thead th:not(.calendar th):not(.calendar thead th),
+.table-list table thead th:not(.calendar th):not(.calendar thead th),
+table th:not(.calendar th):not(.calendar thead th),
+.table-list table th:not(.calendar th):not(.calendar thead th) {
+    text-align: center !important;
+}
+
+/* 确保表格中所有内容都居中，包括图片、复选框等，排除日历弹窗 */
+table tbody td *:not(.calendar *):not(.calendar td *),
+.table-list table tbody td *:not(.calendar *):not(.calendar td *) {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+table tbody td img:not(.calendar img),
+.table-list table tbody td img:not(.calendar img) {
+    display: block;
+    margin: 0 auto !important;
+}
+
+/* 排除状态列中的 checkbox（layui switch 开关） */
+table tbody td input[type="checkbox"]:not(.calendar input):not(.layui-form input):not([lay-skin="switch"]):not(.is_state):not(.sta),
+.table-list table tbody td input[type="checkbox"]:not(.calendar input):not(.layui-form input):not([lay-skin="switch"]):not(.is_state):not(.sta) {
+    display: block !important;
+    margin: 0 auto !important;
+}
+
+/* 状态列中的 checkbox（layui switch）隐藏原生 checkbox，只显示 layui switch 开关 */
+table tbody td.layui-form input[type="checkbox"],
+table tbody td input[type="checkbox"][lay-skin="switch"],
+table tbody td input[type="checkbox"].is_state,
+table tbody td input[type="checkbox"].sta,
+.table-list table tbody td.layui-form input[type="checkbox"],
+.table-list table tbody td input[type="checkbox"][lay-skin="switch"],
+.table-list table tbody td input[type="checkbox"].is_state,
+.table-list table tbody td input[type="checkbox"].sta {
+    display: none !important;
+    margin: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    opacity: 0 !important;
+    position: absolute !important;
+    visibility: hidden !important;
+}
+
+/* 确保 layui switch 开关正常显示 */
+table tbody td.layui-form .layui-form-switch,
+.table-list table tbody td.layui-form .layui-form-switch {
+    display: inline-block !important;
+    margin: 0 !important;
+    position: relative !important;
+    visibility: visible !important;
+    padding-left: 20px !important;
+}
+table tbody td.layui-form .layui-form-switch.layui-form-onswitch,
+.table-list table tbody td.layui-form .layui-form-switch.layui-form-onswitch {
+    padding: 0 25px 0 5px !important;
+}
+
+table tbody td.layui-form .layui-form-switch i,
+.table-list table tbody td.layui-form .layui-form-switch i {
+    /*transform: translateX(-20px) !important;*/
+}
+
+table tbody td.layui-form .layui-form-switch.layui-form-onswitch i,
+.table-list table tbody td.layui-form .layui-form-switch.layui-form-onswitch i {
+    transform: translateX(-20px) !important;
+}
+
+/* 日历弹窗使用原本样式 - 排除全局样式，但保留关键显示属性 */
+.calendar,
+div.calendar {
+    /* 保留关键显示属性 - 但允许JavaScript动态设置display */
+    position: absolute !important;
+    z-index: 999 !important;
+    /* display由JavaScript控制，不强制设置 */
+    /* 排除全局样式影响的属性 */
+    text-align: initial !important;
+    margin: initial !important;
+    border-radius: initial !important;
+    box-shadow: initial !important;
+}
+
+.calendar *,
+div.calendar * {
+    /* 排除全局样式影响的属性，但保留display等关键属性 */
+    text-align: initial !important;
+    margin: initial !important;
+    border-radius: initial !important;
+    box-shadow: initial !important;
+    transition: initial !important;
+}
+
+/* 确保日历弹窗内的表格不受全局表格样式影响 */
+.calendar table {
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+    display: table !important;
+    width: auto !important;
+    background: #F1F8FC !important;
+    border-radius: initial !important;
+    box-shadow: initial !important;
+    border: 1px solid #b3cbe4 !important;
+    font-size: 11px !important;
+    color: #000 !important;
+    cursor: default !important;
+    font-family: tahoma,verdana,sans-serif !important;
+}
+
+.calendar table thead {
+    background: initial !important;
+    display: table-header-group !important;
+}
+
+.calendar table tbody {
+    display: table-row-group !important;
+}
+
+.calendar table tfoot {
+    display: table-footer-group !important;
+}
+
+.calendar table td,
+.calendar table th {
+    display: table-cell !important;
+    text-align: initial !important;
+    padding: initial !important;
+    border: initial !important;
+    border-radius: initial !important;
+    font-size: initial !important;
+    font-weight: initial !important;
+    color: initial !important;
+    background: initial !important;
+    width: initial !important;
+    height: initial !important;
+    line-height: initial !important;
+    vertical-align: initial !important;
+    box-sizing: initial !important;
+    transition: initial !important;
+    box-shadow: initial !important;
+}
+
+.calendar table tr {
+    display: table-row !important;
+    transition: initial !important;
+    border-bottom: initial !important;
+}
+
+.calendar table tr:hover {
+    background-color: initial !important;
+    transform: initial !important;
+}
+
+/* 日历弹窗内的组合框 */
+.calendar .combo {
+    position: absolute !important;
+    display: none !important;
+    z-index: 9999999999999999999999999999 !important;
+}
+
+.calendar .combo * {
+    text-align: initial !important;
+    margin: initial !important;
+    padding: initial !important;
+    border: initial !important;
+    border-radius: initial !important;
+    font-size: initial !important;
+    font-weight: initial !important;
+    color: initial !important;
+    background: initial !important;
+}
+
+/* 统一按钮样式 */
+.butaoin, .butaish, .button, input[type="submit"], input[type="button"] {
+    padding: 8px 16px !important;
+    border-radius: 8px !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    border: none !important;
+    cursor: pointer !important;
+    margin: 0 4px !important;
+}
+
+/* 操作列中的按钮统一样式 - 宽度80px，高度50px */
+/* 最后一列（通常是操作列） */
+table tbody td:last-child a.butaoin,
+table tbody td:last-child a.butaish,
+table tbody td:last-child .butaoin,
+table tbody td:last-child .butaish,
+.table-list table tbody td:last-child a.butaoin,
+.table-list table tbody td:last-child a.butaish,
+.table-list table tbody td:last-child .butaoin,
+.table-list table tbody td:last-child .butaish,
+/* 包含操作按钮的列 */
+table tbody td a.butaoin,
+table tbody td a.butaish,
+.table-list table tbody td a.butaoin,
+.table-list table tbody td a.butaish {
+    width: 80px !important;
+    min-width: 80px !important;
+    max-width: 80px !important;
+    height: 50px !important;
+    min-height: 50px !important;
+    max-height: 50px !important;
+    line-height: 50px !important;
+    padding: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+    /*margin: 0 5px !important;*/
+    width: auto !important;
+    min-width: auto !important;
+    max-width: none !important;
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    line-height: 1 !important;
+    padding: 10px 15px !important;
+}
+
+.butaoin, .button:not(.butaish):not(.bnoaish) {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    color: #fff !important;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3) !important;
+}
+
+.butaoin:hover, .button:hover:not(.butaish):not(.bnoaish) {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4) !important;
+}
+
+.butaish {
+    background: #fee2e2 !important;
+    color: #991b1b !important;
+}
+
+.butaish:hover {
+    background: #fecaca !important;
+    transform: translateY(-2px) !important;
+}
+
+.bnoaish {
+    background: #f3f4f6 !important;
+    color: #9ca3af !important;
+    cursor: not-allowed !important;
+    opacity: 0.6 !important;
+}
+
+/* 统一表单样式 - 排除时间选择框 */
+.input-text:not(.posttime input):not([readonly][id*="time"]):not([readonly][id*="Time"]):not([readonly][id*="date"]):not([readonly][id*="Date"]), 
+.input-text-c:not(.posttime input):not([readonly][id*="time"]):not([readonly][id*="Time"]):not([readonly][id*="date"]):not([readonly][id*="Date"]), 
+input[type="text"]:not(.posttime input):not([readonly][id*="time"]):not([readonly][id*="Time"]):not([readonly][id*="date"]):not([readonly][id*="Date"]), 
+input[type="password"], 
+input[type="email"], 
+input[type="number"], 
+textarea, 
+select {
+    padding: 10px 14px !important;
+    border: 2px solid #e5e7eb !important;
+    border-radius: 8px !important;
+    font-size: 14px !important;
+    transition: all 0.3s ease !important;
+}
+
+/* 时间选择框使用原本样式 - 排除全局样式 */
+.posttime input,
+input.posttime,
+input[readonly][id*="time"],
+input[readonly][id*="Time"],
+input[readonly][id*="date"],
+input[readonly][id*="Date"],
+input[readonly][id*="deltiem"],
+input[readonly][id*="posttime"],
+input[readonly][id*="posttime1"],
+input[readonly][id*="posttime2"],
+input[readonly][id*="xsjx_time"],
+input[readonly][id*="xsjx_time1"] {
+    padding: initial !important;
+    border: initial !important;
+    border-radius: initial !important;
+    font-size: initial !important;
+    height: initial !important;
+    line-height: initial !important;
+    width: initial !important;
+    max-width: initial !important;
+    min-width: initial !important;
+    text-align: initial !important;
+    margin: initial !important;
+    box-sizing: initial !important;
+    transition: initial !important;
+}
+
+.input-text:focus, .input-text-c:focus, input:focus, textarea:focus, select:focus {
+    outline: none !important;
+    border-color: #667eea !important;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1) !important;
+}
+
+/* Layui按钮优化 */
+.layui-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease !important;
+}
+
+.layui-btn:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4) !important;
+}
+
+/* 表格列表容器 */
+.table-list {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+}
+
+/* 表单容器 */
+.table-form {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* 搜索框优化 */
+.layui-form-item {
+    margin-bottom: 18px;
+}
+
+.layui-input {
+    border-radius: 8px !important;
+    border: 2px solid #e5e7eb !important;
+    transition: all 0.3s ease !important;
+}
+
+.layui-input:focus {
+    border-color: #667eea !important;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1) !important;
+}
+
+/* 操作按钮组 */
+.action-buttons {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* 响应式优化 */
+@media (max-width: 768px) {
+    .table-list {
+        padding: 12px;
+        margin: 5px;
+    }
+    
+    .butaoin, .butaish {
+        font-size: 12px !important;
+        padding: 6px 12px !important;
+    }
+}
+

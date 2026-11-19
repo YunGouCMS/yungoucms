@@ -1,0 +1,197 @@
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background: #f4f2f3;
+}
+
+.cashout-type, .cashout-type * {
+    box-sizing: border-box;
+}
+
+.cashout-type {
+    width: 100%;
+    line-height: 2rem;
+    padding: .2rem;
+    color: #333;
+    text-align: left;
+    text-indent: 1.8rem;
+    background: #FFF;
+    border-bottom: 2px solid #f2f2f2;
+}
+
+.cashout-type::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    clear: both;
+}
+
+.cashout-type li {
+    float: left;
+    width: calc(100% / 4);
+    font-size: .8rem;
+    background: transparent url('../../images/mobile/chooseg.png') no-repeat left center / contain;
+}
+
+.cashout-type li.current {
+    background-image: url('../../images/mobile/chooser.png');
+}
+
+.cashout-li, .cashout-li * {
+    box-sizing: border-box;
+}
+
+.cashout-li {
+    display: none;
+    width: 100%;
+    line-height: 2rem;
+    padding: .5rem;
+    color: #333;
+    font-size: 1rem;
+    background: #FFF;
+    border-bottom: 2px solid #f2f2f2;
+    position: relative;
+}
+.cashout-li:before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    width: .8rem;
+    height: .8rem;
+    border: .1rem solid #999;
+    right: 1rem;
+    top: 45%;
+    transform: rotate(45deg);
+    border-left: none;
+    border-bottom: none;
+}
+
+.cashout-li.show {
+    display: block;
+}
+
+.cashout-li::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    clear: both;
+}
+
+.cashout-li > * {
+    float: left;
+}
+
+.cashout-li .date {
+    width: 30%;
+    text-align: left;
+}
+
+.cashout-li .money {
+    width: 40%;
+    text-align: center;
+}
+
+.cashout-li .status {
+    width: 30%;
+    text-align: right;
+}
+
+.cashout-li .status .right-arrow {
+    height: 1rem;
+    width: auto;
+    margin-left: .5rem;
+    vertical-align: text-top;
+}
+
+
+
+.cashout-li.verify .money, .cashout-li.verify .status {
+    color: #0BB20C;
+}
+
+.cashout-li.reject .status{
+    color: #f00;
+}
+
+.record-detail {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 100%;
+    background: #f4f2f3;
+    transition: all .5s;
+    z-index: 1;
+}
+
+.record-detail.show {
+    left: 0;
+}
+
+.record-detail dt {
+    padding: .5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    line-height: 2rem;
+    background: #FFF;
+    border-bottom: 1px solid #DDD;
+}
+.detail-exit {
+    float: right;
+    width: 2rem;
+    height: 2rem;
+    background: transparent url(../../images/mobile/payee_exit.png) no-repeat center center / 60% auto;
+}
+
+.detail-li {
+    line-height: 2rem;
+    padding: .5rem;
+    color: #333;
+    font-size: 1rem;
+    background: #FFF;
+}
+
+.detail-li::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    clear: both;
+}
+
+.detail-li p {
+    float: left;
+}
+
+.detail-li .title {
+    width: 35%;
+    text-align: left;
+}
+
+.detail-li .content {
+    width: 65%;
+    text-align: right;
+}
+
+.detail-li .red {
+    color: #F00;
+}
+
+
+.info h1{
+    font-size: 1rem;
+}
+.info span{}
+.info p{
+    line-height: 1.5rem;
+    color: #9C9A9C;
+}

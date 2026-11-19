@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>我的好友</title>
+<link rel="stylesheet" href="{G_TEMPLATES_CSS}/mobile/swiper.min.css" />
+<link rel="stylesheet" href="{G_TEMPLATES_CSS}/mobile/winning.css" />
+<link rel="stylesheet" href="{G_TEMPLATES_CSS}/mobile/comm.css" />
+<link rel="stylesheet" href="{G_TEMPLATES_CSS}/mobile/yunchat.css" />
+<script src="{G_TEMPLATES_JS}/mobile/jquery190.js" language="javascript" type="text/javascript"></script>
+<style>
+.orange,.Progress-bar .Pro-bar-li li.P-bar01 em,.Progress-bar .Pro-bar-li li.P-bar03 em {
+    color: {THEME_COLOR};
+}
+a.orgBtn,.u-progress .pging,.haveNot .guangguang,#addAll,#addAll p {
+    background: {THEME_COLOR};
+}
+#addAll {
+    box-shadow: 0 0 15px {THEME_COLOR};
+}
+</style>
+</head>
+<body class="bggray">
+<div class="fixed_header pa015 diflex jube alitc">
+	<div class="back-btn" onclick="history.go(-1);"></div><span>我的好友</span><div class="opcty">0</div>
+</div>
+<div class="sousuos">
+	<i class="s-icon"></i>
+	<input type="text"  disabled="disabled" placeholder="搜索用户ID/手机"/>
+</div>
+<div class="partwen">
+	<ul>
+		<li><a href="{WEB_PATH}/mobile/yunchat/usernewfr" class="diflex alitc jube">
+			<div class="diflex alitc">
+				<img src="http://upos.yungoucms.com/statics/uploads/banner/20200814/43551154386531.png" class="wid100">
+				<div class="">新的好友</div>
+			</div>
+			<span class="arrow"></span>
+		</a></li>
+	</ul>
+</div>
+<div class="maillist" style="display: none;">
+	<div>
+		<span>D</span>
+		<ul>
+			<li><a href="#" class="diflex alitc">
+				<img src="http://upos.yungoucms.com/statics/uploads/banner/yungoucms/t6.png" class="wid100">
+				<div class="">第一个好友</div>
+			</a></li>
+			<li><a href="#" class="diflex alitc">
+				<img src="http://upos.yungoucms.com/statics/uploads/banner/yungoucms/t6.png" class="wid100">
+				<div class="">第一个好友</div>
+			</a></li>
+		</ul>
+	</div>
+	<div>
+		<span>U</span>
+		<ul>
+			<li><a href="#" class="diflex alitc">
+				<img src="http://upos.yungoucms.com/statics/uploads/banner/yungoucms/t6.png" class="wid100">
+				<div class="">第一个好友</div>
+			</a></li>
+		</ul>
+	</div>
+	<span class="c999 size122 disinblo">3位通讯录好友</span>
+</div>
+<script>
+$('.sousuos').click(function(){
+	window.location.href="{WEB_PATH}/mobile/yunchat/usersearch";
+})
+</script>
+</body>
+</html>

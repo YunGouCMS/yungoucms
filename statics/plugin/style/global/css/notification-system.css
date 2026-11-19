@@ -1,0 +1,196 @@
+/* 现代化通知消息系统样式 */
+.notification-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+.notification {
+    min-width: 300px;
+    max-width: 450px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    margin-bottom: 16px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    pointer-events: auto;
+    animation: slideInRight 0.3s ease-out;
+    position: relative;
+    overflow: hidden;
+    border-left: 4px solid;
+    transition: all 0.3s ease;
+}
+
+.notification:hover {
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+    transform: translateX(-4px);
+}
+
+.notification.success {
+    border-left-color: #10b981;
+}
+
+.notification.error {
+    border-left-color: #ef4444;
+}
+
+.notification.warning {
+    border-left-color: #f59e0b;
+}
+
+.notification.info {
+    border-left-color: #3b82f6;
+}
+
+.notification-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.notification.success .notification-icon {
+    background: #d1fae5;
+    color: #10b981;
+}
+
+.notification.error .notification-icon {
+    background: #fee2e2;
+    color: #ef4444;
+}
+
+.notification.warning .notification-icon {
+    background: #fef3c7;
+    color: #f59e0b;
+}
+
+.notification.info .notification-icon {
+    background: #dbeafe;
+    color: #3b82f6;
+}
+
+.notification-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.notification-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 4px;
+    line-height: 1.4;
+}
+
+.notification-message {
+    font-size: 14px;
+    color: #6b7280;
+    line-height: 1.5;
+    word-wrap: break-word;
+}
+
+.notification-close {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #9ca3af;
+    transition: color 0.2s ease;
+    border: none;
+    background: none;
+    padding: 0;
+    font-size: 18px;
+    line-height: 1;
+}
+
+.notification-close:hover {
+    color: #374151;
+}
+
+.notification-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background: rgba(0, 0, 0, 0.1);
+    animation: progressBar linear forwards;
+}
+
+.notification.success .notification-progress {
+    background: rgba(16, 185, 129, 0.3);
+}
+
+.notification.error .notification-progress {
+    background: rgba(239, 68, 68, 0.3);
+}
+
+.notification.warning .notification-progress {
+    background: rgba(245, 158, 11, 0.3);
+}
+
+.notification.info .notification-progress {
+    background: rgba(59, 130, 246, 0.3);
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+@keyframes progressBar {
+    from {
+        width: 100%;
+    }
+    to {
+        width: 0%;
+    }
+}
+
+.notification.removing {
+    animation: slideOutRight 0.3s ease-out forwards;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .notification-container {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+    }
+    
+    .notification {
+        min-width: auto;
+        max-width: 100%;
+    }
+}
+

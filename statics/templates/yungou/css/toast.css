@@ -1,0 +1,98 @@
+/* 电脑端右上角消息提示 */
+#pc-toast-container {
+	position: fixed;
+	top: 20px;
+	right: 24px;
+	z-index: 10001;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	pointer-events: none;
+}
+.pc-toast {
+	pointer-events: auto;
+	min-width: 280px;
+	max-width: 420px;
+	padding: 12px 18px;
+	margin-bottom: 10px;
+	border-radius: 8px;
+	box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+	font-size: 14px;
+	line-height: 1.5;
+	animation: pc-toast-in 0.3s ease;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	box-sizing: border-box;
+}
+.pc-toast.pc-toast-out {
+	animation: pc-toast-out 0.25s ease forwards;
+}
+.pc-toast-icon {
+	flex-shrink: 0;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 12px;
+	font-weight: bold;
+}
+.pc-toast-msg {
+	flex: 1;
+	word-break: break-word;
+}
+/* 成功 */
+.pc-toast.pc-toast-success {
+	background: #f6ffed;
+	border: 1px solid #b7eb8f;
+	color: #389e0d;
+}
+.pc-toast.pc-toast-success .pc-toast-icon {
+	background: #52c41a;
+	color: #fff;
+}
+.pc-toast.pc-toast-success .pc-toast-icon::before { content: "✓"; }
+/* 错误/失败 */
+.pc-toast.pc-toast-error {
+	background: #fff2f0;
+	border: 1px solid #ffccc7;
+	color: #cf1322;
+}
+.pc-toast.pc-toast-error .pc-toast-icon {
+	background: #ff4d4f;
+	color: #fff;
+}
+.pc-toast.pc-toast-error .pc-toast-icon::before { content: "!"; }
+/* 普通提示 */
+.pc-toast.pc-toast-info {
+	background: #e6f7ff;
+	border: 1px solid #91d5ff;
+	color: #0958d9;
+}
+.pc-toast.pc-toast-info .pc-toast-icon {
+	background: #1890ff;
+	color: #fff;
+}
+.pc-toast.pc-toast-info .pc-toast-icon::before { content: "i"; font-style: normal; }
+@keyframes pc-toast-in {
+	from {
+		opacity: 0;
+		transform: translateX(24px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+@keyframes pc-toast-out {
+	from {
+		opacity: 1;
+		transform: translateX(0);
+	}
+	to {
+		opacity: 0;
+		transform: translateX(24px);
+	}
+}

@@ -1,0 +1,104 @@
+{wc:templates "index","header"}
+<!--晒单-->
+
+<div class="wrap w1200">
+	<div class="Current_nav w1200">
+		<a href="{WEB_PATH}">{wc:fun:lan("Home_page","首页")}</a> &gt; {wc:fun:lan("shareorder","晒单分享")}</div>
+	<div id="current" class="share_Curtit">
+		<h1 class="fl">
+			{wc:fun:lan("shareorder","晒单分享")}</h1>
+		<span id="spTotalCount">({wc:fun:lan("winnersposted1","共")}<em class="c_red">{wc:$total}</em>{wc:fun:lan("winnersposted2","个幸运获得者晒单")})</span>
+	</div>
+	<div id="loadingPicBlock" class="share_list">
+		<div class="goods_share_listC">	
+					{wc:loop $sa_one $sd}
+					
+					<div class="share_list_content" style="float: left;" data-sd-id="{wc:$sd['sd_id']}">
+						<dl>
+							<dt><a target="_blank" href="{WEB_PATH}/go/shaidan/detail/{wc:$sd['sd_id']}"><img src="{wc:$sd['sd_photolist'][0]}" loading="lazy"></a></dt>
+							<dd class="share-name gray02"> 
+								<a href="{WEB_PATH}/uname/{wc:fun:idjia($sd['sd_userid'])}" class="name-img">								
+									<img id="imgUserPhoto" src="{G_UPLOAD_PATH}/{wc:$sd['img']}" width="50" height="50" border="0" loading="lazy"/>									
+								</a>
+								<div class="share-name-r"> 
+									<span class="gray03"> <a href="{WEB_PATH}/uname/{wc:fun:idjia($sd['sd_userid'])}" class="c_red">{wc:fun:get_user_name($sd['sd_userid'],'username')}</a>{wc:$sd['sd_time']}</span>
+									<a class="Fb gray01" href="{WEB_PATH}/go/shaidan/detail/{wc:$sd['sd_id']}" target="_blank">{wc:$sd['sd_title']}</a>
+								</div> 
+							</dd> 
+							<dd class="share_info gray01 share_info_2line"><p>{wc:$sd['sd_content']}</p></dd> 
+							<dd class="message hidden" style="display: block;"> 
+								<span class="smile gray03 btn-shaidan-like" role="button" style="cursor:pointer;"><i></i><b>{wc:fun:lan("envious","羡慕")}(<em class="sd-zhan-num">{wc:$sd['sd_zhan']}</em>)</b></span>
+								<span class="much"><a target="_blank" href="{WEB_PATH}/go/shaidan/detail/{wc:$sd['sd_id']}" class="gray03"><i></i>{wc:fun:lan("comment","评论")}<em>({wc:$sd['sd_ping']})</em></a></span>
+							</dd>
+						</dl>
+						<p class="text-h10"></p>
+					</div>
+			
+					{wc:loop:end}
+		</div>
+		{wc:if $total>$num}
+		<div class="pagesx">{wc:page:two}</div>
+		{wc:if:end}
+	</div>
+</div>
+<style>
+.share_info_2line p{ display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis;line-height:1.4; }
+</style>
+<script type="text/javascript">
+var _shaidanLoginUrl = '{WEB_PATH}/member/user/login';
+$(document).on('click', '.btn-shaidan-like', function(e){
+	e.preventDefault();
+	var $box = $(this).closest('.share_list_content');
+	var sdId = $box.data('sd-id');
+	var $num = $box.find('.sd-zhan-num');
+	if(!sdId || $box.hasClass('loading')) return;
+	$box.addClass('loading');
+	$.post('{WEB_PATH}/go/shaidan/shaidan_like', { id: sdId }, function(res){
+		$box.removeClass('loading');
+		if(res && res.code == 601){ window.location.href = _shaidanLoginUrl + '?redirect=' + encodeURIComponent(window.location.href); return; }
+		if(res && res.code == 200 && res.data){ $num.text(res.data.zhan); }
+	}, 'json').fail(function(){ $box.removeClass('loading'); });
+});
+$(".mobile").mouseover(function(){
+	$(".h_mobile").show();
+	$(".h_mobile  s").css("background","../images/headbg11.png").css("background-position","5px -64px");
+})
+$(".h_mobile").mouseout(function(){
+	$(".h_mobile").hide();
+})
+	$(".yu_ff").mouseover(function(){
+	  $(".h_1yyg_eject").show();
+	})
+	$(".yu_ff").mouseout(function(){
+	  $(".h_1yyg_eject").hide();
+	})
+
+		     $("#m_all_sort").hide();
+	     $(".m_menu_all").mouseenter(function(){
+			    $(".m_all_sort").show();
+	     })
+		 $(".m_menu_all").mouseleave(function(){
+			    $(".m_all_sort").hide();
+	     })
+		 $(".m_all_sort").mouseenter(function(){
+			    $(this).show();
+	     })
+		 $(".m_all_sort").mouseleave(function(){
+			    $(this).hide();
+	     })
+	     $(function(){
+	       $(window).scroll(function() {	
+	      		
+	     		if($(window).scrollTop()>=130&&$(window).scrollTop()<=560){
+	     			$(".head_nav").addClass("fixedNav");	
+	     			$("#m_all_sort").fadeOut();
+	     		}else if($(window).scrollTop()>560){
+	     			$(".head_nav").addClass("fixedNav");
+	     			$("#m_all_sort").fadeOut();
+	     	} else if($(window).scrollTop()<130){
+	     			$(".head_nav").removeClass("fixedNav");
+	     	}
+	           });
+	     });
+</script>
+{wc:templates "index","footer"}

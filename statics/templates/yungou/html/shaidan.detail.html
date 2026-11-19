@@ -1,0 +1,208 @@
+{wc:templates "index","header"}
+<!--晒单详情-->
+<style>
+.shaidan-detail-wrap{ max-width:900px; margin:20px auto; }
+.shaidan-detail-card{ background:#fff; border-radius:12px; box-shadow:0 2px 12px rgba(0,0,0,.08); overflow:hidden; margin-bottom:24px; }
+.shaidan-detail-head{ padding:20px 24px; border-bottom:1px solid #f0f0f0; display:flex; align-items:center; gap:16px; }
+.shaidan-detail-head .avatar{ width:56px; height:56px; border-radius:50%; object-fit:cover; }
+.shaidan-detail-head .meta{ flex:1; }
+.shaidan-detail-head .meta .name{ font-size:16px; font-weight:600; margin-right:12px; }
+.shaidan-detail-head .meta .name.c_red{ color:#db70db; }
+.shaidan-detail-head .meta .time{ color:#999; font-size:13px; }
+.shaidan-detail-body{ padding:24px; }
+.shaidan-detail-body .title{ font-size:18px; font-weight:600; color:#333; margin-bottom:12px; }
+.shaidan-detail-body .content{ color:#555; line-height:1.7; white-space:pre-wrap; word-break:break-word; }
+.shaidan-detail-body .photos{ margin-top:16px; display:flex; flex-wrap:wrap; gap:10px; }
+.shaidan-detail-body .photos img{ max-width:200px; max-height:200px; border-radius:8px; object-fit:cover; }
+.shaidan-detail-actions{ padding:16px 24px; border-top:1px solid #f0f0f0; display:flex; align-items:center; gap:24px; }
+.shaidan-detail-actions .btn-like{ cursor:pointer; color:#666; }
+.shaidan-detail-actions .btn-like:hover{ color:#db70db; }
+.shaidan-detail-actions .btn-like.loading{ pointer-events:none; opacity:.7; }
+.shaidan-detail-actions .btn-comment{ color:#666; text-decoration:none; }
+.shaidan-detail-actions .btn-comment:hover{ color:#db70db; }
+.shaidan-comment-section{ background:#fff; border-radius:12px; box-shadow:0 2px 12px rgba(0,0,0,.08); padding:24px; margin-bottom:24px; }
+.shaidan-comment-section h3{ font-size:16px; margin:0 0 16px; color:#333; }
+.shaidan-comment-form{ margin-bottom:20px; }
+.shaidan-comment-form textarea{ width:100%; min-height:80px; padding:12px; border:1px solid #e0e0e0; border-radius:8px; font-size:14px; resize:vertical; box-sizing:border-box; }
+.shaidan-comment-form textarea:focus{ border-color:#db70db; outline:none; }
+.shaidan-comment-form .submit-wrap{ margin-top:10px; }
+.shaidan-comment-form .submit-wrap button{ padding:8px 24px; background:#db70db; color:#fff; border:none; border-radius:6px; cursor:pointer; font-size:14px; }
+.shaidan-comment-form .submit-wrap button:hover{ background:#c42d47; }
+.shaidan-comment-form .submit-wrap button:disabled{ opacity:.6; cursor:not-allowed; }
+.shaidan-comment-list{ list-style:none; margin:0; padding:0; }
+.shaidan-comment-item{ padding:16px 0; border-bottom:1px solid #f5f5f5; display:flex; gap:12px; }
+.shaidan-comment-item:last-child{ border-bottom:none; }
+.shaidan-comment-item .c-avatar{ width:40px; height:40px; border-radius:50%; object-fit:cover; flex-shrink:0; }
+.shaidan-comment-item .c-body{ flex:1; }
+.shaidan-comment-item .c-meta{ margin-bottom:6px; }
+.shaidan-comment-item .c-user{ font-weight:600; color:#333; margin-right:8px; }
+.shaidan-comment-item .c-time{ color:#999; font-size:12px; }
+.shaidan-comment-item .c-del{ margin-left:10px; }
+.shaidan-comment-item .c-del a{ color:#999; font-size:12px; text-decoration:none; }
+.shaidan-comment-item .c-del a:hover{ color:#db70db; }
+.shaidan-comment-item .c-content{ color:#555; line-height:1.5; }
+.shaidan-comment-item .c-img{ margin-top:8px; }
+.shaidan-comment-item .c-img img{ max-width:120px; max-height:120px; border-radius:6px; }
+.shaidan-comment-empty{ color:#999; text-align:center; padding:24px; }
+</style>
+<div class="wrap w1200">
+	<div class="Current_nav w1200">
+		<a href="{WEB_PATH}">{wc:fun:lan("Home_page","首页")}</a> &gt; <a href="{WEB_PATH}/go/shaidan">{wc:fun:lan("shareorder","晒单分享")}</a> &gt; {wc:fun:lan("sharedetails","详情")}
+	</div>
+	<div class="shaidan-detail-wrap">
+		<div class="shaidan-detail-card">
+			<div class="shaidan-detail-head">
+				<img class="avatar" src="{G_UPLOAD_PATH}/{wc:fun:get_user_key($sd['sd_userid'],'img','3030')}" alt="" loading="lazy"/>
+				<div class="meta">
+					<a href="{WEB_PATH}/uname/{wc:fun:idjia($sd['sd_userid'])}" class="name c_red">{wc:fun:get_user_name($sd['sd_userid'],'username')}</a>
+					<span class="time">{wc:fun:getLTF($sd['sd_time'])}</span>
+					<div class="title">{wc:$sd['sd_title']}</div>
+				</div>
+			</div>
+			<div class="shaidan-detail-body">
+				<div class="content">{wc:$sd['sd_content']}</div>
+				{wc:php:start}
+				if(!empty($sd_photos_html)) echo $sd_photos_html;
+				{wc:php:end}
+			</div>
+			<div class="shaidan-detail-actions" id="shaidan-detail-actions" data-sd-id="{wc:$sd['sd_id']}" data-like-url="{WEB_PATH}/go/shaidan/shaidan_like" data-comment-url="{WEB_PATH}/go/shaidan/shaidan_huifu_add" data-del-url="{WEB_PATH}/go/shaidan/shaidan_hueifu_del" data-login-url="{WEB_PATH}/member/user/login">
+				<span class="btn-like btn-shaidan-like-detail" role="button" title="{wc:fun:lan("envious","羡慕")}"><i></i> {wc:fun:lan("envious","羡慕")}(<em class="sd-zhan-num">{wc:$sd['sd_zhan']}</em>)</span>
+				<a href="#shaidan-comment-form" class="btn-comment"><i></i> {wc:fun:lan("comment","评论")}(<em class="sd-ping-num">{wc:$sd['sd_ping']}</em>)</a>
+			</div>
+		</div>
+
+		<div class="shaidan-comment-section" id="shaidan-comment-form">
+			<h3>{wc:fun:lan("comment","评论")}</h3>
+			<div class="shaidan-comment-form">
+				<textarea id="shaidan-comment-input" placeholder="{wc:fun:lan("comment","评论")}…" maxlength="500"></textarea>
+				<div class="submit-wrap"><button type="button" id="shaidan-comment-submit">{wc:fun:lan("submit","提交")}</button></div>
+			</div>
+			<ul class="shaidan-comment-list" id="shaidan-comment-list">
+				{wc:if isset($shaidan_hueifu) && is_array($shaidan_hueifu) && count($shaidan_hueifu)>0}
+				{wc:loop $shaidan_hueifu $hf}
+				<li class="shaidan-comment-item" data-comment-id="{wc:$hf['id']}">
+					<img class="c-avatar" src="{wc:$hf['thumb']}" alt="" loading="lazy"/>
+					<div class="c-body">
+						<div class="c-meta"><span class="c-user">{wc:$hf['username']}</span><span class="c-time">{wc:fun:getLTF($hf['sdhf_time'])}</span>{wc:if isset($current_uid) && $current_uid && isset($hf['sdhf_userid']) && $hf['sdhf_userid'] == $current_uid}<span class="c-del"><a href="javascript:;" class="btn-comment-del" data-id="{wc:$hf['id']}">{wc:fun:lan("delete","删除")}</a></span>{wc:if:end}</div>
+						<div class="c-content">{wc:$hf['sdhf_content']}</div>
+						{wc:if isset($hf['sdhf_img']) && $hf['sdhf_img']}
+						<div class="c-img"><img src="{wc:$hf['sdhf_img']}" alt="" loading="lazy"/></div>
+						{wc:if:end}
+					</div>
+				</li>
+				{wc:loop:end}
+				{wc:else}
+				<li class="shaidan-comment-empty">{wc:fun:lan("nocomment","暂无评论")}</li>
+				{wc:if:end}
+			</ul>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+(function(){
+	var box = document.getElementById('shaidan-detail-actions');
+	if(!box) return;
+	var sdId = parseInt(box.getAttribute('data-sd-id') || '0', 10);
+	var likeUrl = (box.getAttribute('data-like-url') || '/go/shaidan/shaidan_like').replace(/\?\/\?\//, '/');
+	var commentUrl = (box.getAttribute('data-comment-url') || '/go/shaidan/shaidan_huifu_add').replace(/\?\/\?\//, '/');
+	var delUrl = (box.getAttribute('data-del-url') || '/go/shaidan/shaidan_hueifu_del').replace(/\?\/\?\//, '/');
+	var loginUrl = (box.getAttribute('data-login-url') || '/member/user/login').replace(/\?\/\?\//, '/');
+	if (likeUrl.indexOf('http') !== 0) likeUrl = (window.location.origin + (likeUrl.indexOf('/') === 0 ? '' : '/') + likeUrl);
+	if (commentUrl.indexOf('http') !== 0) commentUrl = (window.location.origin + (commentUrl.indexOf('/') === 0 ? '' : '/') + commentUrl);
+	if (delUrl.indexOf('http') !== 0) delUrl = (window.location.origin + (delUrl.indexOf('/') === 0 ? '' : '/') + delUrl);
+	if (loginUrl.indexOf('http') !== 0) loginUrl = (window.location.origin + (loginUrl.indexOf('/') === 0 ? '' : '/') + loginUrl);
+
+	function postJson(url, data, fn){
+		var xhr = new XMLHttpRequest();
+		xhr.open('POST', url, true);
+		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+		xhr.onreadystatechange = function(){ if(xhr.readyState === 4) { var res; try{ res = JSON.parse(xhr.responseText); }catch(e){ res = null; } fn(res, xhr); } };
+		var s = []; for(var k in data) if(data.hasOwnProperty(k)) s.push(encodeURIComponent(k)+'='+encodeURIComponent(data[k])); xhr.send(s.join('&'));
+	}
+
+	// 羡慕按钮
+	var likeBtn = document.querySelector('.btn-shaidan-like-detail');
+	if(likeBtn){
+		likeBtn.addEventListener('click', function(e){
+			e.preventDefault();
+			if(!sdId || likeBtn.classList.contains('loading')) return;
+			likeBtn.classList.add('loading');
+			postJson(likeUrl, { id: sdId }, function(res){
+				likeBtn.classList.remove('loading');
+				if(res && (res.code == 601 || res.code == '601')){ window.location.href = loginUrl + (loginUrl.indexOf('?')>=0 ? '&' : '?') + 'redirect=' + encodeURIComponent(window.location.href); return; }
+				if(res && (res.code == 200 || res.code == '200') && res.data){ var em = likeBtn.querySelector('.sd-zhan-num'); if(em) em.textContent = res.data.zhan; }
+			});
+		});
+	}
+
+	// 评论提交
+	var submitBtn = document.getElementById('shaidan-comment-submit');
+	var inputEl = document.getElementById('shaidan-comment-input');
+	if(submitBtn && inputEl){
+		submitBtn.addEventListener('click', function(){
+			var content = (inputEl.value || '').trim();
+			if(!content){ if(typeof window.toast === 'function') window.toast('请输入评论内容', 'error'); else alert('请输入评论内容'); return; }
+			if(!sdId) return;
+			submitBtn.disabled = true;
+			postJson(commentUrl, { id: sdId, content: content }, function(res){
+				submitBtn.disabled = false;
+				if(res && (res.code == 601 || res.code == '601')){ window.location.href = loginUrl + (loginUrl.indexOf('?')>=0 ? '&' : '?') + 'redirect=' + encodeURIComponent(window.location.href); return; }
+				if(res && (res.code == 200 || res.code == '200')){ inputEl.value = ''; location.reload(); return; }
+				var msg = res && res.msg ? res.msg : '提交失败，请重试';
+				if(typeof window.toast === 'function') window.toast(msg, 'error'); else alert(msg);
+			});
+		});
+	}
+
+	// 删除评论（仅自己的评论显示删除按钮，删除后同步后台）
+	var listEl = document.getElementById('shaidan-comment-list');
+	if(listEl){
+		listEl.addEventListener('click', function(e){
+			var btn = e.target && e.target.classList && e.target.classList.contains('btn-comment-del') ? e.target : (e.target.closest && e.target.closest('.btn-comment-del'));
+			if(!btn) return;
+			e.preventDefault();
+			var cid = parseInt(btn.getAttribute('data-id') || '0', 10);
+			if(!cid) return;
+			btn.style.pointerEvents = 'none';
+			postJson(delUrl, { id: cid }, function(res){
+				if(res && (res.code == 601 || res.code == '601')){ window.location.href = loginUrl + (loginUrl.indexOf('?')>=0 ? '&' : '?') + 'redirect=' + encodeURIComponent(window.location.href); return; }
+				if(res && (res.code == 200 || res.code == '200')){
+					var li = btn.closest('.shaidan-comment-item');
+					if(li) li.remove();
+					var pingEm = document.querySelector('.sd-ping-num');
+					if(pingEm && res.data && typeof res.data.ping !== 'undefined') pingEm.textContent = res.data.ping;
+					else if(pingEm) pingEm.textContent = Math.max(0, parseInt(pingEm.textContent, 10) - 1);
+					var empty = document.querySelector('.shaidan-comment-empty');
+					if(!document.querySelectorAll('.shaidan-comment-item').length && !empty){
+						var ul = document.getElementById('shaidan-comment-list');
+						if(ul){ var el = document.createElement('li'); el.className = 'shaidan-comment-empty'; el.textContent = '暂无评论'; ul.appendChild(el); }
+					}
+					if(typeof window.toast === 'function') window.toast(res.msg || '已删除', 'success');
+				}else{ btn.style.pointerEvents = ''; var msg = res && res.msg ? res.msg : '删除失败'; if(typeof window.toast === 'function') window.toast(msg, 'error'); else alert(msg); }
+			});
+		});
+	}
+})();
+</script>
+<script type="text/javascript">
+if(typeof jQuery !== 'undefined'){
+	$(".mobile").mouseover(function(){ $(".h_mobile").show(); });
+	$(".h_mobile").mouseout(function(){ $(".h_mobile").hide(); });
+	$(".yu_ff").mouseover(function(){ $(".h_1yyg_eject").show(); });
+	$(".yu_ff").mouseout(function(){ $(".h_1yyg_eject").hide(); });
+	$("#m_all_sort").hide();
+	$(".m_menu_all").mouseenter(function(){ $(".m_all_sort").show(); });
+	$(".m_menu_all").mouseleave(function(){ $(".m_all_sort").hide(); });
+	$(".m_all_sort").mouseenter(function(){ $(this).show(); });
+	$(".m_all_sort").mouseleave(function(){ $(this).hide(); });
+	$(function(){
+		$(window).scroll(function(){
+			if($(window).scrollTop()>=130 && $(window).scrollTop()<=560){ $(".head_nav").addClass("fixedNav"); $("#m_all_sort").fadeOut(); }
+			else if($(window).scrollTop()>560){ $(".head_nav").addClass("fixedNav"); $("#m_all_sort").fadeOut(); }
+			else if($(window).scrollTop()<130){ $(".head_nav").removeClass("fixedNav"); }
+		});
+	});
+}
+</script>
+{wc:templates "index","footer"}

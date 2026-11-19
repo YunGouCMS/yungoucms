@@ -1,0 +1,355 @@
+/* 高级骨架屏系统 - 包含所有预加载效果 */
+
+/* ========== Skeleton Screen（骨架屏）基础样式 ========== */
+.skeleton {
+    background: #f0f0f0;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.skeleton::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.4) 50%, 
+        transparent 100%);
+    animation: shimmer 1.5s infinite;
+}
+
+/* ========== Shimmer Effect（闪烁效果）动画 ========== */
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* ========== Loading Placeholder（加载占位符）样式 ========== */
+.loading-placeholder {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading-wave 1.5s ease-in-out infinite;
+    border-radius: 8px;
+}
+
+@keyframes loading-wave {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* ========== Content Placeholder（内容占位符）样式 ========== */
+.content-placeholder {
+    background: #fff;
+    border: 2px dashed #e5e7eb;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    color: #9ca3af;
+    position: relative;
+}
+
+.content-placeholder::before {
+    content: '⏳';
+    font-size: 32px;
+    display: block;
+    margin-bottom: 10px;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(0.95);
+    }
+}
+
+/* ========== 表格骨架屏 ========== */
+.skeleton-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.skeleton-table tr {
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.skeleton-table td {
+    padding: 15px;
+    vertical-align: middle;
+}
+
+.skeleton-table .skeleton-cell {
+    height: 20px;
+    background: #f0f0f0;
+    border-radius: 4px;
+    margin: 5px 0;
+}
+
+.skeleton-table .skeleton-cell.short {
+    width: 60%;
+}
+
+.skeleton-table .skeleton-cell.medium {
+    width: 80%;
+}
+
+.skeleton-table .skeleton-cell.long {
+    width: 100%;
+}
+
+/* ========== 表单骨架屏 ========== */
+.skeleton-form {
+    padding: 20px;
+}
+
+.skeleton-form-row {
+    display: flex;
+    margin-bottom: 20px;
+    gap: 20px;
+}
+
+.skeleton-form-label {
+    width: 200px;
+    height: 20px;
+    background: #f0f0f0;
+    border-radius: 4px;
+}
+
+.skeleton-form-input {
+    flex: 1;
+    height: 50px;
+    background: #f0f0f0;
+    border-radius: 8px;
+    max-width: 400px;
+}
+
+.skeleton-form-button {
+    width: 120px;
+    height: 50px;
+    background: #f0f0f0;
+    border-radius: 10px;
+    margin: 20px auto;
+    display: block;
+}
+
+/* ========== 卡片骨架屏 ========== */
+.skeleton-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin-bottom: 20px;
+}
+
+.skeleton-card-header {
+    height: 24px;
+    width: 40%;
+    background: #f0f0f0;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.skeleton-card-content {
+    height: 16px;
+    background: #f0f0f0;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.skeleton-card-content:last-child {
+    width: 60%;
+    margin-bottom: 0;
+}
+
+/* ========== 列表骨架屏 ========== */
+.skeleton-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.skeleton-list-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.skeleton-list-item:last-child {
+    border-bottom: none;
+}
+
+.skeleton-list-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #f0f0f0;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.skeleton-list-content {
+    flex: 1;
+}
+
+.skeleton-list-title {
+    height: 16px;
+    width: 60%;
+    background: #f0f0f0;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+.skeleton-list-text {
+    height: 14px;
+    width: 40%;
+    background: #f0f0f0;
+    border-radius: 4px;
+}
+
+/* ========== 按钮骨架屏 ========== */
+.skeleton-button {
+    display: inline-block;
+    height: 50px;
+    width: 120px;
+    background: #f0f0f0;
+    border-radius: 10px;
+}
+
+/* ========== 图片骨架屏 ========== */
+.skeleton-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #f0f0f0;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.skeleton-image::before {
+    content: '🖼️';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 32px;
+    opacity: 0.3;
+}
+
+/* ========== 通用骨架屏工具类 ========== */
+.skeleton-text {
+    height: 16px;
+    background: #f0f0f0;
+    border-radius: 4px;
+    margin: 8px 0;
+}
+
+.skeleton-text.line-1 {
+    width: 100%;
+}
+
+.skeleton-text.line-2 {
+    width: 80%;
+}
+
+.skeleton-text.line-3 {
+    width: 60%;
+}
+
+.skeleton-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #f0f0f0;
+}
+
+.skeleton-rectangle {
+    height: 50px;
+    background: #f0f0f0;
+    border-radius: 8px;
+}
+
+/* ========== 页面加载骨架屏容器 ========== */
+.page-skeleton {
+    background: #fff;
+    border-radius: 12px;
+    padding: 30px 40px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    min-height: 400px;
+}
+
+.page-skeleton-header {
+    margin-bottom: 30px;
+}
+
+.page-skeleton-title {
+    height: 28px;
+    width: 200px;
+    background: #f0f0f0;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.page-skeleton-subtitle {
+    height: 16px;
+    width: 150px;
+    background: #f0f0f0;
+    border-radius: 4px;
+}
+
+/* ========== 加载状态指示器 ========== */
+.loading-indicator {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #667eea;
+    font-size: 14px;
+}
+
+.loading-indicator::before {
+    content: '';
+    width: 16px;
+    height: 16px;
+    border: 2px solid #e5e7eb;
+    border-top-color: #667eea;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ========== 响应式优化 ========== */
+@media (max-width: 768px) {
+    .skeleton-form-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .skeleton-form-label {
+        width: 100%;
+    }
+    
+    .skeleton-form-input {
+        max-width: 100%;
+    }
+}
+

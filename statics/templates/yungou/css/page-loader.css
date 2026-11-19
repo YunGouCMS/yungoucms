@@ -1,0 +1,59 @@
+/**
+ * 电脑端全局加载层：与主题 #db70db 一致的 SVG 动画，避免打开/切换页面时空白
+ */
+#pc-page-loader {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 99999;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #fff;
+	transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+#pc-page-loader.pc-page-loader-done {
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+}
+#pc-page-loader .pc-page-loader-inner {
+	position: relative;
+	width: 80px;
+	height: 80px;
+	filter: drop-shadow(0 0 12px rgba(219, 55, 82, 0.35));
+}
+#pc-page-loader .pc-page-loader-svg {
+	width: 100%;
+	height: 100%;
+	animation: pc-loader-rotate 1.2s linear infinite;
+}
+#pc-page-loader .pc-page-loader-svg circle {
+	fill: none;
+	stroke: #db70db;
+	stroke-width: 3;
+	stroke-linecap: round;
+	stroke-dasharray: 60 180;
+	stroke-dashoffset: 0;
+	animation: pc-loader-dash 1.5s ease-in-out infinite;
+}
+#pc-page-loader .pc-page-loader-svg circle:nth-child(2) {
+	animation-delay: -0.35s;
+	stroke: rgba(219, 55, 82, 0.55);
+	stroke-dasharray: 50 190;
+}
+#pc-page-loader .pc-page-loader-svg circle:nth-child(3) {
+	animation-delay: -0.7s;
+	stroke: rgba(219, 55, 82, 0.28);
+	stroke-dasharray: 38 202;
+}
+@keyframes pc-loader-rotate {
+	100% { transform: rotate(360deg); }
+}
+@keyframes pc-loader-dash {
+	0% { stroke-dashoffset: 0; }
+	50% { stroke-dashoffset: -90; }
+	100% { stroke-dashoffset: -240; }
+}

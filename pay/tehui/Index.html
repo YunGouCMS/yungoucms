@@ -1,0 +1,309 @@
+<!-- 永久网址开始吧 -->	
+
+
+<script src="/pay/tehui/yong/js/jquery190.js" language="javascript" type="text/javascript"></script>
+<script src="/pay/tehui/yong/js/index_tab.js" language="javascript" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="/pay/tehui/yong/css/component.css" />
+<body style="max-width: 640px;margin: 0 auto;">		
+<div id="divDownApp" class="app-icon-wrapper" onClick="tempee();"  >
+    <div class="app-icon">
+        <a href="javascript:;" class="close-icon" onClick="document.getElementById('divDownApp').style.display='none'"><i class="set-icon"></i></a>
+        <a class="info-icon">
+            <i class="set-icon"></i>
+            
+		<div class="info">
+                <h6>关注公众号</h6>
+                <p>第一时间接收活动通知 ^_^!</p>
+            </div>
+        </a>
+        <a id="downLink" href="javascript:;" onClick="tempgz()" class="showcode">立即关注</a>
+    </div>
+</div>
+ 
+ 
+ 
+<div class="scwz" id="scwz" style="z-index: 2033; display: none;">
+<div class="mint-popup mint-popup-wechat">
+    <img src="/pay/tehui/images/qrcode.png" style="width: 70%; height: auto; display: inline-block;"> 
+<div style="position: absolute; bottom: -70px; width: 100%; text-align: center; margin: 0px auto;">
+      <div style="color:#fff; line-height: 1; font-size: 1rem;"><font color="#FFF" style="font-size:15px"> （收藏后请打开微信收藏识别二维码进行访问）</font></div> <span class="close"  onclick="scg()"></span>
+</div> 
+</div>
+</div>
+
+
+<div class="buy-container" id="buy-container">
+			<!-- 遮罩 -->
+<div class="mask"></div>			
+<div class="mint-popup mint-popup-wechat">
+    <img src="/pay/tehui/images/qrcode.png" style="width: 70%; height: auto; display: inline-block;"> 
+    <div style="position: absolute; bottom: -70px; width: 100%; text-align: center; margin: 0px auto;">
+      <div style="color:#fff; line-height: 1; font-size: 1rem;"><font color="#FFF" style="font-size:15px"> （收藏后请打开微信收藏识别二维码进行访问）</font></div> <span class="close"  onclick="scg()"></span></div>
+	  </div>		
+</div>
+
+</div>
+		
+		
+<script  type="text/javascript">
+$(document).ready(function(){
+    if(document.referrer!=""){
+        $("#buy-container").hide();
+    }
+  $("#buy-container").click(function(){
+    $(this).hide();
+  });
+});
+</script>
+ 
+
+
+<!--微信开始弹窗关注-->
+<div class="weui_dialog_alert" id="guanzhu">
+    <div class="weui_mask"></div>
+    <div class="weui_dialog">
+        <div class="weui_dialog_hd"><strong class="weui_dialog_title">长按关注</strong></div>
+        <div class="weui_dialog_bd"><img src="/pay/tehui/images/gz.jpg" style="width:90%;" /><br>微信号:122691676</div>
+        <div class="weui_dialog_ft">
+            <a  onclick="tempgb()" href="javascript:;" class="weui_btn_dialog primary">确定</a>
+        </div>
+    </div>
+</div>
+
+
+<!-- 内页顶部 -->
+<style>
+.scwz {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background:rgba(0, 0, 0, 0.48);
+    z-index: 9999;
+}
+  .mint-popup-wechat {
+    border-radius: 8px;
+    width: 100%;
+    line-height: 0;
+    background: none;
+    top: 40%;
+    text-align: center;
+    max-width: 750px;
+}
+.mint-popup {
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    -webkit-transform: translate3d(-50%,-50%,0);
+    transform: translate3d(-50%,-50%,0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transition: .2s ease-out;
+}
+  .close {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    display: block;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    left: 50%;
+    margin-left: -20px;
+    top: 20px;
+}
+  .close::after, .close::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -1rem;
+    width: 2rem;
+    height: 2px;
+    background-color: #fff;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.close::after {
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+/*20160615公告滚动*/
+.shell{ 	background-image: url(/pay/tehui/images/images/tit.png);
+	background-repeat: no-repeat;
+	background-position: 5px 8px;
+	background-size:73px 16px;
+ width:96%; margin:0 auto;	background-color: #FFFFFF;border-radius:5px } 
+.shell img{width:73px;height:16}
+#div1{ height:30px;line-height:30px;overflow:hidden; padding-left: 90px;}
+#div1 a{ width:100%; float: left; color:#333333;font-size:14px;text-indent: 8px;}
+/*滚动结束*/
+
+.m-joinNum {
+   
+    color: #3c3c3c;
+    font-family: "Microsoft Yahei";
+        text-align: center;
+}
+.qian {
+
+padding-right: 5px;
+
+float: left;
+
+line-height: 32px;
+
+font-size: 18px;
+
+font-weight: bold;
+
+
+
+
+}
+
+.m-joinNum span {
+
+display: inline-block;
+
+color: #545454;
+
+}
+
+.m-joinNum span.tnum {
+
+margin: 0 3px;
+
+width: 24px;
+
+height: 30px;
+
+overflow: hidden;
+
+font-size: 28px;
+
+line-height: 30px;
+
+font-family: "Arial";
+
+background-position: 0 -30px;
+
+font-weight: bold;
+
+text-align: center;
+
+color: #db3652;
+
+}
+
+.m-joinNum span.tnum {
+
+background-image: url('/pay/tehui/images/mix-icon.png');
+
+
+background-repeat: no-repeat;
+
+}
+
+.m-joinNum span {
+
+display: inline-block;
+
+color: #545454;
+
+}
+
+
+
+.tnum ul li {
+
+font-size: 20px;
+
+}
+
+
+.hou {
+    padding-left: 5px;
+    float: right;
+    line-height: 32px;
+    font-size: 18px;
+    font-weight: bold;
+}
+.accumulative-number{width: 100%;
+    margin: 0 auto;
+    height: 40px;
+    color: #cccccc;
+    line-height: 40px;
+    text-align: center;}
+  .buy-container {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background:rgba(0, 0, 0, 0.48);
+     z-index: 9999;
+}
+.mask {
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.2);
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 800;
+    display: none;
+}
+.buy-content {
+    background: #fff;
+    z-index: 999;
+    width: 80%;
+    padding: 5px 20px 20px;
+    font-size: 13px;
+    margin: 200px auto;
+  border-radius: 10px;
+ 
+}
+.buy-title {
+    text-align: center;
+}
+.buy-title h3 {
+    font-weight: bold;
+    margin: 0;
+    padding: 15px 5px;
+    border-bottom: 1px solid #eee;
+}
+.buy-txt {
+    margin-bottom: 20px;
+  margin-top: 10px;
+}
+.buy-txt p {
+    line-height: 20px;
+}
+.buy-txt a {
+    text-decoration: none;
+    color: #dc332d;
+}
+.buyy-btn {
+    text-align: center;
+}
+.buyy-btn a {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    padding: 5px 40px;
+    font-size: 12px;
+    border-radius: 10px;
+    background: #87C007;
+}
+</style>
+
+<!-- 永久网址结束吧 -->	

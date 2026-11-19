@@ -1,0 +1,45 @@
+.uploadarr_box{
+    float: left;
+    /* width: 8.5%; */
+    /* background-color: #0f0; */
+    /* border: 10px solid #ffffff; */
+    margin-left:-16px;
+    cursor: pointer;
+}
+.uploadarr_box i {
+    position: relative;
+    right: -130px;
+    top: -50px;
+    background: #3C8DBC;
+    z-index: 99999;
+    opacity:0;
+}
+.uploadarr_box:hover i{
+    opacity:1;
+}
+.layui-input-block .layui-row {display: flex;align-items: end;}
+td .layui-row {display: flex;align-items: end;}
+.layui-upload-list { padding:10px 0;position:relative;min-height: 30px;}
+.layui-col-md1 { border:1px dashed #B4B4B4;width: 98px;margin-right: 10px;}
+.layui-col-md1.width56 {width: 56px;}
+.layui-col-md1.width66 {width: 66px;}
+.layui-col-md1.width130 {width: 130px;}
+.layui-col-md1.width200 {width: 200px;}
+.layui-upload-list.height56 {margin: 0;padding: 0;}
+.layui-upload-list.height66 {margin: 0;padding: 5px 0 0;}
+.layui-upload-list.height98 {padding: 10px 0;}
+.layui-upload-list.height131 {padding: 15px 0;}
+.layui-upload-list.height130 {padding: 26px 0;}
+.layui-upload-list.height158 {padding: 40px 0;}
+.layui-upload-list.height180 {padding: 51px 0;}
+.layui-upload-list.height226 {padding: 74px 0;}
+.layui-upload-list.height355 {padding: 132px 0;}
+.layui-upload-list .layui-upload-img {position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%); }
+.layui-bottom-img {width: 100%;height: 100%;display: flex;align-items: center;justify-content: center;flex-direction: column;}
+.layui-upload-list button,.layui-upload-list input.bottoms {position: absolute;width: 100%;height: 100%;border: 0;top: 0;background: rgba(0,0,0,0);}
+.layui-upload-list input.bottoms {opacity: 0;}
+.layui-bottom-img span {display: inline-block;border: 2px solid #B4B4B4;border-radius: 50%;font-weight: bold;color: #B4B4B4;font-size: 19px;width: 22px;height: 22px;text-align: center;line-height: 20px;}
+.layui-bottom-img text {font-size: 12px;color: #B4B4B4;line-height: 30px;}
+.layui-col-md1:hover {border:1px dashed #3C8DBC;}
+.layui-col-md1:hover .layui-bottom-img span {border: 2px solid #3C8DBC;color: #3C8DBC;}
+.layui-col-md1:hover .layui-bottom-img text {color: #3C8DBC;}

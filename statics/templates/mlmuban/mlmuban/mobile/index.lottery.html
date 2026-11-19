@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head id="Head1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+<title>{wc:$webname}</title>
+<meta content="app-id=518966501" name="apple-itunes-app" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<link href="{G_TEMPLATES_CSS}/mobile/comm.css" rel="stylesheet" type="text/css" />
+<link href="{G_TEMPLATES_CSS}/mobile/lottery.css" rel="stylesheet" type="text/css" />
+<script src="{G_TEMPLATES_JS}/mobile/jquery190.js" language="javascript" type="text/javascript"></script>
+<script id="pageJS" data="{G_TEMPLATES_JS}/mobile/Lottery.js" language="javascript" type="text/javascript"></script>
+</head>
+<style>
+.g-header{position:fixed!important;}
+i.zimgs {width: 20px;height: 22px;left: 3px;}
+.fixed_header{position:fixed;display:flex;top:45px;width:100%;height:40px;background:#fff;z-index:1111111111111;}
+.fixed_header .fixed_content{flex:1;text-align:center;line-height:40px;border-right:1px solid #ddd;border-bottom:2px solid #ddd;font-size: 14px;}
+.fixed_content:nth-child(3){border-right:0;}
+.fixed_content a{display:block;width:100%;height:100%}
+.active{border-bottom:2px solid #00a2e9 !important;}
+.active a{color:#00a2e9;}
+a.blue, .blue,.orange {color: {THEME_COLOR};}
+.revCon ul.rFirst {border-top: 2px solid {THEME_COLOR}!important;}
+.revCon ul.rNow {border: 2px solid {THEME_COLOR};}
+.revCon li p {background: {THEME_COLOR};}
+.revCon li p {border: 1px solid {THEME_COLOR};}
+</style>
+<body>
+<div class="h5-1yyg-v1" id="loadingPicBlock">
+{wc:templates "mobile/index","header1"}
+  <!--div class="fixed_header">		
+	<div {wc:if $lottype == 'auto_lottery'}class="fixed_content active" {wc:else}class="fixed_content " {wc:if:end} id='auto_lottery'><a href="{WEB_PATH}/mobile/mobile/lottery/auto_lottery">实时购</a></div>
+	<div {wc:if $lottype == 'tmg_lottery'}class="fixed_content active" {wc:else}class="fixed_content " {wc:if:end} id='tmg_lottery'><a href="{WEB_PATH}/mobile/mobile/lottery/tmg_lottery">透明购</a></div>
+	</div-->
+
+  <section class="revealed" style="top: 0px;padding-top: 44px;">
+    <div id="divLottery" class="revCon">
+      <div id="divLotteryLoading" class="loading" style="height: 80px;"><b></b>正在加载</div>
+      <a id="btnLoadMore" class="loading" href="javascript:;" style="display:none;">点击加载更多</a> 
+	 </div>
+  </section>
+{wc:templates "mobile/index","footer"}
+<script language="javascript" type="text/javascript">
+
+  var Path = new Object();
+  Path.Skin="{G_TEMPLATES_STYLE}";  
+  Path.Webpath = "{WEB_PATH}";
+  Path.path = "{G_WEB_PATH}";
+  Path.imgpath = "{G_WEB_PATH}/statics";
+var Base={head:document.getElementsByTagName("head")[0]||document.documentElement,Myload:function(B,A){this.done=false;B.onload=B.onreadystatechange=function(){if(!this.done&&(!this.readyState||this.readyState==="loaded"||this.readyState==="complete")){this.done=true;A();B.onload=B.onreadystatechange=null;if(this.head&&B.parentNode){this.head.removeChild(B)}}}},getScript:function(A,C){var B=function(){};if(C!=undefined){B=C}var D=document.createElement("script");D.setAttribute("language","javascript");D.setAttribute("type","text/javascript");D.setAttribute("src",A);this.head.appendChild(D);this.Myload(D,B)},getStyle:function(A,B){var B=function(){};if(callBack!=undefined){B=callBack}var C=document.createElement("link");C.setAttribute("type","text/css");C.setAttribute("rel","stylesheet");C.setAttribute("href",A);this.head.appendChild(C);this.Myload(C,B)}}
+function GetVerNum(){var D=new Date();return D.getFullYear().toString().substring(2,4)+'.'+(D.getMonth()+1)+'.'+D.getDate()+'.'+D.getHours()+'.'+(D.getMinutes()<10?'0':D.getMinutes().toString().substring(0,1))}
+Base.getScript('{G_TEMPLATES_JS}/mobile/Bottom.js?v='+GetVerNum());
+</script>
+</div>
+</body>
+</html>

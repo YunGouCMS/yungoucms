@@ -1,0 +1,701 @@
+/**
+ * 电脑端登录页美化样式（仅视觉，不改变任何功能用到的 class/id/结构）
+ */
+body {
+	background: linear-gradient(160deg, #f8f9fc 0%, #eef1f8 50%, #f5f6fa 100%) !important;
+	min-height: 100vh;
+}
+
+/* 登录页使用整站 header 时，主内容与导航留出间距 */
+.login {
+	background: transparent !important;
+	border-bottom: none !important;
+	padding: 24px 0 40px !important;
+	margin-top: 0 !important;
+}
+
+.login .login_header {
+	background: #fff !important;
+	border-bottom: 1px solid #eee !important;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+	margin-bottom: 30px !important;
+	padding: 20px 0 !important;
+}
+
+.login .login_top {
+	max-width: 980px;
+	margin: 0 auto;
+	padding: 0 20px 10px !important;
+}
+
+.login .login_top h1 a.logo_1yyg_img {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.login .login_top h1 a.logo_1yyg_img img {
+	border-radius: 8px;
+	box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.login .login_top p {
+	padding: 20px 0 0 !important;
+}
+
+.login .login_top p a {
+	color: #666 !important;
+	transition: color 0.2s;
+}
+
+.login .login_top p a.back_home {
+	background: none !important;
+	padding-left: 0 !important;
+}
+
+.login .login_top a:hover {
+	color: #db70db !important;
+}
+
+/* 左右布局：加宽父容器，左图右表固定并排等高 */
+.login .login_bg {
+	width: 1200px !important;
+	min-width: 1000px;
+	max-width: 96vw;
+	margin: 0 auto !important;
+	overflow: visible !important;
+	box-sizing: border-box;
+	display: flex !important;
+	align-items: stretch;
+	border-radius: 12px;
+	overflow: hidden;
+	box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+	background: #ffffff;
+}
+
+.login .login_bg::after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.login .login_bg .login_banner {
+	min-height: 0 !important;
+	flex-shrink: 0;
+	border-radius: 12px;
+	overflow: visible;
+	display: flex !important;
+	align-items: stretch;
+	background: transparent;
+}
+
+.login .login_bg .login_banner_21st {
+	position: relative;
+	min-width: 420px;
+	min-height: 360px;
+	overflow: visible;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* 四小角色：与截图一致，背景透明 */
+.login .login_bg .login-characters {
+	position: relative;
+	width: 300px;
+	height: 280px;
+	margin-top: 80px;
+	transform: scale(1.25);
+	transform-origin: center bottom;
+}
+
+.login .login_bg .login-characters .character {
+	position: absolute;
+	transform-origin: center bottom;
+	animation: login-character-float 4s ease-in-out infinite;
+}
+
+/* 1. 橙色：大而宽的半圆/blob，前景左下（从右往左第4个） */
+.login .login_bg .login-characters .char-orange {
+	width: 200px;
+	height: 128px;
+	background: #ff9b6b;
+	left: -15px;
+	bottom: 0;
+	border-radius: 100px 100px 48px 48px;
+	animation-delay: 0.1s;
+	z-index: 2;
+}
+
+/* 2. 蓝/紫：高瘦矩形，仅上角圆（从右往左第3个） */
+.login .login_bg .login-characters .char-purple {
+	width: 88px;
+	height: 248px;
+	background: #6c3ff5;
+	left: 75px;
+	bottom: 52px;
+	border-radius: 44px 44px 22px 22px;
+	animation-delay: 0.3s;
+	z-index: 0;
+}
+
+/* 3. 黑色：高瘦矩形略矮于紫色，白眶+黑瞳孔（瞳孔随鼠标） */
+.login .login_bg .login-characters .char-black {
+	width: 88px;
+	height: 208px;
+	background: #1a1a1a;
+	left: 138px;
+	bottom: 42px;
+	border-radius: 44px 44px 22px 22px;
+	animation-delay: 0.5s;
+	z-index: 1;
+}
+
+/* 4. 黄色：竖长水滴形，平底，前景右侧（从右往左第1个） */
+.login .login_bg .login-characters .char-yellow {
+	width: 118px;
+	height: 148px;
+	background: #e9d755;
+	right: -12px;
+	bottom: 0;
+	border-radius: 58px 58px 0 0;
+	animation-delay: 0.7s;
+	z-index: 3;
+}
+
+.login .login_bg .login-characters .eyes {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	display: flex;
+	gap: 12px;
+	align-items: center;
+}
+
+.login .login_bg .login-characters .char-orange .eyes {
+	top: 36%;
+}
+
+.login .login_bg .login-characters .char-purple .eyes {
+	top: 22%;
+}
+
+.login .login_bg .login-characters .char-black .eyes {
+	top: 24%;
+}
+
+.login .login_bg .login-characters .char-yellow .eyes {
+	top: 30%;
+}
+
+/* 紫/黑：白椭圆眼 + 内嵌黑瞳孔（仅这两者瞳孔随鼠标） */
+.login .login_bg .login-characters .char-purple .eye,
+.login .login_bg .login-characters .char-black .eye {
+	width: 20px;
+	height: 14px;
+	border-radius: 50%;
+	background: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+}
+
+.login .login_bg .login-characters .char-purple .pupil,
+.login .login_bg .login-characters .char-black .pupil {
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background: #111;
+	transform-origin: center;
+	transition: transform 0.12s ease-out;
+}
+
+/* 橙/黄：白色眼球 + 黑色瞳孔（与截图一致） */ 
+.login .login_bg .login-characters .char-orange .eye,
+.login .login_bg .login-characters .char-yellow .eye {
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	background: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+}
+
+.login .login_bg .login-characters .char-orange .pupil,
+.login .login_bg .login-characters .char-yellow .pupil {
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: #111;
+	transform-origin: center;
+	transition: transform 0.12s ease-out;
+}
+
+/* 黄色：嘴为两眼下方的短横线 */
+.login .login_bg .login-characters .char-yellow .eyes {
+	flex-wrap: wrap;
+	justify-content: center;
+	width: 70px;
+}
+.login .login_bg .login-characters .char-yellow .mouth {
+	flex-basis: 100%;
+	width: 24px;
+	height: 3px;
+	border-radius: 2px;
+	background: #1a1a1a;
+	margin: 6px auto 0;
+}
+
+@keyframes login-character-float {
+	0%, 100% { transform: translateY(0) scale(1); }
+	50% { transform: translateY(-10px) scale(1.01); }
+}
+
+.login .login_bg .login_box {
+	width: 440px !important;
+	min-width: 440px;
+	height: auto !important;
+	min-height: 0 !important;
+	max-height: none !important;
+	overflow: visible !important;
+	flex-shrink: 0;
+	align-self: stretch !important;
+	background: #fff !important;
+	background-image: none !important;
+	border-radius: 12px;
+	/*box-shadow: 0 8px 24px rgba(0,0,0,0.08);*/
+	padding: 32px 36px 150px 0 !important;
+	border: 1px solid rgba(0,0,0,0.04);
+	box-sizing: border-box;
+}
+
+.login .login_bg .login_box form {
+	height: auto !important;
+	min-height: 0 !important;
+	overflow: visible !important;
+}
+
+.login .login_bg .login_box h3 {
+	width: auto !important;
+	height: auto !important;
+	text-indent: 0 !important;
+	margin: 0 0 24px !important;
+	color: #333 !important;
+	font-size: 22px !important;
+	font-weight: 600 !important;
+	letter-spacing: 0.02em;
+	padding-left: 36px;
+}
+
+.login .login_bg .login_box ul {
+	width: 100% !important;
+	padding: 0 0 16px !important;
+	float: none !important;
+}
+
+.login .login_bg .login_box ul li {
+	width: 100% !important;
+	margin-bottom: 4px;
+}
+
+.login .login_bg .login_box ul li.newclilog {
+	display: flex;
+	align-items: flex-start;
+	flex-wrap: wrap;
+	margin-bottom: 18px;
+}
+
+/* 账号、密码、验证码文案居右对齐，与输入框间距 5px */
+.login .login_bg .login_box ul li.newclilog > span {
+	width: 108px !important;
+	flex-shrink: 0;
+	line-height: 40px !important;
+	height: auto !important;
+	color: #555;
+	font-size: 14px;
+	text-align: right !important;
+	margin-right: 5px !important;
+}
+
+.login .login_bg .login_box ul li.newclilog > div {
+	padding-left: 0 !important;
+	flex: 1;
+	min-width: 0;
+}
+
+/* 登录表单项：输入框内提示 overlay，原下方 .ts 隐藏 */
+.login .login_bg .login_box .login-field {
+	display: flex !important;
+	flex-direction: column;
+	align-items: flex-start;
+	padding-left: 0 !important;
+	flex: 1;
+	min-width: 0;
+}
+.login .login_bg .login_box .login-field > .login-input-wrap {
+	display: flex !important;
+	align-items: center;
+	flex-wrap: nowrap;
+	gap: 8px;
+	width: 100%;
+	max-width: 200px;
+	position: relative;
+}
+/* 密码行：与账号同宽 200px，父容器放宽以容纳“忘记密码？”链接 */
+.login .login_bg .login_box .login-field .login-pwd-wrap {
+	max-width: 420px !important;
+}
+.login .login_bg .login_box .login-field .login-pwd-wrap input.text_password {
+	width: 200px !important;
+	min-width: 200px !important;
+	max-width: 200px !important;
+	box-sizing: border-box !important;
+}
+.login .login_bg .login_box .login-field .login-pwd-wrap .login-input-cell {
+	width: 200px !important;
+	min-width: 200px !important;
+	max-width: 200px !important;
+	flex-shrink: 0 !important;
+}
+.login .login_bg .login_box .login-input-cell {
+	position: relative;
+	display: inline-block;
+	max-width: 200px;
+	flex-shrink: 0;
+}
+.login .login_bg .login_box .login-field .login-input-wrap:has(.text_verify) .login-input-cell {
+	display: flex;
+	align-items: center;
+	flex-wrap: nowrap;
+	gap: 8px;
+	max-width: none;
+}
+/* 验证码行：与账号同宽 200px，父容器放宽以容纳验证码图片 */
+.login .login_bg .login_box .login-field .login-input-wrap:has(.text_verify) {
+	max-width: 420px !important;
+}
+.login .login_bg .login_box .login-input-cell:has(.text_verify) .login-tip-inner {
+	width: 100px;
+}
+.login .login_bg .login_box .login-field .ts.login-ts-hidden {
+	display: none !important;
+	height: 0 !important;
+	min-height: 0 !important;
+	width: 0 !important;
+	min-width: 0 !important;
+	overflow: hidden !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	border: 0 !important;
+	visibility: hidden !important;
+	flex-shrink: 0 !important;
+}
+.login .login_bg .login_box .login-field .ts:not(.login-ts-hidden) {
+	display: block !important;
+	height: auto !important;
+	margin-top: 4px !important;
+	padding: 0 !important;
+	font-size: 12px !important;
+	color: #c0392b !important;
+	visibility: visible !important;
+}
+/* 校验通过时不再显示“手机号/邮箱！”等提示文案 */
+.login .login_bg .login_box .login-field .ts:has(.Validform_checktip.Validform_right) {
+	display: none !important;
+	height: 0 !important;
+	min-height: 0 !important;
+	overflow: hidden !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	visibility: hidden !important;
+}
+.login .login_bg .login_box .login-tip-inner {
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	height: 40px;
+	line-height: 40px;
+	padding: 0 38px 0 12px;
+	display: none;
+	align-items: center;
+	pointer-events: none;
+	border-radius: 8px;
+	font-size: 14px;
+	color: #999;
+	box-sizing: border-box;
+}
+.login .login_bg .login_box .login-tip-inner.show {
+	display: flex !important;
+}
+.login .login_bg .login_box .login-tip-inner.wrong {
+	color: #c0392b;
+}
+.login .login_bg .login_box .login-tip-inner .login-tip-text {
+	flex: 1;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.login .login_bg .login_box .login-tip-inner .login-tip-icon {
+	display: none;
+	position: absolute;
+	right: 12px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 18px;
+	height: 18px;
+	margin-left: 0;
+	flex-shrink: 0;
+	background: #c0392b;
+	color: #fff;
+	font-style: normal;
+	font-size: 12px;
+	font-weight: 700;
+	line-height: 18px;
+	text-align: center;
+	border-radius: 50%;
+}
+.login .login_bg .login_box .login-tip-inner .login-tip-icon::before {
+	content: "!";
+}
+.login .login_bg .login_box .login-tip-inner .login-tip-icon.show {
+	display: block !important;
+}
+
+/* 正确状态图标：显示在输入框内最右侧 */
+.login .login_bg .login_box .login-tip-right {
+	display: none;
+	position: absolute;
+	right: 12px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 18px;
+	height: 18px;
+	background: #52c41a;
+	color: #fff;
+	font-style: normal;
+	font-size: 12px;
+	font-weight: 700;
+	line-height: 18px;
+	text-align: center;
+	border-radius: 50%;
+	pointer-events: none;
+	box-sizing: border-box;
+}
+.login .login_bg .login_box .login-tip-right::before {
+	content: "\2713";
+	display: block;
+	line-height: 18px;
+}
+.login .login_bg .login_box .login-tip-right.show {
+	display: block !important;
+}
+/* 验证码行打勾与账号/密码一致：在输入框内最右侧（输入框宽 200px，右留 12px） */
+.login .login_bg .login_box .login-input-cell:has(.text_verify) .login-tip-right {
+	right: auto;
+	left: 170px;
+}
+
+/* 显示错误/加载提示时隐藏输入框默认 placeholder，避免文案重叠 */
+.login .login_bg .login_box .login-input-cell input.tip-visible::placeholder {
+	color: transparent !important;
+	opacity: 0 !important;
+}
+
+.login .login_bg .login_box ul li.newclilog > div > div:first-child {
+	display: flex !important;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+/* 账号/密码输入框：与 comm.css 的 230px 覆盖为 200px */
+.login .login_bg .login_box ul li input.text_password,
+.login .login_bg .login_box ul li input.text_name {
+	width: 200px !important;
+	min-width: 200px !important;
+	max-width: 200px !important;
+	height: 40px !important;
+	line-height: 40px !important;
+	padding: 0 12px !important;
+	text-indent: 0 !important;
+	border: 1px solid #e0e0e0 !important;
+	border-radius: 8px !important;
+	font-size: 14px !important;
+	transition: border-color 0.2s, box-shadow 0.2s;
+	box-sizing: border-box;
+}
+
+.login .login_bg .login_box ul li input.text_password:focus,
+.login .login_bg .login_box ul li input.text_name:focus {
+	outline: none !important;
+	border-color: #db70db !important;
+	box-shadow: 0 0 0 3px rgba(219,55,82,0.12) !important;
+}
+
+.login .login_bg .login_box ul li input.text_name_focus,
+.login .login_bg .login_box ul li input.text_password_focus {
+	width: 100% !important;
+	max-width: 258px;
+	height: 38px !important;
+	border: 2px solid #db70db !important;
+	border-radius: 8px !important;
+	background: #fffbfc !important;
+}
+
+/* 验证码输入框：与账号/密码同宽 200px、同内边距与焦点样式（覆盖 comm.css） */
+.login .login_bg .login_box ul li input.text_verify {
+	width: 200px !important;
+	min-width: 200px !important;
+	max-width: 200px !important;
+	height: 40px !important;
+	border-radius: 8px !important;
+	border: 1px solid #e0e0e0 !important;
+	text-indent: 0 !important;
+	padding: 0 12px !important;
+	box-sizing: border-box !important;
+	flex-shrink: 0 !important;
+	transition: border-color 0.2s, box-shadow 0.2s;
+}
+.login .login_bg .login_box ul li input.text_verify:focus {
+	outline: none !important;
+	border-color: #db70db !important;
+	box-shadow: 0 0 0 3px rgba(219,55,82,0.12) !important;
+}
+
+.login .login_bg .login_box ul li span.fog {
+	line-height: 40px !important;
+	height: auto !important;
+}
+
+.login .login_bg .login_box ul li span.fog img {
+	border-radius: 6px;
+	cursor: pointer;
+	vertical-align: middle;
+}
+
+.login .login_bg .login_box ul li span.fog a {
+	color: #db70db !important;
+	text-decoration: none;
+	font-size: 13px;
+}
+
+.login .login_bg .login_box ul li span.fog a:hover {
+	text-decoration: underline;
+}
+
+.login .login_bg .login_box ul li .Validform_checktip {
+	color: #999;
+	font-size: 12px;
+	padding-top: 4px;
+}
+
+.login .login_bg .login_box ul li.end {
+	width: 100% !important;
+	padding: 20px 0 0 72px !important;
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 12px;
+	box-sizing: border-box;
+}
+
+.login .login_bg .login_box ul li.end span {
+	height: auto !important;
+	line-height: 1 !important;
+	display: inline-block !important;
+	float: none !important;
+}
+
+.login .login_bg .login_box ul li input.login_init {
+	height: 42px !important;
+	line-height: 42px !important;
+	padding: 0 28px !important;
+	border-radius: 8px !important;
+	background: #db70db !important;
+	font-size: 15px !important;
+	transition: background 0.2s, transform 0.1s;
+}
+
+.login .login_bg .login_box ul li input.login_init:hover {
+	background: #dd4bdd !important;
+}
+
+.login .login_bg .login_box ul li input.login_init:active {
+	transform: scale(0.98);
+}
+
+.login .login_bg .login_box .reg {
+	display: inline-block !important;
+	height: 42px !important;
+	line-height: 42px !important;
+	padding: 0 24px !important;
+	border: 1px solid #db70db !important;
+	border-radius: 8px !important;
+	color: #db70db !important;
+	background: transparent !important;
+	background-image: none !important;
+	font-size: 14px !important;
+	text-decoration: none !important;
+	transition: background 0.2s, color 0.2s;
+}
+
+.login .login_bg .login_box .reg:hover {
+	background: #db70db !important;
+	color: #fff !important;
+}
+
+.login .login_bg .login_box .loginQQ {
+	padding-left: 0 !important;
+	margin-top: 20px !important;
+	padding-top: 16px !important;
+	padding-bottom: 24px !important;
+	border-top: 1px solid #eee;
+	min-height: 86px !important;
+	display: flex !important;
+	flex-wrap: wrap !important;
+	align-items: center !important;
+	background: #fff !important;
+	width: 100%;
+    justify-content: center;
+}
+
+.login .login_bg .login_box .loginQQ div {
+	border-radius: 50% !important;
+	border: 1px solid #e5e5e5 !important;
+	transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.login .login_bg .login_box .loginQQ div:hover {
+	border-color: #db70db !important;
+	box-shadow: 0 2px 8px rgba(219,55,82,0.2);
+}
+
+.login .login_bg .login_box ul li.ts_wrong {
+	background: none !important;
+	color: #c0392b !important;
+	padding-left: 0 !important;
+}
+
+.g-copyrightCon {
+	background: transparent !important;
+	padding-top: 40px !important;
+}
+
+.g-copyrightCon .w1190 {
+	max-width: 980px;
+	margin: 0 auto;
+}
+
+.g-copyrightCon .g-links a {
+	color: #666;
+}
+
+.g-copyrightCon .g-copyright {
+	color: #999;
+	font-size: 12px;
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>消息详情</title>
+<link href="{G_TEMPLATES_CSS}/mobile/comm.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="{G_TEMPLATES_CSS}/mobile/swiper.min.css" />
+<link rel="stylesheet" href="{G_TEMPLATES_CSS}/mobile/winning.css" />
+<link rel="stylesheet" href="{G_TEMPLATES_CSS}/mobile/yunchat.css" />
+<link href="{G_TEMPLATES_CSS}/mobile/help.css" rel="stylesheet" type="text/css" />
+<script src="{G_TEMPLATES_JS}/mobile/jquery190.js" language="javascript" type="text/javascript"></script>
+<script src="{G_TEMPLATES_JS}/mobile/HelpFun.js" language="javascript" type="text/javascript"></script>
+<style>
+.orange,.Progress-bar .Pro-bar-li li.P-bar01 em,.Progress-bar .Pro-bar-li li.P-bar03 em {
+    color: {THEME_COLOR};
+}
+a.orgBtn,.u-progress .pging,.haveNot .guangguang,#addAll,#addAll p {
+    background: {THEME_COLOR};
+}
+#addAll {
+    box-shadow: 0 0 15px {THEME_COLOR};
+}
+</style>
+</head>
+<body class="bggray">
+<div class="fixed_header pa015 diflex jube alitc">
+	<div class="back-btn" onclick="history.go(-1);"></div><span></span><div class="opcty">0</div>
+</div>
+<section>
+    <div class="helpCon" style="padding-top: 0px;">
+		<div class="helpMain m-round">
+			<div class="helpInfo">
+				<!-- <dt class="hShadow">
+					<h3><i class="z-arrow fr iOpen"></i></h3>
+				</dt> -->
+				<dd id="dd1" class="helpBox">
+					<h4 class="orange"></h4>
+				</dd>
+			</div>
+        </div>
+    </div>
+</section>
+<input type="hidden" id="wcuid" value="{wc:$uid}"/>
+<script>PathWebpath = "{WEB_PATH}";</script>
+<script src="{G_TEMPLATES_JS}/mobile/chatms.js" language="javascript" type="text/javascript"></script>
+<script>
+var locationhref = $(location).attr("href")
+var lohref = locationhref.split('/')
+var toid = parseInt(lohref[lohref.length-1])
+$.post("/mobile/user/getsmstitle",{id:toid,},function(s){
+    var data = JSON.parse(s).data
+    console.log(data)
+	$('.fixed_header span').append(data.titles)
+	$('.helpInfo dd').append(data.content)
+});
+</script>
+</body>
+</html>

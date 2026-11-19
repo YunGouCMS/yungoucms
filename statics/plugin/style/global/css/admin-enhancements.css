@@ -1,0 +1,57 @@
+/* 后台体验优化样式 */
+* {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* GPU 硬件加速 */
+#left, #right, #header, iframe {
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+/* 平滑滚动 */
+html {
+    scroll-behavior: smooth;
+}
+
+
+/* 按钮点击反馈 */
+button, .butaoin, .butaish {
+    transition: all 0.2s ease;
+}
+
+button:active, .butaoin:active, .butaish:active {
+    transform: scale(0.95);
+}
+
+/* 输入框焦点高亮 */
+input:focus, textarea:focus, select:focus {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+}
+
+/* 表格行悬停效果 */
+table tr:hover {
+    background-color: rgba(102, 126, 234, 0.05);
+}
+
+/* 滚动条美化 */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #667eea;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #5568d3;
+}
+

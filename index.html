@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+<style>
+a {
+    text-decoration: none;
+}
+.container {
+    position: relative;
+    height: 108px;
+    padding: 0 100px;
+    display: flex;
+    align-items: content;
+}
+.container>img {
+    width: 50px;height: 50px;
+    margin-top: 29px;
+    display: flex;
+    align-items: content;
+}
+.app-maicln {
+    min-height: calc(100vh - 168px);
+}
+.app-maicln .container {
+    width: 1000px;
+    margin: 0 auto;
+    height: 100%;
+    padding: 0 32px;
+    background: url(/index/static/particles/home-bg-d30f2800.png) no-repeat;
+    background-size: 100% 100%;
+}
+.app-maicln .container>img {
+    width: 488px;
+    height: 588px;
+}
+.app-maicln .container .content {
+    width: 545px;
+    padding-top: 85px;
+    color: #fff;
+}
+.container .content .title {
+    font-size: 54px;
+    font-weight: 600;
+}
+.container .content .subtitle {
+    font-size: 34px;
+    font-weight: 600;
+    margin: 27px 0 46px;
+    display: flex;
+}
+.content .subtitle .key {
+    height: 52px;
+    background: #c82c1d;
+    line-height: 52px;
+    color: #ffffff;
+    padding: 0 5px;
+    display: block;
+    margin-left: 5px;
+}
+.container .content .desc {
+    font-size: 16px;
+    line-height: 26px;
+    font-weight: 400;
+    text-align: justify;
+}
+.container .content .platform {
+    margin-top: 60px;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+}
+a {
+    text-decoration: none;
+}
+.content .platform a {
+    align-items: center;
+    display: flex;
+    width: 142px;
+    background: #FFFFFF;
+    border-radius: 20px;
+    color: #0c0e15;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 54px;
+    justify-content: center;
+}
+.content .platform a img {
+    width: 22px;
+    height: 22px;
+    margin-right: 5px;
+}
+.app-footer {
+    color: #b8c0cc;
+    background: #131620;
+    height: 60px;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0 100px;
+    font-size: 14px;
+    font-weight: 400;
+    align-items: center;
+    display: flex;
+}
+.app-footer .server-for {
+    display: flex;
+    align-items: center;
+}
+.app-footer .server-for div {
+    margin-left: 50px;
+    display: flex;
+    align-items: center;
+}
+.server-for div a {
+    color: #b8c0cc;
+}
+.app-footer .server-for div img {
+    margin-right: 5px;
+}
+.app-footer .server-list {
+    font-size: 16px;
+    margin-right: 40px;
+}
+.app-footer .server-list a {
+    padding: 0 20px;
+    color: #b8c0cc;
+}
+.app-footer .server-list a:last-child {
+    border-left: 1px solid #B8C0CC;
+}
+</style>
+</head>
+<body style="margin:0;">
+<div style="background: rgb(12, 14, 21);">
+    <div class="container">
+        <img src="/index/static/images/logo.png">
+    </div>
+    <div class="app-maicln">
+        <div class="container">
+            <img src="/index/static/particles/home-app3-dd9cb745.png">
+            <div class="content">
+                <div class="title"></div>
+                <div class="subtitle">
+                    <span>本商城数据为演示站</span>
+                    <a href="#" target="_blank"><span class="key">咨询客服</span></a>
+                </div>
+                <div class="desc">
+                    YunGouShop mematuhi prinsip keadilan, impartialitas, dan terbuka untuk menyediakan semua orang pengalaman belanja kualitas tinggi!
+                </div>
+                <div class="platform">
+                    <a href="/index/">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAA6pJREFUWEftWG1uEzEQfePsIqR8KIjkN+kJSE5AcwLgBNAT0J4g7QnanoDeoL0B4QTkBoTfqYRJE6nqfgwak5Ska2e9yVaqECtF+TO23zyP3zyb8MQ/euL48G8BbDabzSgKO0TcFOaZSSdJpG9v9fixdiKXwXr95buU1FsCuvjzs30azEMmfA1VfKG11mUBdgKs1tsfQRgQ0Cm4mAb4LFDxeRlAMwCfN5udIAk/g7BfENjDcM3gk/n0+myXedYAVqvtLiq43IK1TRjOZtPJ0bYg7wEa5tLwGwBzAEr+tgZpAJrTmYbfHMxpMEYgc0Cc4BkYE2PsjuPj2fT6pGjiBmCt0T4FcGgZPIpV9P5W67EwXEnDL9YkGMPZzaQv4xc78d0GJFbRnsxVBCQJe3Ea/rQPWs+6Vm9/sR0eZhzMbyYXyzlqjbaUSkaSGLiYTycHhQBWG61DAgmDmU+2LVRRT+Qip0ZHgYr6HnEoyiLV6q1LEL3bkJWIrmyL6OGmA7SMe8jcCAwtyZo1UpzP55ORL4tUbbS/lywrMGAYJ0klGgZx0GGFLoFegbnDIE0kgPlHchdf5bVJqjXaUn9lSYtmxpEAq6ThAMC+R/IjgK9cnac0BoW1REX9IA0+AHTsu4XLOCNTKR/MZtfD1bHkOplFFrgHlwSnOfXsMe26csgWuzTQYzITomMV9SpJOCDCR99Bm+P+gqRNwuq3GB8z8MslVX5zWCRuoa1/OolDgD0m1/Fd1AueWXu4YfY5oKMkPLWwa7qUrGHrUFI28+lkzwDcwSicAayth4L5anZzbQCI6WVSl+sJ/93GWqM1sM0hHerezWzqKC4midP3DPXJ5R3NAsxjKNOp1gRcGFKcGhuWkjp19fg1P+jKxAUwvov2HNvrUR1eIaOMoxarTwTJOFe8AxW9cBsNLwC5QdY7iS+TnKBHFYhzeZTPiLdtZu9TnXLfVl9loWXGRQbgqj+8b/pRNAzDSpeJXjNThyD3YmoS0nMm9cZhdnfHmXI/W4ON1iFAn8SNrJpQ12q7C71j5oVLzwKstrtF/JoR+t3bZQal1LfgyH1Z8NmnnEuXzxRrMQw+Wt6nSwG47EbOS1UhiA/cTKGxOcGLAyZG1XZDzF3q4eVLBpTG4OrqtVprH0SDws8nKfczhjU3rR0CTG0moVzI3hhpIurIBcoYDKIxcfpVnvBWtDTzAvEoDG6T08KsfJhNJ73V8U8GoIASxuV/9dnuSQG0Mf8f4Db1uDrmN91ztSN1P8vuAAAAAElFTkSuQmCC">
+                       Mobile
+                    </a>
+                    <a href="/index/pages/indexs/app/index?id=76">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAuxJREFUWEftWF1u2kAQnvEPQsJQV4V3coPkBE1uADcIN0hO0OQEyQ3IDZIbhBuUG8R9NlUtMBLq2p5qHC8xhnjXNPVD5X1CZnbn22/nH6Hi6vT6V5jAPAwXsypbu90vI0Lja7j0r6vswyrCLOu6rhvF9mNkiskmCDyd/W3XHVqxPbVMMQ6CINDZI2UqA+SNrwqtu3C1GLfb7tBsWSME+ESEQ/4fkTwi/AEJzNdrf+50B89VLpS/wFEAJYuAcMqkKhgJgGAervyLKswdzaDj9M/JwCkCpGzpLgLwgOB2vfIfdPekr1FF2On1vwHgTbYnZQYQzkvPIJgRwvDtQnQTLhe3unq1ARbAQWSIE3YStq/3QDJr66V/wmCc3uDXmznog9QCmDpFYr/kb00EE9sUTyKxv5c8dxAZ4syKrCEY+LzDWkIXOqFKC6DT7T8C4kj3WbTkCGY6jqMEmHpsYvPzfPiKfouTzaY8lioBZhng8cPRAQABXa+Xi/uys5UA/wWwKmfuAHyNcXAKMc44A8isYcZ2eSipojEni0SedBSp2yDyVqufT3uB2ukN7gDgSv4h6e90B5eIMD0SQ3mIJHhYr/xJWoAAsv5svYWhlMFDjiBjWD0ABy/FUGUZ4jMXFilATvhWazfO8fdw6WMdAJ3egIpUSw9vAJYZIWU22DB4rIc3DB7L3DbaNTb4lxT+PzaYpTqumPMd2jxc+me1ZJJC25BvFbbVDNd9CRp3WU6cR4YYc89RB0BuKczEfmbdDA4TmsgqZ68eZDbz3X8dAKUpF3Xzd2XBWifAQz7XAFREonvVtEvJINuFovc9KhqyM8SGuFBNyJQApXYuavm3ZR1owgGAC8w8UrP16pX5b0jJWIg47XVU7eZeT6JLQ1n1nT+j09sv40FzmrBzKV1geSbfaw8agDpsNk9cYEnbixX2lRYWBRmewl5ui1MAzzbEWX1D9MTmgdKQp6yHBuRZ/OTig8d2HsUwkeMUHVOSMn8Ag8VRR8clMuoAAAAASUVORK5CYII=">Android App
+                    </a>
+                    <a href="/index/pages/indexs/app/index?id=76">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAYAAAAehFoBAAAAAXNSR0IArs4c6QAAAt9JREFUWEftmFtu2kAUhv/jmAoJYzkSfic7gBUUVkC7A7KCtitIsoK2KyBZQekKYAdlB6HPRioiRqpkwonGNRUi9lwMniZS/WjPmfnm95lzGYKlJwiCINm6Q2IagBDEq6hbZmkqY2Rq43mtHjs0IqCd2jKm8UPUN51HjK8c2PNbVwBd78MxcLteRZcvDrjRDIdEGB2CMeNy/RDdvjxgP7z/6wYZHQPz9Sq6KANbqUtUoW6lwF4znIDQO1DyS7yKPpVVt1pgP+RTw9oBZkzBfBPHi+kxyu5sS4e1NBEktTSurtfR7BCmXg/a9TqW4tl9E+9c120TccBMS9fdzPa/62zICFhAbrbuBwYND08/mMcM+n4YrhqNsENnPMi1yZIIA3e6YU4bODv1nwEEMiVE2CLmGYjmYHRyDl6uubB7dJL+7+VyLptfCzgvW+n8PtMxOtBK4Ibf+kggoaydh3kcPyzeFy0mBa4HQdvd1u7tkKarzFwn6csOohS44YeiwhraABbuUHOSripqFALbVnfjJBeqAydNHDZ916TcLFTYa7a+geidFXd4RDcv+eStXQzshz8AdCwAL+NVdK67TiFwI6eW1Z3UaJxhuyRT+LDaMuLQHvzagE07kH/vEgBcJzlXxV9leVnQMWj/aZOBJk1pscLNcERkJ8uZ3FNIXMJy0QO+jleLG9WfKU7Nojt4Y7XwgY5rSIsfzw9/qQp2lSLm3+VKK4CfXzOZA5SwkMRmObDX6sGhSYkljzKRFUPKjsNmeNvtUlZqqoFtq6xI1UpgsWubKqsKeS3grPsQ5aa0xT/KcdN7bvW9sRawAKm6A9Fp8aUtUp5albrGlvs692/aCosNCNc429Ymz66pjvUFzbRsrLAWtLitJJ4y0890H4S3AHrFm9SrIZTlpUy0TOmrDEQcxDnAY9fZfC2qa9O7OfCAif70iYwpMd/puME+i5FLHP3nTzDBf+ATiCid4tUp/ASDXkk8Lgj1CQAAAABJRU5ErkJggg==">IOS App
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="app-footer">
+        <div class="server-list">
+            <a href="/index/pages/indexs/gonggaoxq/index?id=1" target="_blank">Perjanjian Pengguna</a>
+            <a href="/index/pages/indexs/gonggaoxq/index?id=2" target="_blank">Perjanjian Privasi</a>
+        </div>
+        <div class="server-for">
+            <div>
+                Copyright © 2025 YunGouCMS All Rights Reserved
+            </div>
+            <!--<div>-->
+            <!--    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAUCAYAAACAl21KAAAAAXNSR0IArs4c6QAABQ9JREFUOE9llGtsU2UAht/vnNPT9py2p+1uXbexOwyBOdxGMpBwU9wGhEEi6A8NEQ0EIhJDIEOCJiaCkigzMUYwEjBEmC5T1C1mwICMgZvIbbjuwu5bd+3We3tun0FjQuL7/33y/HoInhqllAADxv7fb0lzY0qO4DCsHR0c3aBp4NLyMxtjAe2yU2R7slaX+YH0GCGE/ncnT4PG7/8mhsLBF4e7ujd6H94tQ3QkKaiwFsZqJY5Ee1iOWqdTs/JvZxTkNNoc2q/Ji7aF/gei9BHfcen7wnvtvadu3ZrML06bMefpfjYRIRidEsJ5BehVnfqN5mC0ZAnfU1g8f2fh1lUPCFmjPoH9Y0THfha8IxMl3V3Db/90qatifuK0uDr2CPr1WZBkEzibAHVChmlLAW4nFOPBH+FQZXlBXU6u+aSS9IwnO3tNjFBKuZmehuK/WhprvjwbXJzqjgq73W2EXJ2E4lOhiRw4iwB5JAA4BIh7VuNcf64+9GgqtGvHvLa8Z8uqExdU3iOU3he7bv1Z+UtTV83Z82rqnopubJxsRqQpDF0ygcoqqEJALSaos1E4qrJxs2g9PvmK0G1bxNGqqqX7FmYsaiLyUF3p7OOW6rM3hJfOnIsJhyvv4Pn+e1BvBKAm8yBpIgjHQB+PQx2NwLQqFX2by/HuCQu2bBYie99Ibkh0LT9JfHdPv6d1X9hb31/sqvnGQA683InyeAem6kagLJJgWpYAwW0F9UQhXx+CdVU62vNKceRzCW+9ztPX1o1NCO7t58h4a81F2l1b3h4ttR066cILpV3YV/YAc9fGgYACc6YE3iGCiVIQBw++MAVfNCTjUmsKjlVrWJn0IEhcVZdJX/07g2T0TmogZYFh99cFmOvow/Gl11HkVhH2xhBXNJiSLGAjCsxOHo+jduy/vgTG3HScPjgOp++RTJKLB0jfDzun1UGP3ZLpYD+7sxz1pyZRLV9EebYfwSw7gtAhpFhhZ1nw97y44hFwlGxExZtuHFzXAXnUJxtzigbJRPPHLfHRpuds7gRz2/h8HDpuQE7nFVTwHXBKGgSLDqPAgXEkYtbHoaE7Ae0ZJfjwCLAiz4eYLxgyzlt7hYxfO3Y/9rh5gcFmMsKRgDMt+ag7P4XY9CSMjIYSqx8WgeK2z46ZuABWlFC1ncPeTYMwxBToihwzZ658SLw3Dw+H+z0uhKKciY8gnpSJAb8FHZ1RTOtOFLomIZAgLne4EYwYkJ5mQFXRCJIxDFljYXCIcTG7tI8E+r47EOit3yXP+LO0uTBLQn7iWJwBkmCGpkfBRTRoERWqzQ5qtwBTs5A9XqhGkXJJompKsfWI7vUnSGiyzYWw59Xw2NX9in8yPdzrY3grC2mBC1A0qFEZxMDBYDXjSWQifTNQ4gz4tBSdGKUB0b30I2vCwnpC6ZgQHrm/NTzUeJSQiRw1rLCQ4+BEDiAsQFmwHIUaiUEOxMAKAji7HZQymiqb+qW8De+L6ak/EuqvdcYjocNqpPOVeNDvis/MMUSRCcNp0GUVjNEEyFHIszGA48BKAliziXJWm8JJNi8nFX+rsNKnhNJaVp7h5sfD3h3R0fZyRGdTDDw164rKaxGVYTiGoaoGyps11sxpOnSZMUth1pHbZ5AWNrKc8YJJ2jT4b49oLRv0qg55YjZbjdMV8px3mYEJ5GqRiMQZY1bWYNR11jnN2hx+3jrPQzlTKwz+VpuYOQXHzSAhH+h/AwSuVS/j26KQAAAAAElFTkSuQmCC">-->
+            <!--    <a>渝公网安备 50019002503183号</a>-->
+            <!--    备案号：<a href="https://beian.miit.gov.cn/" target="_blank">津2024025665号-1</a>-->
+            <!--</div>-->
+        </div>
+    </div>
+</div>
+<script>
+    function isMobile() {
+        const userAgentInfo = navigator.userAgent;
+        const mobileAgents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+        const mobileFlag = mobileAgents.some((mobileAgent) => {
+            return userAgentInfo.indexOf(mobileAgent) > 0;
+        });
+        return mobileFlag;
+    }
+    if (isMobile()) {
+        window.location.href = '/index/'
+    }
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/app/index/init', true);
+    xhr.onreadystatechange = function () {
+        if (xhr.status == 200) {
+            var datajson = JSON.parse(xhr.responseText).data.config;
+            console.log(datajson.web_name);
+            var element = document.querySelector('.title');
+            element.innerHTML = datajson.web_name;
+            document.title = datajson.web_name;
+        }
+    };
+    xhr.send();
+</script>
+</body>
+</html>

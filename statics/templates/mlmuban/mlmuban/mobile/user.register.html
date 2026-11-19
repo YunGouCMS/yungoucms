@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>免费注册 - {wc:$webname}</title>
+<meta content="app-id=518966501" name="apple-itunes-app" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<link href="{G_TEMPLATES_CSS}/mobile/comm.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="{G_TEMPLATES_JS}/layui/css/layui.css">
+<script src="{G_TEMPLATES_JS}/mobile/jquery190.js" language="javascript" type="text/javascript"></script>
+<script id="pageJS" data="{G_TEMPLATES_JS}/mobile/Register.js" language="javascript" type="text/javascript"></script>
+  <link rel="stylesheet" href="{G_TEMPLATES_CSS}/mobile/register.css">
+<script src="{G_TEMPLATES_JS}/mobile/gt.js" language="javascript" type="text/javascript"></script>
+</head>
+<body>
+  <!-- 弹出层 -->
+<div id="pageDialogBG" class="pageDialogBG" style="display:none;"></div>
+<div id="pageDialog_confirm" class="pageDialog" style="width:255px;height:126px;position:fixed;z-index:9999;left:50%;top:50%;transform:translate(-50%, -50%);display:none;">
+	<div class="clearfix m-round u-tipsEject">
+		<div class="u-tips-txt"></div>
+		<div class="u-Btn"></div>
+	</div>
+</div>
+  <style>
+#content .userinfo {background-image: linear-gradient(-180deg,{THEME_COLOR_TWO} 0,{THEME_COLOR} 100%);height: 1.67rem;}
+.userinfo {display: flex;flex-direction: column;align-items: center;overflow: hidden;}
+.userinfo-avatar {width: .62rem;height: .62rem;margin: .28rem .1rem .1rem;position: relative;border-radius: 100%;overflow: hidden;}
+.userinfo-nickname {color: #fff;font-size: .15rem;}
+.userinfo-service {color: #fff;width: 100%;margin-top: .05rem;text-align: center;font-size: .12rem;}
+.registerCon {text-align: left;}
+.inp {border: 1px solid gray;padding: 0 10px;width: 200px;height: 30px;font-size: 18px;}
+.btn {border: 1px solid gray;width: 100px;height: 30px;font-size: 18px;cursor: pointer;}
+#embed-captcha {width: 100%;margin: 10px auto;}.geetest_holder.geetest_wind{width: 100%!important}
+.show {display: block;}
+.hide {display: none;}
+#notice {color: red;} 
+.redBtn{width: 100%;font-size:18px;}
+.grayBtn{width: 100%;font-size:18px;background: #ccc}
+.orange,.Progress-bar .Pro-bar-li li.P-bar01 em,.Progress-bar .Pro-bar-li li.P-bar03 em {color: {THEME_COLOR};}.redBtn,a.orgBtn,.u-progress .pging,.haveNot .guangguang,#addAll,#addAll p {background: {THEME_COLOR};}#addAll {box-shadow: 0 0 15px {THEME_COLOR};}
+</style> 
+<div class="h5-1yyg-v1" id="content">
+    	<form class="layui-form">
+    		<div class="registerCon">
+                <ul style="padding:30px">
+                	<li><div class="title">注册</div></li>
+                    <li class="accAndPwd">
+                        <div style="position:relative;display: flex;border-bottom: 1px solid #ccc;">
+                            <lable style="width: 50px;line-height: 45px;font-size: 16px;color: #000;text-align: left;">账号</lable>
+                            <input id="userMobile" name="phone" type="tel" placeholder="手机号" class="layui-input" style="border: 0;padding-left: 20px;flex: 1;">
+                        </div>
+                        <div style="position:relative;display: flex;border-bottom: 1px solid #ccc;margin-top: 15px;">
+                            <lable style="width: 50px;line-height: 45px;font-size: 16px;color: #000;text-align: left;">密码</lable>
+                            <input type="password" id="txtPassword"  name="pwd" placeholder="请输入密码" class="layui-input" style="border: 0;padding-left: 20px;flex: 1;">
+                        </div>
+						<div>
+							 <div id="embed-captcha"></div>
+							 <p id="wait" class="show"></p>
+						</div>
+                    </li>
+                    <li class="check">
+                        <i class="jiantou"></i>
+                       	<input id="checked" type="checkbox" lay-skin="primary" title="阅读并同意">
+                        <a href="{WEB_PATH}/mobile/mobile/gonggaoxq/1">《{wc:$webname}在线用户服务条款》</a>
+                    </li>
+                    <li class="btn-login" >
+                        <div  id="btnNext" class="layui-btn layui-btn-danger redBtn" >下一步</div>
+                    </li>
+                </ul> 
+            </div>
+    	</form>
+</div>
+<!-- 底部 -->
+{wc:templates "mobile/index","footer"}
+<script>
+    var handlerEmbed = function (captchaObj) {
+        $("#embed-submit").click(function (e) {
+            var validate = captchaObj.getValidate();
+            if (!validate) {
+                $("#notice")[0].className = "show";
+                setTimeout(function () {
+                    $("#notice")[0].className = "hide";
+                }, 2000);
+                e.preventDefault();
+            }
+        });
+        // 将验证码加到id为captcha的元素里，同时会有三个input的值：geetest_challenge, geetest_validate, geetest_seccode
+        captchaObj.appendTo("#embed-captcha");
+        captchaObj.onReady(function () {
+            $("#wait")[0].className = "hide";
+        });
+        // 更多接口参考：http://www.geetest.com/install/sections/idx-client-sdk.html
+    };
+    $.ajax({
+        // 获取id，challenge，success（是否启用failback）
+        url: "{WEB_PATH}/mobile/ajax/StartCaptchaServlet/t=" + (new Date()).getTime(), // 加随机数防止缓存
+        type: "get",
+        dataType: "json",
+        success: function (data) {
+            // 使用initGeetest接口
+            // 参数1：配置参数
+            // 参数2：回调，回调的第一个参数验证码对象，之后可以使用它做appendTo之类的事件
+            initGeetest({
+                gt: data.gt,
+                challenge: data.challenge,
+                new_captcha: data.new_captcha,
+                product: "embed", // 产品形式，包括：float，embed，popup。注意只对PC版验证码有效
+                offline: !data.success // 表示用户后台检测极验服务器是否宕机，一般不需要关注
+                // 更多配置参数请参见：http://www.geetest.com/install/sections/idx-client-sdk.html#config
+            }, handlerEmbed);
+        }
+    });
+</script>
+   <script language="javascript" type="text/javascript">
+        var Path = new Object();
+        Path.Skin = "{G_WEB_PATH}/statics/templates/{wc:fun:_cfg('templates_name')}";
+        Path.Webpath = "{WEB_PATH}";
+
+        var Base = {
+            head: document.getElementsByTagName("head")[0] || document.documentElement,
+            Myload: function(B, A) {
+                this.done = false;
+                B.onload = B.onreadystatechange = function() {
+                    if (!this.done && (!this.readyState || this.readyState === "loaded" || this.readyState === "complete")) {
+                        this.done = true;
+                        A();
+                        B.onload = B.onreadystatechange = null;
+                        if (this.head && B.parentNode) {
+                            this.head.removeChild(B)
+                        }
+                    }
+                }
+            },
+            getScript: function(A, C) {
+                var B = function() {};
+                if (C != undefined) {
+                    B = C
+                }
+                var D = document.createElement("script");
+                D.setAttribute("language", "javascript");
+                D.setAttribute("type", "text/javascript");
+                D.setAttribute("src", A);
+                this.head.appendChild(D);
+                this.Myload(D, B)
+            },
+            getStyle: function(A, B) {
+                var B = function() {};
+                if (callBack != undefined) {
+                    B = callBack
+                }
+                var C = document.createElement("link");
+                C.setAttribute("type", "text/css");
+                C.setAttribute("rel", "stylesheet");
+                C.setAttribute("href", A);
+                this.head.appendChild(C);
+                this.Myload(C, B)
+            }
+        }
+
+        function GetVerNum() {
+            var D = new Date();
+            return D.getFullYear().toString().substring(2, 4) + '.' + (D.getMonth() + 1) + '.' + D.getDate() + '.' + D.getHours() + '.' + (D.getMinutes() < 10 ? '0' : D.getMinutes().toString().substring(0, 1))
+        }
+        Base.getScript('{G_TEMPLATES_JS}/mobile/Bottom.js');
+        var checkcode = document.getElementById('checkcode');
+        checkcode.src = checkcode.src + new Date().getTime();
+        var src = checkcode.src;
+        checkcode.onclick = function() {
+            this.src = src + '/' + new Date().getTime();
+        }
+</script>
+</body>
+</html>

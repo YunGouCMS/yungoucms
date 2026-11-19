@@ -1,0 +1,381 @@
+@charset "utf-8";
+
+input:-moz-placeholder {
+	color: #ccc;
+}
+::-webkit-input-placeholder {
+	color: #ccc;
+}/*
+.registerCon li s {
+	background: url(../images/ico-usr.png) no-repeat center;
+    background-size: contain;
+}*/
+.registerCon {
+	width: 100%;
+	text-align: center;
+	/* padding-top: 110px; */
+	padding-bottom: 30px;
+	min-height: 190px;
+	overflow: hidden;
+}
+
+
+
+.registerCon ul {
+	padding: 30px;
+	position: relative;
+}
+.registerCon li {
+	width: 100%;
+	margin-bottom: 5px;
+	position: relative;
+	font-size: 14px;
+	color: #999;
+	text-align: left;
+	line-height: 22px;
+	/* margin: 0 4vmin; */
+	/* position: relative; */
+	/* line-height: 9.067vmin; */
+	/* padding: 2.667vmin 0; */
+	/* border-bottom: 1px solid #e2e2e2; */
+}
+
+.registerCon input:focus {
+	/*    border: 1px solid #df3201;
+	box-shadow: 0 0 20px 0px #df320175 !important;*/
+	border: 1px solid #fa5a2aa6;
+	outline: 0;
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px #fa5a2a99 !important;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px #fa5a2a99 !important;
+	/*	
+	transition: border .5s linear , box-shadow .5s linear ;
+    -webkit-transition: border .5s linear , box-shadow .5s linear ;*/
+	border: none;
+	box-shadow: none !important;
+	-webkit-box-shadow: none !important;
+	}
+.regPhone{
+	display:flex;
+	align-items: center;
+	border-bottom: 1px solid #e2e2e2;
+}
+
+.registerCon li input {
+	width: 100%;
+	height: 50px;
+	background: #fff;
+	color: #ccc;
+	/* border-radius: 5px; */
+	padding: 0 5px;
+	display: inline-block;
+	-webkit-box-sizing: border-box;
+	position: relative;
+	font-size: 16px;
+	text-indent:2em;
+	/* box-shadow: 0 0 20px 0px #0909091f; */
+}
+.registerCon li input.rText {
+	/* padding-left: 30px; */
+	text-indent: 0;
+}
+.registerCon li s {
+	float: left;
+	background-repeat: no-repeat;
+	height: 25px;
+	position: absolute;
+	left: 3px;
+	top: 6px;
+	text-decoration: none;
+	font-size: 16px;
+}
+.registerCon li s.rs1 {
+	background-position: 0 0;
+	width: 13px;
+	margin-left:2px;
+}
+.registerCon li s.rs2 {
+	background-position: 0 -25px;
+	width: 18px;
+}
+.registerCon li s.rs3 {
+	background: url(../images/ico-pwd.png) no-repeat center;
+    background-size: contain;
+	width: 25px;
+	height: 25px;
+}
+.registerCon li s.rs4 {/*	background-position: 0 -76px;*/background: url(../images/ico-usr.png) no-repeat center;background: url(../images/loginset.png) no-repeat 2px 0px;background-size: cover;width: 25px;/* top: 21px; */position: static;}
+#xy{
+	display:inline-block;
+	background: white;
+	color: black;
+	margin: 0;
+	border-radius: 0;
+	height: 0;
+	line-height: inherit;
+}
+.registerCon li a {
+	color: #ffb92d;
+	/* margin-left: 5px; */
+	/*	text-shadow: 0 0 2px #0000007d;*/
+	line-height: 44px;
+	color: #fff;
+	margin: 20px 0px;
+	border-radius: 44px;
+	text-align: center;
+	font-size: 14px;
+	/* width: 100%; */
+	height: 44px;
+	display: block;
+}
+#forget-pwd{
+	background: none !important;
+	border: 0;
+	width: 50%;
+	float: left;
+	height: 0px;
+	line-height: 0px;
+	position: relative;
+	right: -8px;
+	box-shadow: 0 0 0 0;
+	text-align: left;
+}
+.registerCon li a.nextBtn {
+	/* margin-left: 0; */
+	/* border-radius: 25px; */
+	/* border: 2px solid #ff7750; */
+	/* background: linear-gradient(#fd9274, #eb4d22); */
+	/* box-shadow: 0px 5px 20px 1px #2e2e2e3b; */
+	/* height: 45px; */
+}
+.registerCon li span em {
+	float: left;
+	background-repeat: no-repeat;
+	background-position: 0 -6px;
+	width: 20px;
+	height: 20px;
+	margin-right: 5px;
+}
+.registerCon li span.noCheck em {
+	border: 1px solid #bbb;
+	border-radius: 3px;
+	background: #fff;
+	width: 18px;
+	height: 18px;
+	position: relative;
+	top: 2px;
+	margin-right: 7px;
+}
+.registerCon li a.resendBtn {
+	display: block;
+	width: 100%;
+	height: 45px;
+	line-height: 45px;
+	text-align: center;
+	color: #f60;
+	background: #fff;
+	border: 1px solid #c2c2c2;
+	border-radius: 25px;
+	margin-left: 0;
+	font-size: 16px;
+	box-shadow: 1px 1px 2px #e0e0e0;
+}
+.registerCon li a.grayBtn {
+	background: #ddd;
+	border: 1px solid #bbb;
+	color: #818181;
+}
+.registerCon li.accAndPwd {
+	height: 140px;
+}
+.registerCon li.accAndPwd dl {
+	position: relative;
+}
+.registerCon li.accAndPwd input {
+	/* width: 100%; */
+	height: 35px;
+	background: #fff;
+	color: #ccc;
+	padding: 9px 0px 8px 0px;
+	display: inline-block;
+	-webkit-box-sizing: border-box;
+	position: relative;
+	font-size: 14px;
+	/* margin: 10px 0; */
+	line-height: 35px;
+	text-indent: 4em;
+	border-bottom: 1px solid #ccc;
+	/* margin-top: 10px; */
+	/* box-shadow: 0 0 20px 0px #0909091f; */
+}
+
+.registerCon li.btnlist{
+	margin-top: 90px;
+	font-size: 3.467vmin;
+}
+
+.registerCon li.accAndPwd input.lEmail {
+	/* border-radius: 25px; */
+}
+.registerCon li.accAndPwd input.lPwd {
+	/* border-radius: 25px; */
+}
+.registerCon li.accAndPwd s.rs3 {
+	top: 20px;
+}
+.registerCon li.rSelect {
+	height: 20px;
+	line-height: 20px;
+	width: 200px;
+	margin: 0px auto 0;
+	color: #333;
+	text-align: center;
+}
+.registerCon li.rSelect a {
+	color: #333;
+	/* background: none; */
+	/* height: 0; */
+	/* margin: 0; */
+	/* line-height: 0; */
+}
+.registerCon li.rSelect b {
+	display: inline-block;
+	height: 12px;
+	width: 1px;
+	background: #ddd;
+	margin: 0 20px;
+	position: relative;
+	top: 2px;
+}
+.terms {
+	padding: 5px 10px 20px;
+	text-align: left;
+	color: #555;
+	font-size: 14px;
+	line-height: 22px;
+	display: inline-block;
+}
+.terms b {
+	display: block;
+	font-weight: bold;
+	margin-top: 13px;
+	font-size: 16px;
+}
+.terms p {
+	text-align: justify;
+	text-justify: inter-ideograph;
+}
+.terms p.p1 {
+	text-indent: 2em;
+	margin: 5px 0;
+}
+.terms p.p2 {
+	text-indent: -1.3em;
+	padding-left: 38px;
+}
+
+
+#btnReg{
+	/* background: url(../images/btn-reg.png) no-repeat center; */
+	/* background-size: contain; */
+	background: none;
+	border: 0;
+	width: 50%;
+	float: right;
+	height: 0px;
+	line-height: 0px;
+	position: relative;
+	/* left: -5px; */
+	box-shadow: 0 0 0 0;
+	text-align: right;
+}
+
+#btnLogin{
+    /* background: url(../images/btn-login.png) no-repeat center; */
+    /* background-size: contain; */
+    /* background: none; */
+    /* border: 0; */
+    /* width: 50%; */
+    /* float: right; */
+    /* height: 0px; */
+    /* line-height: 0px; */
+    /* position: relative; */
+    /* right: -8px; */
+    /* box-shadow: 0 0 0 0; */
+    /* color: #f60; */
+    /* text-align: right; */
+}
+
+
+.accAndPwd button{
+	border:0;
+	background: white;
+	width: 16px;
+	height: 16px;
+	font-size: 20px;
+	color: #666;
+	line-height: 0px;
+	box-sizing: border-box;
+	text-align: center;
+	border-radius: 50%;
+	margin: 0;
+	padding: 0px;
+}
+
+.regCon{
+	background: #fff;
+	min-height: 100vh;
+	max-height: 100vh;
+	font-size: 4.267vmin;
+}
+
+.regCon li{
+	margin: 0 4vmin;
+	position: relative;
+	line-height: 9.067vmin;
+	padding: 2.667vmin 0;
+	/* border-bottom: 1px solid #e2e2e2; */
+}
+.regCon li:first-child{
+	border-bottom: 1px solid #e2e2e2;
+}
+.regCon li input{
+	padding-left: 8vmin;
+	box-sizing: border-box;
+	border: none;
+	width: 100%;
+}
+.regCon li img{
+	width: 6.133vmin;
+	position: absolute;
+	left: 0;
+	top: 4.267vmin;
+}
+#chkPostCode{
+	/* line-height: 11.733vmin; */
+	color: #fff;
+	border-radius: 5.867vmin;
+	text-align: center;
+	font-size: 3.467vmin;
+	display: block;
+}
+
+ #btnGetCode{
+	/* line-height: 11.733vmin; */
+	color: #fff;
+	border-radius: 5.867vmin;
+	text-align: center;
+	background: #f70;
+	font-size: 3.467vmin;
+	display: block;
+}
+
+.bgorange{
+	background: #f70 !important;
+}
+
+
+#regpage ul{padding: 0 3vmin;background: white;}
+#btnNext{
+    height: 30px;
+    line-height: 30px;
+    }

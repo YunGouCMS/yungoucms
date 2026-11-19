@@ -1,0 +1,230 @@
+{wc:templates "index","header"}
+<script type="text/javascript">document.body.classList.add("page-login");</script>
+<link rel="stylesheet" type="text/css" href="{G_TEMPLATES_STYLE}/css/toast.css"/>
+<script type="text/javascript" src="{G_TEMPLATES_JS}/toast.js"></script>
+<link rel="stylesheet" type="text/css" href="{G_TEMPLATES_STYLE}/css/login-beauty.css"/>
+<script type="text/javascript" src="{G_TEMPLATES_STYLE}/js/jquery.Validform.min.js"></script>
+<script type="text/javascript" src="{G_TEMPLATES_JS}/pc-login-inputs.js"></script>
+<style>
+/* 强制登录模块随内容增高，完整包裹社交图标（覆盖 comm.css 等中的固定 height） */
+#LoginForm.login_box,
+.login .login_bg .login_box {
+	height: auto !important;
+	min-height: 0 !important;
+	max-height: none !important;
+	padding-bottom: 150px !important;
+	box-sizing: border-box !important;
+}
+.login .login_bg .login_box form { height: auto !important; min-height: 0 !important; overflow: visible !important; }
+.loginQQ { display: flex!important; flex-wrap: wrap; padding: 0!important; width: 340px; margin-top: 0!important; }
+.loginQQ div { border-radius: 50%; border: 1px solid #ddd; font-size: 12px; height: 32px; min-width: 32px; width: 32px; display: flex; align-items: center; justify-content: center; margin: 7px 7px 0 0; cursor: pointer; }
+.loginQQ img { height: 20px; width: auto; }
+.newclilog { margin-bottom: 5px; }
+.newclilog .ts { padding-top: 3.5px; }
+.newclilog div { margin: 0; }
+.newclilog>div { display: flex; flex-direction: column; padding-left: 10px; }
+</style>
+<script type="text/javascript">$(function(){
+	// 账号：手机号 11 位 或 邮箱 20 位，通过时显示右侧打勾
+	var phoneOrEmail = function(val){
+		val = $.trim(val);
+		if (!val) return;
+		if (/^\d{11}$/.test(val)) return true;
+		if (/^[\w.-]+@[\w.-]+\.\w+$/.test(val) && val.length <= 20) return true;
+		return false;
+	};
+	var demo=$(".registerform").Validform({
+		tiptype:2,
+		datatype: { "phoneOrEmail": phoneOrEmail }
+	});
+	// 将提示与正确/错误状态都移入输入框内 overlay，并彻底隐藏下方 .ts
+	$(".login_box .registerform [datatype]").each(function(){
+		var inp=$(this), wrap=inp.closest(".login-input-cell"), tsWrap=wrap.next(".ts"), tipCell=tsWrap.find(".Validform_checktip"), inner=wrap.find(".login-tip-inner"), textSpan=inner.find(".login-tip-text"), icon=inner.find(".login-tip-icon"), rightIcon=wrap.find(".login-tip-right");
+		if(!tipCell.length||!inner.length) return;
+		function sync(){
+			var isRight=tipCell.hasClass("Validform_right"), isWrong=tipCell.hasClass("Validform_wrong"), isLoading=tipCell.hasClass("Validform_loading");
+			rightIcon.removeClass("show");
+			inner.removeClass("show wrong");
+			icon.removeClass("show");
+			inp.removeClass("tip-visible");
+			textSpan.text("");
+			tipCell.text("");
+			tsWrap.addClass("login-ts-hidden");
+			if(isRight){
+				rightIcon.addClass("show");
+			}
+			else if(isWrong){
+				icon.addClass("show");
+			}
+			else if(isLoading){
+				// 不显示“正在检测…”等文案，仅保留后续的打勾/错误图标
+			}
+		}
+		sync();
+		inp.on("blur",function(){ setTimeout(sync,50); });
+		// 仅监听 tip 的 class 变化（校验状态），不监听文案内容变化，避免卡顿
+		var mo=typeof MutationObserver!=="undefined"&&new MutationObserver(function(){ sync(); });
+		if(mo){ mo.observe(tipCell[0],{attributes:true,attributeFilter:["class"]}); }
+	});
+	// 账号输入框：输入时实时校验，通过则显示右侧打勾
+	var accountInp = $("#LoginForm input[name=\"username\"]");
+	if (accountInp.length) {
+		var wrap = accountInp.closest(".login-input-cell"), tsWrap = wrap.next(".ts"), tipCell = tsWrap.find(".Validform_checktip"), rightIcon = wrap.find(".login-tip-right");
+		function accountSync(valid) {
+			tipCell.removeClass("Validform_right Validform_wrong Validform_loading");
+			rightIcon.removeClass("show");
+			if (valid) { tipCell.addClass("Validform_right"); rightIcon.addClass("show"); }
+		}
+		accountInp.on("input", function() {
+			var val = $.trim($(this).val());
+			accountSync(phoneOrEmail(val) === true);
+		});
+	}
+	$(".login_box .login-field .ts").addClass("login-ts-hidden");
+})</script>
+<script type="text/javascript">
+// 四个小角色所有瞳孔都随鼠标方向轻微移动（监听整页鼠标移动）
+$(function(){
+	function bindEyeTracking($banner){
+		if(!$banner.length) return;
+		var $pupils = $banner.find(".login-characters .pupil");
+		if(!$pupils.length) return;
+		var maxOffset = 5;
+		$(window).on("mousemove.loginEyes", function(e){
+			var rect = $banner[0].getBoundingClientRect();
+			var cx = rect.left + rect.width / 2;
+			var cy = rect.top + rect.height / 2;
+			var nx = (e.clientX - cx) / (rect.width / 2);
+			var ny = (e.clientY - cy) / (rect.height / 2);
+			nx = Math.max(-1, Math.min(1, nx));
+			ny = Math.max(-1, Math.min(1, ny));
+			var tx = nx * maxOffset;
+			var ty = ny * maxOffset;
+			$pupils.css("transform", "translate(" + tx + "px," + ty + "px)");
+		});
+	}
+	bindEyeTracking($(".login_banner_21st"));
+});
+</script>
+<div class="login">
+	<div class="login_bg">
+		<!-- 左侧：动画角色登录效果（参考 21st.dev 组件视觉，仅在本地实现） -->
+		<div id="loadingPicBlock" class="login_banner login_banner_21st">
+			<div class="login-characters">
+				<div class="character char-orange">
+					<div class="eyes">
+						<span class="eye"><span class="pupil"></span></span>
+						<span class="eye"><span class="pupil"></span></span>
+					</div>
+				</div>
+				<div class="character char-purple">
+					<div class="eyes">
+						<span class="eye"><span class="pupil"></span></span>
+						<span class="eye"><span class="pupil"></span></span>
+					</div>
+				</div>
+				<div class="character char-black">
+					<div class="eyes">
+						<span class="eye"><span class="pupil"></span></span>
+						<span class="eye"><span class="pupil"></span></span>
+					</div>
+				</div>
+				<div class="character char-yellow">
+					<div class="eyes">
+						<span class="eye"><span class="pupil"></span></span>
+						<span class="eye"><span class="pupil"></span></span>
+						<span class="mouth"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="login_box" id="LoginForm">
+		<form class="registerform" method="post" action="">
+			<h3>{wc:fun:lan("userbind","用户绑定")}</h3>
+			<ul>				
+				<li class="newclilog">
+					<span>{wc:fun:lan("account","手机号")}</span>
+					<div class="login-field">
+			            <div class="login-input-wrap">
+			                <div class="login-input-cell">
+			                    <input class="text_password" name="mobile" type="text" placeholder="{wc:fun:lan('fillaccount','请填写帐号！')}" datatype="phoneOrEmail" errormsg="{wc:fun:lan('numberemail','手机号(11位)或邮箱(20位以内)！')}" autocomplete="username" />
+			                    <div class="login-tip-inner" style="display:none;">
+			                        <span class="login-tip-text"></span>
+			                        <i class="login-tip-icon"></i>
+		                        </div>
+		                        <i class="login-tip-right"></i>
+	                        </div>
+	                        <div class="ts"><div class="Validform_checktip"></div></div></div>
+			        </div>
+				</li>
+				 
+				 <!--<li class="ts"><div class="Validform_checktip">{wc:fun:lan("numberemail","手机号！")}</div></li>-->
+				<li class="newclilog">
+					<span>{wc:fun:lan("code","验证码")}</span>
+					<div class="login-field">
+			            <div class="login-input-wrap"><div class="login-input-cell"><input class="text_verify" name="code" type="text" placeholder="{wc:fun:lan('enterverification','请输入验证码！')}" datatype="*6-6" nullmsg="{wc:fun:lan('enterverification','请输入验证码！')}" errormsg="{wc:fun:lan('correctverification','验证码为6位数字或字母！')}" maxlength="6"/>
+			        </div>
+				</li>
+				<!--<li class="ts"><div class="Validform_checktip">{wc:fun:lan("code","验证码！")}</div></li>-->
+				 <li class="newclilog">
+				    <span>{wc:fun:lan("verificationcode","验证码")}</span>
+					 <div class="login-field">
+			            <div class="login-input-wrap"><div class="login-input-cell"><input class="text_verify" ajaxurl="{WEB_PATH}/member/user/codeCheck"
+				            name="captcha" type="text" placeholder="{wc:fun:lan('enterverification','请输入验证码！')}" datatype="*6-6" nullmsg="{wc:fun:lan('enterverification','请输入验证码！')}" errormsg="{wc:fun:lan('correctverification','验证码为6位数字或字母！')}" maxlength="6"/>
+			                <span class="fog"><img id="checkcode" src="{WEB_PATH}/api/checkcode/image/80_27/"/></span><div class="login-tip-inner"><span class="login-tip-text"></span><i class="login-tip-icon"></i></div><i class="login-tip-right"></i></div><div class="ts" id="pwd_ts"><div class="Validform_checktip"></div></div></div>
+			        </div>
+				 </li>
+				 <!--<li class="ts" id="pwd_ts"><div class="Validform_checktip">{wc:fun:lan("enterverification","请输入验证码")}</div></li>-->
+	
+				<li class="end">
+				<span><input name="submit" type="submit" value="{wc:fun:lan('login_bind_qd','确定')}" class="login_init" ></span>
+				</li>
+			</ul>	
+			<input value="{G_HTTP_REFERER}" name="hidurl" type="hidden">
+			<input value="" name="authId" type="hidden">
+			<input value="" name="authType" type="hidden">
+		</form>
+		</div>
+	</div>
+</div>
+<!--login 结束-->
+<div class="g-copyrightCon" style="padding-top: 50px;">
+	<div class="w1190">
+		<div class="g-links">
+			<a href="{WEB_PATH}">{wc:fun:lan("Home_page","首页")}</a>
+			<s></s>
+				{wc:fun:Getheader('foot')}
+  		</div>
+  		<div class="g-copyright">{wc:fun:_cfg("web_copyright")}</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+$("#sendsms").click(function(){
+	var mobile=$("input[name='mobile']").val();
+	var captcha=$("input[name='captcha']").val();
+	if(mobile==''){
+		toast("{wc:fun:lan('fillaccount','请填写手机号！')}", "error");
+		return false;
+	}
+	if(captcha==''){
+		toast("{wc:fun:lan('enterverification','请输入验证码！')}", "error");
+		return false;
+	}
+	$.post("{wc:WEB_PATH}/app/user/send_logincode",{phone:mobile},function(data){
+		console.log(data);
+		data = JSON.parse(data);
+		if(data.status==200){
+			toast("{wc:fun:lan('sendsuccess','发送成功！')}", "success");
+		}else{
+			toast("{wc:fun:lan('sendfail','发送失败！')}", "error");
+		}
+	});
+})
+$("#checkcode").attr("data",$("#checkcode").attr("src"));
+$("#checkcode").click(function(){
+	$(this).attr("src",$(this).attr("data")+"&="+new Date().getTime());
+});
+</script>
+</body>
+</html>

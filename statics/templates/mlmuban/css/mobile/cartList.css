@@ -1,0 +1,836 @@
+@charset "utf-8";
+.g-Cart {
+    background: #fff;
+    padding: 0 0px 10px 0px;
+}
+
+.g-Total {
+    font-size: 14px;
+    height: 24px;
+    line-height: 24px;
+    margin-bottom: 10px;
+    text-align: right;
+}
+
+.g-Total a.z-Btn-js {
+    background: #00a4a6;
+    border-radius: 3px;
+    padding: 0 14px;
+    color: #fff;
+    margin-left: 5px;
+    display: inline-block;
+}
+
+.g-Cart-list {
+    overflow: hidden;
+    /* background: #fff; */
+    margin-bottom: 136px;
+	    padding: 10px;
+}
+
+.g-Cart-list li:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+.g-Cart-list li {
+    position: relative;
+    padding-top: 1px;
+    border-top: 1px dotted #CCC;
+    margin-top: -1px;
+    zoom: 1;
+}
+.g-Cart-list li:first-of-type{
+	border:0;
+}
+
+.g-Cart-list .u-Cart-img {
+    margin: 8px 5px 0 5px;
+}
+
+.g-Cart-list .u-Cart-img img {
+    width: 80px;
+}
+
+.g-Cart-list .u-Cart-r {
+    margin-left: 90px;
+    margin-top: 5px;
+    margin-right: 8px;
+}
+
+.g-Cart-list .u-Cart-r p {
+    margin-bottom: 5px;
+    font-size: 12px;
+}
+
+.u-Cart-r .z-Cart-tt {
+    min-width: 15px;
+    height: 17px;
+    line-height: 17px;
+    overflow: hidden;
+    margin-bottom: 0;
+}
+.u-Cart-r .z-Cart-tt strong {
+    background-color: #fffcda;
+    border: 1px solid #ffae78;
+    color: #00a4a6;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: normal;
+    height: 15px;
+    line-height: 15px;
+    padding: 0 4px;
+}
+.u-Cart-r .z-promo {
+    display: block;
+    font-size: 12px;
+    margin-bottom: 3px;
+}
+
+.f-Cart-Other {
+    width: 100%;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.f-Cart-Other .z-del {
+    width: 28px;
+    height: 28px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    display: inline-block;
+    background-position: -51px -61px;
+}
+
+.f-Cart-Other .z-amount {
+        color: #00a4a6;
+    font-family: Arial;
+    line-height: 16px;
+    padding: 5px 0 4px 0;
+    font-size: 16px;
+    width: 58px;
+    border: 1px solid #BBB;
+    border-radius: 3px;
+    margin: 0 3px;
+    text-align: center;
+}
+
+.f-Cart-Other .z-jian, .f-Cart-Other .z-jia {
+    width: 28px;
+    height: 28px;
+    border-radius: 3px;
+    text-align: center;
+    display: inline-block;
+    color: #999;
+}
+
+.f-Cart-Other .z-jian, .f-Cart-Other .z-jia {
+    background: #fff;
+    border: 1px solid #ccc;
+}
+
+.f-Cart-Other .z-jiandis, .f-Cart-Other .z-jiadis {
+    background: #F7F7F7;
+    border: 1px solid #DDD;
+    color: #DDD;
+}
+
+.f-Cart-Other .z-jia {
+    line-height: 28px;
+    font-size: 20px;
+}
+
+.f-Cart-Other .z-jian {
+    font-size: 24px;
+    line-height: 25px;
+}
+
+/* .g-Total-bt {
+    text-align: center;padding: 1rem 0;
+    color: #999;
+
+    margin-top: 10px;
+    position: fixed;
+    bottom: 48px;
+    background-color: #f2f2f2;
+
+} */
+
+.z-Cart-tips {
+    border: 1px solid #ffd8c1;
+    background: #fffacd;
+    color: #00a4a6;
+    text-align: center;
+    line-height: 25px;
+    margin-top: -1px; 
+}
+
+.g-pay-lst li {
+    line-height: 20px;
+    border-bottom: 1px dotted #CBCBCB;
+    max-height: 20px;
+    overflow: hidden;
+    padding: 10px 10px;
+    color: #999;
+    position: relative;
+}
+
+.g-pay-lst li a {
+    line-height: 20px;
+    height: 20px;
+    display: inline-block;
+    margin-right: 18%;
+    overflow: hidden;
+}
+
+.g-pay-lst li span {
+    display: inline-block;
+    padding-left: 10px;
+    background: #fff;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.g-pay-Total {
+    line-height: 45px;
+	text-align: right;
+	padding-right: 10px;
+   
+}
+
+.g-pay-bline {
+    height: 4px;
+    background-color: #F4F4F4;
+    background-position: 0 0;
+    background-repeat: repeat-x;
+}
+
+.g-pay-ment {
+    overflow: hidden;
+}
+
+.g-pay-ment li {
+    line-height: 41px;
+    border-top: 1px dotted #CBCBCB;
+    max-height: 40px;
+    padding: 0 10px;
+    overflow: hidden;
+    margin-top: -1px;
+}
+
+.g-pay-ment li em.orange {
+    margin: 0 3px;
+}
+
+.z-pay-ment,
+.z-pay-mentsel,
+.z-pay-mentDis {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    display: inline-block;
+    box-shadow: 0 0 3px #DCDBDB inset;
+    background-color: #fff;
+    margin-top: 11px;
+    float: right;
+}
+
+.z-pay-ment {
+    border: 1px solid #bbb;
+}
+
+.z-pay-mentDis {
+    border: 1px solid #ddd;
+    background: #F9F8F8;
+    box-shadow: none;
+}
+
+.z-pay-mentsel {
+    width: 18px;
+    height: 18px;
+    background-position: 0 -8px;
+    box-shadow: none;
+}
+
+a.z-pay-Recharge {
+    width: 65px;
+    height: 25px;
+    line-height: 25px;
+    display: inline-block;
+    border-radius: 3px;
+    border: 1px solid #BBB;
+    float: right;
+    text-align: center;
+    margin-top: 4px;
+    color: #00a4a6;
+}
+
+.g-bank-ct b.z-arrow,
+.g-bank-ct s.z-arrow {
+    float: right;
+    width: 6px;
+    height: 6px;
+    border-width: 2px 0 0 2px;
+    margin-right: 5px;
+}
+
+.g-bank-ct b.z-arrow {
+    border-width: 2px 0 0 2px;
+    margin-top: 15px;
+}
+
+.g-bank-ct s.z-arrow {
+    border-width: 0 2px 2px 0;
+    margin-top: 11px;
+}
+
+.g-bank-ct .z-mlr {
+    font-weight: bold;
+}
+
+.z-pay-grayC {
+    color: #CCC;
+}
+
+.z-pay-grayC em.orange {
+    color: #CCC;
+}
+
+.g-pay-ment li .z-bank-Round {
+    vertical-align: -5px;
+}
+
+.g-pay-ment li .z-bank-Roundsel {
+    vertical-align: -6px;
+}
+
+.g-pay-success {
+    padding: 0 5px 10px;
+    background: #f4f4f4;
+}
+
+.g-pay-auto {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.z-pay-tips {
+    text-align: left;
+    margin: 20px auto;
+    display: inline-block;
+}
+
+.z-pay-tips s,
+.z-pay-tips i {
+    width: 20px;
+    height: 22px;
+    display: inline-block;
+    margin: -1px 5px 0 0;
+    float: left;
+}
+
+.z-pay-tips s {
+    background-position: 0 -28px;
+}
+
+.z-pay-tips i {
+    background-position: 0 -52px;
+}
+
+.z-pay-tips b {
+    display: inline-block;
+    color: #BBB;
+}
+
+.z-pay-tips em {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.g-pay-success a.z-CloseBtn {
+    color: #666;
+}
+
+.g-pay-success .u-Btn-li {
+    width: 50%;
+}
+
+.g-pay-successC {
+    overflow: hidden;
+}
+
+.g-pay-successC li {
+    border-top: 1px solid #EEE;
+    line-height: 25px;
+    height: 45px;
+    padding: 5px 70px 5px 10px;
+    overflow: hidden;
+    margin-top: -1px;
+    position: relative;
+}
+
+.g-pay-successC li p {
+    line-height: 20px;
+}
+
+.g-pay-successC li span {
+    display: inline-block;
+    background: #fff;
+    position: absolute;
+    right: 0;
+    bottom: 5px;
+    padding: 0 10px 0 15px;
+}
+
+.g-pay-successC .z-arrow {
+    float: right;
+    width: 6px;
+    height: 6px;
+    border-width: 2px 2px 0 0;
+    margin-top: 10px;
+    margin-left: 5px;
+}
+
+.g-pay-failureC {
+    background: #F9F9F9;
+    border-top: 1px solid #CCC;
+    box-shadow: 0 -1px 1px #EEE;
+}
+
+.g-pay-failureC li {
+    margin-top: -1px;
+}
+
+.g-pay-failure-tt {
+    background: #F9F9F9;
+    text-align: center;
+    height: 12px;
+    margin-top: 22px;
+    position: relative;
+    z-index: 2;
+}
+
+.g-pay-failure-tt s {
+    border-top: 1px solid #DDD;
+    text-align: center;
+    height: 1px;
+    overflow: hidden;
+    z-index: 3;
+    margin: auto 20px;
+    display: block;
+}
+
+.g-pay-failure-tt b {
+    display: inline-block;
+    background: #F9F9F9;
+    padding: 3px 10px;
+    position: relative;
+    top: -11px;
+    z-index: 3;
+}
+
+.Submitting {
+    width: 100%;
+    background: #f4f4f4;
+    text-align: center;
+    color: #999;
+    font-size: 14px;
+    padding: 50px 0;
+}
+
+.paymainbox {
+    background: #f4f4f4;
+    text-align: center;
+    overflow: hidden;
+    zoom: 1;
+}
+
+.paymainbox .loading {
+    border-top: none;
+    box-shadow: none;
+    margin-top: 70px;
+}
+
+.paymainbox embed,
+.paymainbox a {
+    margin-top: 30px;
+    display: inline-block;
+    margin: 70px auto 0 auto;
+}
+/*购物车一键更改数量/清空购物车按钮*/
+	#all {
+		max-width: 640px;
+		bottom: 108px;
+		padding: 6px 6px 6px 10px;
+		box-sizing: border-box;
+		border-top: 1px solid #dedede;
+		border-bottom: 1px solid #dedede;
+		background: #FFF;
+	}
+
+	#all input {
+		float: left;
+		display: block;
+		height: 35px;
+		box-sizing: border-box;
+		padding: 5px;
+		border-radius: 5px;
+	}
+	#all dd:first-child {
+		width: 52%;
+		float: left;
+	}
+	#all dd:first-child p {
+		float: left;
+		display: block;
+		width: 35%;
+		height: 35px;
+		line-height: 35px;
+		text-align: center;
+		font-size: 15px;
+		letter-spacing: 5px;
+	}
+	#all dd:last-child {
+		width: 46.5%;
+		float: right;
+	}
+	#allNum + label {
+		float: left;
+		display: block;
+		height: 35px;
+		line-height: 25px;
+		box-sizing: border-box;
+		padding: 5px;
+		border-radius: 5px;
+		width: 60%;
+		color: #00a4a6;
+		border: 1px solid #00a4a6;
+		margin-right: 3px;
+		font-size: 16px;
+		font-weight: 400;
+		cursor: pointer;
+	}
+	#allNum + label:after {
+		content: '\039E\039E\039E';
+		display: block;
+		position: absolute;
+		width: 25px;
+		height: 15px;
+		top: 15px;
+		left: 23%;
+		color: #CCC;
+		border: 1px solid #CCC;
+		line-height: 15px;
+		font-size: 12px;
+        text-align: center;
+	}
+	#addMore, #clearAll {
+		background: #FFF;
+		font-size: 16px;
+		letter-spacing: 2px;
+	}
+	#clearAll {
+		width: 30%;
+		color: #00a4a6;
+		border: 1px solid #00a4a6;
+	}
+	#addMore {
+		width: 66%;
+		margin-right: 4%;
+		color: #ffb320;
+		border: 1px solid #FDA700;
+	}
+	div#divBtmMoney {
+		max-width: 640px;
+	}
+	/*自定义键盘*/
+	#keyboard {
+		display: none;
+		position: absolute;
+		width: 80%;
+		left: 10px;
+		bottom: 55px;
+		background: #FFF;
+		opacity: .85;
+	}
+	#keyboard, #keyboard * {
+		margin: 0;
+		padding: 0;
+	}
+	#keyboard:after {
+		position: absolute;
+		content: ' ';
+		display: block;
+		width: 1rem;
+		height: 1rem;
+		background: #000;
+		transform: rotate(-45deg);
+		left: calc((100% / 3) / 2 - 0.5rem);
+		bottom: -.5rem;
+		z-index: -1;
+	}
+	#keyboard ul {
+		width: 100%;
+		text-align: center;
+		border-radius: 5px;
+		background: #000;
+		overflow: hidden
+	}
+	#keyboard li {
+		display: block;
+		float: left;
+		width: calc(100% / 3);
+		height: 3rem;
+		border-bottom: 1px solid #F2F2F2;
+		color: #F2F2F2;
+		font-weight: 400;
+		font-size: 1.3rem;
+		line-height: 3rem;
+		background: transparent;
+		list-style: none;
+		box-sizing: border-box;
+		cursor: pointer;
+		-moz-user-select: none; /*不允许数字被选中*/
+		-webkit-user-select: none;
+	}
+	#keyboard li:nth-child(12) {
+		background: #00a4a6;
+	}
+	#keyboard li:active { /*点击时的背景反馈*/
+		background: #00a4a6;
+		-webkit-tap-highlight-color: rgba(0,0,0,0);
+	}
+	#keyboard ul li:not(:nth-child(3n)) {
+		border-right: 1px solid #F2F2F2;
+	}
+	.clear {
+		width: 100%;
+		height: 0;
+		overflow: hidden;
+		clear: both;
+	}
+	/*end*/
+
+	.haveNot{
+		padding-top: 40px;
+		background: #fff;
+	}
+	
+	.g-car-new,.g-Pay-new {
+    bottom: 52px;
+    line-height: 20px;
+    background: #fff;
+}
+
+.g-Total-bt {
+    clear: both;
+    width: 100%;
+    max-width: 640px;
+    font-size: 14px;
+    position: fixed;
+    display: inline-block;
+    z-index: 12;
+}
+.g-Total-bt.g-car-new dl {
+    border-top: 1px solid #dedede;
+    background: #fff;
+}
+.g-Total-bt.g-car-new dt {
+    padding: 7px 10px;
+    box-sizing: border-box;
+    width: 50%;
+    float: left;
+    border: none;
+    background: #fff;
+}
+.g-Total-bt.g-car-new dt .money-total {
+    font-size: 15px;
+}
+.g-Total-bt.g-car-new dt .money-total em {
+    font-weight: bold;
+    font-size: 16px;
+}
+.g-Total-bt em span {
+    margin: 0;
+    font-family: "微软雅黑";
+}
+.g-Total-bt.g-car-new dt .pro-total {
+    font-size: 15px;
+    color: #999;
+}
+.g-Total-bt.g-car-new dd {
+    float: right;
+    width: 45%;
+    height: 44px;
+    padding: 6px 6px 6px 0;
+    border: none;
+    background: #fff;
+}
+.g-Total-bt.g-car-new dd a.w_account {
+    height: 44px;
+    line-height: 44px;
+    background-color: #00a4a6;
+    color: #FFF;
+    display: block;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 16px;
+    letter-spacing:10px;
+}
+
+
+
+#intro {
+    padding-bottom: 60px;
+}
+#intro span.title {
+    display: inline-block;
+    position: relative;
+    padding: 12px;
+    font-size: 14px;
+    line-height: 14px;
+}
+#intro span.title::before{
+    content: ' ';
+    display: block;
+    position: absolute;
+    width: 2rem;
+    height: 1px;
+    right: 100%;
+    top: 50%;
+    background-image: -webkit-linear-gradient(top, #DEDEDE, #DEDEDE);
+}
+#intro span.title s {
+    display: inline-block;
+    margin-right: .1rem;
+    width: 14px;
+    height: 14px;
+    background: url(../../images/mobile/intro.png) no-repeat center / auto 14px;
+    vertical-align: top;
+}
+#intro span.title::after{
+    content: ' ';
+    display: block;
+    position: absolute;
+    width: 2rem;
+    height: 1px;
+    left: 100%;
+    top: 50%;
+    background-image: -webkit-linear-gradient(top, #DEDEDE, #DEDEDE);
+}
+#intro ul {
+    position: relative;
+    background: #FFF;
+}
+#intro ul::after {
+    content: ' ';
+    display: block;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    clear: both;
+}
+#intro ul li {
+    padding: 10px;
+    float: left;
+    position: relative;
+    width: 50%;
+    height: 186px;
+    text-align: left;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+#intro li:nth-of-type(2n-1):before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    top: 0;
+    right: 0;
+    background-image: -webkit-linear-gradient(top, #eee, #eee);
+}
+#intro ul li a.g-pic {
+    display: block;
+    position: relative;
+}
+#intro li .g-pic img {
+    display: block;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+}
+#intro li .g-name {
+    height: 18px;
+    line-height: 18px;
+    font-size: 12px;
+    color: #666;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    margin: 7px 0 2px;
+}
+#intro li ins {
+    text-decoration: none;
+    line-height: 16px;
+}
+#intro li .btn-wrap {
+    padding-right: 40px;
+    position: relative;
+    height: 6px;
+    margin: -10px auto 0;
+}
+.Progress-bar {
+    zoom: 1;
+}
+#intro li .Progress-bar .u-progress {
+    height: 6px;
+}
+.Progress-bar:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+}
+#intro li .gRate {
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    top: -21px;
+    right: 0;
+}
+#intro li .gRate a {
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #00a4a6;
+    position: relative;
+    top: 3px;
+    left: 3px;
+}
+#intro li .gRate a s {
+    display: block;
+    position: relative;
+    width: 19px;
+    height: 22px;
+    margin: 0 auto;
+    top: 4px;
+    right: 1px;
+    background: url(../../images/mobile/set.png) center center no-repeat;
+	background-size: 18px auto;
+}
+#intro li:after {
+    content: ' ';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-image: -webkit-linear-gradient(top, #eee, #eee);
+}

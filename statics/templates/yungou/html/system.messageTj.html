@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{wc:$string}</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="stylesheet" href="{G_TEMPLATES_CSS}/toast.css" type="text/css" />
+</head>
+<body>
+    <div id="pc-toast-container"></div>
+    <div id="pc-msg-data" style="display:none" data-type="{wc:$iserror}" data-url="{wc:$defurl}">{wc:$string}</div>
+    <script type="text/javascript" src="{G_TEMPLATES_JS}/toast.js"></script>
+    <script type="text/javascript">
+        (function(){
+            var el = document.getElementById('pc-msg-data');
+            if (!el) return;
+            var msg = (el.textContent || el.innerText || '').trim();
+            var type = (el.getAttribute('data-type') === 'error') ? 'error' : 'success';
+            var url = el.getAttribute('data-url') || '';
+            if (msg) { window.toast(msg, type); }
+            if (url) { setTimeout(function(){ location.href = url; }, 1800); }
+        })();
+    </script>
+</body>
+</html>

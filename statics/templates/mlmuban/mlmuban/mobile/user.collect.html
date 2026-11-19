@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{wc:$webname}</title>
+<meta content="app-id=518966501" name="apple-itunes-app" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<link href="{G_TEMPLATES_CSS}/mobile/comm.css" rel="stylesheet" type="text/css" />
+<link href="{G_TEMPLATES_CSS}/mobile/cartList.css" rel="stylesheet" type="text/css" />
+<link href="{G_TEMPLATES_CSS}/mobile/member.css" rel="stylesheet" type="text/css" />
+<script src="{G_TEMPLATES_JS}/mobile/jquery190.js" language="javascript" type="text/javascript"></script>
+<script src="{G_TEMPLATES_JS}/mobile/pageDialog.js" language="javascript" type="text/javascript"></script>
+<script id="pageJS" data="{G_TEMPLATES_JS}/mobile/Cartindex.js" language="javascript" type="text/javascript"></script>
+</head>
+<body>
+<div class="h5-1yyg-v1" id="loadingPicBlock">
+  <input name="hidLogined" type="hidden" id="hidLogined" value="1" />
+<style type="text/css">
+li:hover{color: #dc332d;}
+span:hover{color: #dc332d;}
+.g-Cart-list {margin-bottom: 59px;}
+.pencentbox {margin: 0px 10px 10px 5px!important;}
+.g-Cart-list li {position: relative;padding: 15px 10px 10px 10px;}
+.Progress-bar .Pro-bar-li li em {font-size: 14px;}
+.Progress-bar {height: 32px;width: 86%;}
+.deletecollect {width: 22px;height: 22px;position: absolute;top: 32%;z-index: 2;right: 10px;background: transparent url({G_TEMPLATES_IMAGE}/mobile/setIcon.png);background-size: 80px auto;background-position: -54px -62px;border-radius: 3px;border: 1px solid #ccc;}
+#cartBody li p.price {margin: 3px 0 0;color: #666;}
+#cartBody li a.add {display: block;width: 40px;height: 40px;position: absolute;right: 3px;top: 59%;border-radius: 20px;}
+#cartBody li a.add s {display: block;width: 38px;height: 38px;background: url({G_TEMPLATES_IMAGE}/mobile/set.png) center center no-repeat;background-size: 27px auto;border-radius: 50px;}
+#cartBody::after {content: ' ';display: block;width: 100%;height: 0;overflow: hidden;clear: both;}
+.pencentbox{margin:19px 10px 10px 5px; position:relative;top: 8px;}
+.pencentbox .Progress-bar .Pro-bar-li li{font-size:12px;}
+.pencentbox .scale{width:30px;line-height:16px; text-align:center;font-size:10px;color:#fff;border-radius:3px;background: #db322d; position:absolute;top:-22px;margin-left:-15px;}
+.pencentbox .scale::after{display: inline-block;content: " ";width:0;height:0;border-left: 4px solid transparent;border-top: 4px solid #db322d;border-right: 4px solid transparent;position: absolute;bottom:-4px;left:10px;}
+#addAll {left: calc(50% - 0.35rem);}
+#cartBody li a.add,.u-progress .pging,.haveNot .guangguang,a.orgBtn,.u-progress .pging,.haveNot .guangguang {background-color: {THEME_COLOR};}
+.orange,.Progress-bar .Pro-bar-li li.P-bar01 em,.Progress-bar .Pro-bar-li li.P-bar03 em {color: {THEME_COLOR};}
+</style>
+  {wc:if $shop!=0}
+  <article class="clearfix g-Cart-list">
+    <ul id="cartBody">
+      <div id="addAll" class="add_icon"><i></i></div>
+      {wc:php:start} $buyshopmoney=0; {wc:php:end} {wc:loop $shoplist $key $val} {wc:php:start} $num = count($shoplist); $buyshopmoney+=$Mcartlist[$val['id']]['money']*$Mcartlist [$val ['id']] ['num']; {wc:php:end}
+      <li style="border-bottom: 1px solid #EEEEEE;" class="li{wc:$val['id']}"> <a class="fl z-Limg" href="{WEB_PATH}/mobile/mobile/item/{wc:$val['id']}"> <span class="z-Imgbg z-ImgbgC01"></span> <em class="z-Imgtxt">进行中...</em> <img src="{G_TEMPLATES_IMAGE}/loading.gif" src2="{G_UPLOAD_PATH}/{wc:$val['thumb']}" border="0" alt=""> </a>
+        <div class="u-Cart-r">
+          <p class="z-Cart-tt"> <a href="{WEB_PATH}/mobile/mobile/item/{wc:$val['id']}" class="gray6">(第{wc:$val['qishu']}期){wc:$val['title']}</a> </p>
+          <p class="price">价值：<em class="arial gray">￥{wc:$val['money']}</em></p>
+          <section class="pencentbox">
+            <div class="Progress-bar">
+              <p class="u-progress"> <span class="pgbar" style="width:{wc:$val['canyurenshu']/$val['zongrenshu']*100}%;"> <span class="pging"></span> </span> </p>
+              <ul class="Pro-bar-li">
+                <li class="P-bar01"><em>{wc:$val['canyurenshu']}</em>已参与</li>
+                <li class="P-bar02"><em>{wc:$val['zongrenshu']}</em>总需人次</li>
+                <li class="P-bar03"><em>{wc:$val['zongrenshu']-$val['canyurenshu']}</em>剩余</li>
+              </ul>
+            </div>
+          </section>
+        </div>
+        <div style="float: left;color: #333;text-align: center;line-height: 28px;font-size: 14px;position: relative;margin-bottom: 5px;width: 100%;padding-left: 90px;margin-top: 6px;">
+
+        </div>
+          <a class="deletecollect"  cid="{wc:$val['id']}"></a>
+         <a class="add gRate" codeid="{wc:$val['id']}" href="javascript:;"><s></s></a> 
+       </li>
+      {wc:loop:end}
+    </ul>
+  </article>
+  {wc:if:end}
+  <div id="divNone" class="haveNot z-minheight" style="display:none"> <s></s>
+    <p>亲，不妨收藏点宝贝~~</p>
+    <a href="/">
+    <p class="guangguang">去逛逛</p>
+    </a> </div>
+  </section>
+  <style type="text/css">
+        .smailnav{bottom: 100px!important;}
+    </style>
+  {wc:templates "mobile/index","footer"}
+  <script language="javascript" type="text/javascript">
+        var Path = new Object();
+        Path.Skin = "{G_TEMPLATES_STYLE}";
+        Path.Webpath = "{WEB_PATH}";
+
+        var Base = {
+            head: document.getElementsByTagName("head")[0] || document.documentElement,
+            Myload: function(B, A) {
+                this.done = false;
+                B.onload = B.onreadystatechange = function() {
+                    if (!this.done && (!this.readyState || this.readyState === "loaded" || this.readyState === "complete")) {
+                        this.done = true;
+                        A();
+                        B.onload = B.onreadystatechange = null;
+                        if (this.head && B.parentNode) {
+                            this.head.removeChild(B)
+                        }
+                    }
+                }
+            },
+            getScript: function(A, C) {
+                var B = function() {};
+                if (C != undefined) {
+                    B = C
+                }
+                var D = document.createElement("script");
+                D.setAttribute("language", "javascript");
+                D.setAttribute("type", "text/javascript");
+                D.setAttribute("src", A);
+                this.head.appendChild(D);
+                this.Myload(D, B)
+            },
+            getStyle: function(A, B) {
+                var B = function() {};
+                if (callBack != undefined) {
+                    B = callBack
+                }
+                var C = document.createElement("link");
+                C.setAttribute("type", "text/css");
+                C.setAttribute("rel", "stylesheet");
+                C.setAttribute("href", A);
+                this.head.appendChild(C);
+                this.Myload(C, B)
+            }
+        }
+
+        function GetVerNum() {
+            var D = new Date();
+            return D.getFullYear().toString().substring(2, 4) + '.' + (D.getMonth() + 1) + '.' + D.getDate() + '.' + D.getHours() + '.' + (D.getMinutes() < 10 ? '0' : D.getMinutes().toString().substring(0, 1))
+        }
+        Base.getScript('{G_TEMPLATES_JS}/mobile/Bottom.js');
+        
+
+
+
+    //添加到购物车
+    $(document).on("click",'.gRate',function(){
+        var codeid=$(this).attr('codeid');
+        var t = $(this);
+        var A = ($(window).width()) / 2 - t.offset().left - 127;
+        $.getJSON('{WEB_PATH}/mobile/ajax/addShopCart/'+codeid+'/1',function(data){
+            if(data.code==1){
+                 $.PageDialog.fail("加入购物车失败！");
+            }else if(data.code==0){
+                var htm="<em>"+data.num+"</em>";
+                $("#btnCart").html(htm);
+                 $.PageDialog.ok("已添加购物车,请到购物车页面查看！");           
+            }
+        });
+    });
+     
+     //删除收藏商品
+    $('.deletecollect').bind('click',function(){
+       var codeid=$(this).attr('cid');
+        var t = $(this);
+        var A = ($(window).width()) / 2 - t.offset().left - 127;
+        var com=confirm("确定删除吗？");
+        if(com){
+             $.getJSON('{WEB_PATH}/mobile/home/del_collect/'+codeid,function(data){
+                if(data.code==1){
+                     $.PageDialog.fail("参数无效！");
+                }else if(data.code==0){
+                     $.PageDialog.ok("删除成功！"); 
+                     $(".li"+data.shopid).css("display",'none');   
+                     if(data.noshop == 0){
+                        $("#divNone").css("display",'block');
+                     }
+                           
+                }else if(data.code == 2){
+                     $.PageDialog.ok("删除失败！"); 
+                }
+            });           
+         }
+    })
+ 
+
+            
+         //一键添加人气商品
+    $("#addAll").click(function(){
+        var t = $(this);
+        var A = ($(window).width()) / 2 - t.offset().left - 127;
+       $.getJSON("{WEB_PATH}/mobile/home/addAll", function (json) {
+            if (json.code == 0) {
+                  $.PageDialog.ok("添加成功，请到购物车页面查看！"); 
+                var htm="<em>"+json.num+"</em>";
+                 $("#btnCart").html(htm);
+            } else {
+                $.PageDialog.fail("添加失败", t, -100, A);
+            }
+        });            
+    })       
+        </script>
+</div>
+</body>
+</html>

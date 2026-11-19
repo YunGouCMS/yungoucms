@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>帐户充值</title>
+<meta content="app-id=518966501" name="apple-itunes-app" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<link href="{G_TEMPLATES_CSS}/mobile/comm.css" rel="stylesheet" type="text/css" />
+<link href="{G_TEMPLATES_CSS}/mobile/recharge.css" rel="stylesheet" type="text/css" />
+<link href="{G_TEMPLATES_CSS}/mobile/member.css" rel="stylesheet" type="text/css" />
+<script src="{G_TEMPLATES_JS}/mobile/jquery190.js" language="javascript" type="text/javascript"></script>
+<script>var level={wc:$member['level']};</script>
+<script id="pageJS" data="{G_TEMPLATES_JS}/mobile/recharge.js" language="javascript" type="text/javascript"></script>
+<link rel="stylesheet" href="/statics/plugin/fancyBox/jquery.fancybox.css" type="text/css" media="screen"/>
+<script type="text/javascript" src="/statics/plugin/fancyBox/jquery.fancybox.pack.js"></script>
+<style>
+	.g-pay-vip a {display: block;color: #333;}
+	.g-pay-vip a.no-inline {color: #ccc;}
+	.g-pay-vip a.alipay-list {color: #999;}
+	.g-pay-ment .li-header ,.g-pay-ment .alipay{background: #F4F4F4;line-height: 22px;max-height: 70px;position: relative;border-bottom: 1px solid #ddd;border-top: 1px dotted #ddd;padding: 0 10px;overflow: hidden;margin-top: -1px;}
+	.g-pay-ment .li-header .nav {background: url({G_TEMPLATES_IMAGE}/mobile/m_set.png);background-size: 20px auto;background-position: 0 -70px;right: 10px;width: 7px;height: 13px;top: 12px;position: absolute;}
+	.g-pay-ment li {font-size: 12.5px;max-height: 38px;line-height: 38px;}
+	.panel {display: none;}
+	.panel.active {display: block;}
+	.channel-tip {line-height: 10px;padding-bottom: 4px;}
+	.channel-tip em {font-size: 10px;}
+	.subMenu {overflow: hidden;position: relative;width: 100%;box-shadow: 0 0 10px 0 rgba(155,143,143,0.6);margin-top: 10px;}
+	.subMenu a {float: left;width: 50%;height: 3rem;font-size: .9rem;line-height: 3rem;text-align: center;box-sizing: border-box;letter-spacing: 1px;}
+	.subMenu a.current {color: #fff;border-top: 0 none;}
+	.registerCon{background: #fff;}
+	.registerCon li input{color: #fff;}
+	.registerCon li.accAndPwd input{border-top:1px solid #ddd!important;}
+	.tishi{line-height: 14px;margin-top: 12px;margin-left: 40px;width: 70%;float: left;overflow: hidden;}
+	.z-bank-Round{box-shadow: none;}
+	.z-bank-Roundsel,.g-Recharge li a.z-sel{border: 1px solid {THEME_COLOR};}
+	.channel-tip em,.subMenu a,.orange,.divcor {color: {THEME_COLOR};}
+	.registerCon li input,.subMenu a.current,a.orgBtn {background-color: {THEME_COLOR};}
+	.z-bank-Roundsel s {
+	    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, {THEME_COLOR}), color-stop(1, {THEME_COLOR_TWO}));
+	}
+</style>
+</head>
+<body style="background: #fff;">
+<div class="h5-1yyg-v1" id="loadingPicBlock">
+  <input type="hidden" class="unit" value="{wc:$symbol['unit']}">
+  <div class="g-Total gray9">您的当前余额：<span class="orange arial"> {wc:$member['money']}</span> {wc:$symbol['unit']}</div>
+	<div class="subMenu"> <a id="online" class="current" style="width: 100%;">在线充值</a> <a id="carmel" class="" style="width: 0;">卡密充值</a> </div>
+	<div id="top-ups">
+    <section class="clearfix g-member">
+		<article class="clearfix m-round g-pay-ment g-bank-ct">
+		  <ul id="ulBankList">
+		    <li class="gray6"  style="height:36px;display: none;">选择平台充值<em class="orange">{wc:if $member['level']}50{wc:else}5{wc:if:end}0.00</em>{wc:$symbol['unit']}</li>
+		    {wc:loop $paylist $pay}
+		    <li class="gray9" urm="{wc:$pay['pay_id']}" style=" position: relative; "> 
+					<i class="z-bank-Roundsel" style="top: 10px;line-height: 19px;"><s></s></i><span style="font-size:15px;">{wc:$pay['pay_name']}</span><span style="font-size:12px; color: #b5b5b5; margin-left:10px;">{wc:$pay['pay_des']}</span>
+				  </li>
+		    {wc:loop:end}
+		  </ul>
+		</article>
+      <div class="g-Recharge mt10">
+        <ul id="ulOption">
+          
+        </ul>
+      </div>
+      
+	  <article class="clearfix mt10 m-rounds g-pay-ment g-pay-vip" style="margin-top: 20px">
+			<div class="gray3 li-header" target="#vip_list">
+				<div>点击加客服线下充值<span style="font-size: 10px;color: red;"></span></div>
+				<div class="channel-tip"><em>（{wc:$web_xxczts}）</em></div>
+				<i class="nav"></i>
+			</div>
+			<ul id="vip_list" class="panel active">
+				 {wc:loop $kefu_list $val}
+				 {wc:if $val['status'] =='1'}
+				<li>
+					<a class="popimage fancybox.image" href="{G_UPLOAD_PATH}/{wc:$val['img']}" title="扫描二维码添加微信好友">
+						<i class="z-bank-Round"><s></s></i>{wc:$val['name']}　(客服在线)
+					</a>
+				</li>
+				{wc:else}
+				<li>
+					<a class=" no-inline" href="#" title="扫描二维码添加微信好友">
+						<i class="z-bank-Round"><s></s></i>{wc:$val['name']}　(客服离线)
+					</a>
+				</li>
+				{wc:if:end}
+				{wc:loop:end}
+			</ul>
+		</article>
+      <div class="mt10 f-Recharge-btn"> <a id="btnSubmit" href="javascript:;" class="orgBtn">确认充值</a> </div>
+    </section>
+	<section style="display:none;">
+                <div class="registerCon">
+                    <form action="{WEB_PATH}/member/cart/card_addmoney" method="post">
+                        <ul>
+						<li><span>卡密购买请联系客服QQ：{wc:$config['qq']}</span></li>
+                            <li class="accAndPwd">
+                                <dl><input id="txtAccount" type="text" placeholder="请输入卡号" class="lEmail" name="czknum" maxlength="20"><s class="rs4"></s></dl>
+                                <dl>
+                                    <input type="password" id="txtPassword" class="lPwd" placeholder="请输入卡密" name="password" maxlength="20">
+                                    <s class="rs3"></s>
+                                </dl>
+                                <input type='hidden' name='uid' value="{wc:$member['uid']}"> 
+                            </li>
+                            <li><input type="submit"  name='submit' value=" 确认充值" /></li>
+                          </ul>
+                    </form> 
+                </div>
+      </section>
+	</div>  
+	<div class="divcor" style="font-size: 16px;margin: 0 10px;">点击确认充值后，如不跳转请下载APP或复制商城网址到浏览器打开，进行重新充值</div>
+    {wc:templates "mobile/index","footer"}
+    <script language="javascript" type="text/javascript">
+    var Path = new Object();
+    Path.Skin="{G_TEMPLATES_STYLE}";
+    Path.Webpath = "{WEB_PATH}";
+    let RechMoney =null;
+    var Base={head:document.getElementsByTagName("head")[0]||document.documentElement,Myload:function(B,A){this.done=false;B.onload=B.onreadystatechange=function(){if(!this.done&&(!this.readyState||this.readyState==="loaded"||this.readyState==="complete")){this.done=true;A();B.onload=B.onreadystatechange=null;if(this.head&&B.parentNode){this.head.removeChild(B)}}}},getScript:function(A,C){var B=function(){};if(C!=undefined){B=C}var D=document.createElement("script");D.setAttribute("language","javascript");D.setAttribute("type","text/javascript");D.setAttribute("src",A);this.head.appendChild(D);this.Myload(D,B)},getStyle:function(A,B){var B=function(){};if(callBack!=undefined){B=callBack}var C=document.createElement("link");C.setAttribute("type","text/css");C.setAttribute("rel","stylesheet");C.setAttribute("href",A);this.head.appendChild(C);this.Myload(C,B)}}
+    function GetVerNum(){var D=new Date();return D.getFullYear().toString().substring(2,4)+'.'+(D.getMonth()+1)+'.'+D.getDate()+'.'+D.getHours()+'.'+(D.getMinutes()<10?'0':D.getMinutes().toString().substring(0,1))}
+    Base.getScript('{G_TEMPLATES_JS}/mobile/Bottom.js?v='+GetVerNum());
+	
+	 $(function(){
+		
+		$(".popimage").fancybox({
+          openEffect: 'none',
+          closeEffect: 'none',
+          closeClick: true,
+		});
+		$(".g-pay-vip a.no-inline").click(function () {
+			 $.PageDialog.fail('此客服人员暂时不在线');
+		});	 
+		$(".g-pay-ment .li-header").click(function(){
+			var target = $(this).attr('target');
+			$(target).toggleClass('active');
+		});
+		
+		var $tab_menu=$(".subMenu>a")
+		$tab_menu.click(function(){
+		$(this).addClass("current").siblings().removeClass("current");
+		var nei=$tab_menu.index(this)
+		$("#top-ups>section").eq(nei).show().siblings().hide();
+		})
+	 })
+	</script>
+  </div>
+</div>
+</body>
+</html>

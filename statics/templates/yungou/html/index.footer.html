@@ -1,0 +1,258 @@
+<style>
+.g-service>div {width: 24.91%;}
+.g-service>.yun_mobile{width: auto;left: 6.5%;}
+</style>
+<div style="clear:both" > </div>
+<div class="footer mt20">
+	<div class="footer_center w1200">
+		<div class="g-guide">
+		{wc:getlist sql="select * from `@#_category` where `parentid`='1'" return="category"}
+		{wc:loop $category $help}
+		   <dl>
+		   	<dt>{wc:$help['name']}</dt>
+			{wc:getlist sql="select * from `@#_article` where `cateid`='$help[cateid]'" return="article"}
+			{wc:php:start}
+			foreach($article as $art){
+			echo "<dd><a href='".WEB_PATH.'/help/'.$art['id']."' target='_blank'>".$art['title'].'</a></dd>';}
+			{wc:php:end}				
+		 </dl>   			
+			{wc:loop:end}
+		           	 {wc:getlist:end}
+		</div>
+	<div class="g-service">
+	<div class="m-ser u-ser1">
+                <ul>
+                    <li><s class="u-icons"></s></li>
+                    <li>
+                        <dl>
+                            <dt>{wc:fun:lan("mobileclient","下载移动客户端")}</dt>
+                            <dd>
+                                <em style="color: #c5c5c5;font-size: 14px;">{wc:fun:lan("anytimewhere","云购随时随地")}</em>
+                                <!--<b class="u-icons"></b>-->
+                            </dd>
+                            <dd><a href="javascript:;" class="bg_red weixinload">{wc:fun:lan("downloadnow","立即下载")}</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+	<div class="yun_mobile">
+                        	<img src="{G_TEMPLATES_STYLE}/images/code.jpg" height="75" width="75">
+            		<img src="{G_TEMPLATES_STYLE}/images/code.jpg" height="75" width="75">
+            		<!--<img src="{G_TEMPLATES_STYLE}/images/code.jpg" height="75" width="75">-->
+            		<div style="margin-top:-8px;">
+            		 <span>{wc:fun:lan("androidownload","安卓下载")}</span>
+            		 <span>{wc:fun:lan("iosdownload","IOS下载")}</span>
+            		 <!--<span>{wc:fun:lan("windownload","WIN下载")}</span>-->
+            	</div>
+	<div class="yun_close">
+	</div>
+	</div>
+            	<div class="m-ser u-ser2">
+              <ul class="mt10 ml10">
+              <li><a href="">
+                            <img src="{G_TEMPLATES_STYLE}/images/code.jpg" height="75" width="75"></a></li>
+              <li>
+              <dl>
+                           <dt><a href=""><i class="u-icons"></i>{wc:fun:lan("followwechat","关注官方微信")}</a></dt>
+                            <dd><a href="" style="text-align: left;padding-left:2px;">
+                                <em style="color: #a9a9a9;">{wc:fun:lan("scan","扫一扫")}</em></br>
+                                <em style="color: #a9a9a9;font-size: 14px;margin-top: 3px;display: inline-block;">{wc:fun:lan("exclusivervi","享受微信专享服务")}</em>
+                                <!--<b class="u-icons"></b>-->
+                            </a></dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+			<div class="m-ser u-ser3">
+                <ul>
+                    <li><s class="u-icons"></s></li>
+                    <li>
+                        <dl>
+                            <dt>{wc:fun:lan("servertime","服务器时间")}</dt>
+                            <dd id="pServerTime">15:40:27</dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+	<!--<div class="m-ser u-ser4">-->
+ <!--               <ul>-->
+ <!--                   <li><s class="u-icons"></s></li>-->
+ <!--                   <li>-->
+ <!--                       <dl>-->
+ <!--                           <dt>云公益基金</dt>-->
+ <!--                           <dd><a href="{WEB_PATH}/single/fund" target="_blank" id="indexFundMoney">0000.00</a></dd>-->
+ <!--                       </dl>-->
+ <!--                   </li>-->
+ <!--               </ul>-->
+ <!--           </div>-->
+	<div class="m-ser u-ser5">
+                <ul>
+                    <li><s class="u-icons" style="width: 80px;"></s></li>
+                    <li>
+                        <dl>
+                            <dt>{wc:fun:lan("wervicehotline","服务热线")}</dt>
+                            <!--<dd class="c_red u-tel">{wc:fun:_cfg('cell')}</dd>-->
+                            <dd><a href="{wc:fun:_cfg('qq')}" target="_blank" class="service_img" style="background-position-y: 15px;background-position: -3px 10px;padding-left: 23px;">{wc:fun:lan("onlinecusto","在线客服")}</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+
+		</div>
+		<div class="g-special">
+            <ul>
+                <li>
+                    <a>
+                        <em class="u-spc-icon1"></em>
+                        <span>{wc:fun:lan("fairandjust","100%公平公正")}</span>
+                        {wc:fun:lan("fairandtext","参与过程公开透明，用户可随时查看")}
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <em class="u-spc-icon2"></em>
+                        <span>{wc:fun:lan("authenticee","100%正品保证")}</span>
+                        {wc:fun:lan("authenitext","精心挑选优质商家，100%品牌正品")}
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <em class="u-spc-icon3"></em>
+                        <span>{wc:fun:lan("freeshippin","全国免运费")}</span>
+                        {wc:fun:lan("freeshitext","全场商品全国包邮（港澳台地区除外）")}
+                    </a>
+                </li>
+            </ul>
+        </div>
+	</div>
+	<div class="g-copyrightCon">
+		<div class="w1190">
+		<!-- //底部短连接 -->
+			<div class="g-links">
+				{wc:fun:Getheader('foot')}
+			</div>
+			<div class="g-copyright" style="color:#333;padding-bottom: 15px;">{wc:fun:_cfg('web_copyright')}</div>
+		</div>
+	</div>
+</div>
+<div style="right: 281.5px;" id="divRighTool" class="quickBack">
+	
+	<dl class="quick_But">
+		<dd class="quick_service"><a id="btnRigQQ" href="{wc:fun:_cfg('qq')}" target="_blank" class="quick_serviceA"><b>{wc:fun:lan("onlinecusto","在线客服")}</b><s></s></a></dd>
+		<dd class="quick_Collection"><a id="btnFavorite" href="javascript:;" class="quick_CollectionA"><b>{wc:fun:lan("favorites","收藏本站")}</b><s></s></a></dd>
+		<dd class="quick_Return"><a id="btnGotoTop" href="javascript:;" class="quick_ReturnA"><b>{wc:fun:lan("backtotop","返回顶部")}</b><s></s></a></dd>
+	</dl>
+	
+	
+</div>
+<script type="text/javascript">
+(function(){				
+		var week = '日一二三四五六';
+		var innerHtml = '{0}:{1}:{2}';
+		var dateHtml = "{0}月{1}日 &nbsp;周{2}";
+		var timer = 0;
+		var beijingTimeZone = 8;				
+				function format(str, json){
+					return str.replace(/{(\d)}/g, function(a, key) {
+						return json[key];
+					});
+				}				
+				function p(s) {
+					return s < 10 ? '0' + s : s;
+				}			
+
+				function showTime(){
+					var time = $("#pServerTime").html();
+					var tushil = time.split(':');
+					var tumiao = tushil[2] * 1
+					if (tumiao == 59) {
+						tumiao = '00'
+						if (tushil[1] == '59') {
+							tushil[1] = '00'
+							if (tushil[0] == '23') {
+								tushil[0] = '00'
+							} else {
+								tushil[0] = tushil[0] * 1 + 1
+							}
+						} else {
+							tushil[1] = tushil[1] * 1 + 1
+						}
+					} else {
+						tumiao++
+						if (tumiao < 10) tumiao = '0' + tumiao
+					}
+					$("#pServerTime").html(tushil[0] + ':' + tushil[1] + ':' + tumiao);
+				}				
+				
+				window.yungou_time = 	function(time){			
+					$("#pServerTime").html(time);
+					console.log(time,"time");
+					showTime(time);
+					timer = setInterval(function(){
+						showTime(time);
+					}, 1000);					
+				}
+	window.yungou_time("{wc:fun:getLanTime(2,'h:i:s')}");
+})();
+
+	$(".weixinload").click(function(){
+		$(".yun_mobile").fadeIn();
+	})
+	$(".yun_close").click(function(){
+		$(".yun_mobile").fadeOut();
+	})
+	
+	
+</script>
+
+<script>
+$("#divRighTool").show(); 
+var wids=($(window).width()-1200)/2-70;
+if(wids>0){
+	$("#divRighTool").css("right",wids);
+}else{
+	$("#divRighTool").css("right",10);
+}
+$(function(){
+	$("#btnGotoTop").click(function(){
+		$("html,body").animate({scrollTop:0},1500);
+	});
+	$("#btnFavorite,#addSiteFavorite").click(function(){
+		var ctrl=(navigator.userAgent.toLowerCase()).indexOf('mac')!=-1?'Command/Cmd': 'CTRL';
+		if(document.all){
+			window.external.addFavorite('{G_WEB_PATH}','{wc:fun:_cfg("web_name")}');
+		}
+		else if(window.sidebar){
+		   window.sidebar.addPanel('{wc:fun:_cfg("web_name")}','{G_WEB_PATH}', "");
+		}else{ 
+			toast('您可以通过快捷键' + ctrl + ' + D 加入到收藏夹');
+		}
+    });
+	$("#divRighTool a").hover(		
+		function(){
+			$(this).addClass("Current");
+		},
+		function(){
+			$(this).removeClass("Current");
+		}
+	)
+});
+// 电脑端通用：预加载首页（从任意页返回首页更快）
+(function(){var u="{WEB_PATH}";if(u&&document.head){var l=document.createElement("link");l.rel="prefetch";l.href=u;document.head.appendChild(l);}})();
+// 电脑端通用：首屏外图片懒加载（列表/详情区 img 未设置 loading 时补上 lazy）
+(function(){
+	var sel=".list-block img,.hot_list img,.get_ready img,.new_goods img,.share_show img,.share_content img,.share-Conduct img,.share_box img,.prin_pp img,.user img,.singleL img,.singleR img,.share_box_left img,.share-main img,.share_goods img,.Comment-pic img,.list_block img,.goods_list img,#ulGoodsList img,.submitted .goods img,.order .goods img,.list-wrap img,.cart-list img,.search-list img,.group-list img,.topic-list img,.period_Open img,.zoom-desc img,.jcarousel-clip img,.share_photo img,.single_list img,.buy_record img,.record_list img,.columns img,.column img";
+	try{
+		document.querySelectorAll(sel).forEach(function(img){if(!img.getAttribute("loading"))img.setAttribute("loading","lazy");});
+	}catch(e){}
+})();
+// 云购基金（带 60 秒缓存）
+(function(){
+	var el=document.getElementById("indexFundMoney");if(!el)return;
+	var key="pc_fund_get",ttl=6e4,raw;
+	try{raw=sessionStorage.getItem(key);}catch(e){}
+	if(raw){var o;try{o=JSON.parse(raw);}catch(e){} if(o&&o.t&&(Date.now()-o.t)<ttl){el.textContent=o.v;return;}}
+	$.ajax({url:"{WEB_PATH}/api/fund/get",success:function(msg){el.textContent=msg;try{sessionStorage.setItem(key,JSON.stringify({v:msg,t:Date.now()}));}catch(e){}}});
+})();
+</script>
+</body></html>

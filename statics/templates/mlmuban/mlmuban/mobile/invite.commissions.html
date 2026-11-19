@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0"/>
+<title>佣金管理</title>
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<link href="{G_TEMPLATES_CSS}/mobile/comm.css" rel="stylesheet" type="text/css" />
+<link href="{G_TEMPLATES_CSS}/mobile/member_index.css" rel="stylesheet" type="text/css" />
+<link href="{G_TEMPLATES_CSS}/mobile/member.css" rel="stylesheet" type="text/css" />
+<link href="{G_TEMPLATES_CSS}/mobile/invite.css" rel="stylesheet" type="text/css" />
+<script src="{G_TEMPLATES_JS}/mobile/jquery190.js" language="javascript" type="text/javascript"></script>
+<style>
+    .orange,.active {
+    color: {THEME_COLOR};
+}
+</style>
+</head>
+<body>
+<div class="title-area-main">
+          <p class="title-text"> <span> <span class="back-icon iconfont icon-left-arrow" onclick="history.back()"></span> <span class="item-title active">佣金明细 </span> </span> </p>
+        </div>
+<div class="h5-1yyg-v11">
+  <section class="clearfix g-member" style="padding-top:50px;">
+    <div class="R-content">
+      <div id="divCommissionList" class="list-tab commission gray02">
+        <ul class="listTitle">
+          <li class="w15">用户ID</li>
+          <li class="w20">时间</li>
+          <li class="w35">描述</li>
+          <li class="w15">金额</li>
+          <li class="w15">佣金</li>
+        </ul>
+        {wc:if $recodetotal!=0}
+        {wc:loop $recodearr $key $val}
+        <ul>
+          <li class="w15"><a href="{WEB_PATH}/uname/{wc:fun:idjia($val['uid'])}" target="_blank" class="blue">{wc:$val['uid']}</a></li>
+          <li class="w20">{wc:fun:date('Y-m-d',$val['time'])}</li>
+          <li class="w35" style="display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{wc:if $uid==$val['uid']}{wc:$val['content']}{wc:else}<a target="_blank" href="{WEB_PATH}/mobile/mobile/item/{wc:$val['shopid']}" title="{wc:$val['content']}" class="blue">{wc:$val['content']}</a>{wc:if:end}</li>
+          <li class="w15">{wc:$val['ygmoney']}</li>
+          <li class="w15 orange">                    
+                        {wc:if $uid==$val['uid'] && $val['type'] == '-3' || $val['type'] == '-2'}
+                             <span style='color:#49C813'>-{wc:$val['money']}</span>
+                        {wc:else}
+                            +{wc:$val['money']}
+                        {wc:if:end} 
+          </li></li>
+        </ul>
+        {wc:loop:end}
+        {wc:else} </div>
+      <div class="tips-con">您还未有邀请谁哦</div>
+    </div>
+    {wc:if:end}
+    <div id="divPageNav" class="page_nav"></div>
+  </section>
+  {wc:templates "mobile/index","footer"}
+  <script language="javascript" type="text/javascript">
+  var Path = new Object();
+  Path.Skin="{G_TEMPLATES_STYLE}";
+  Path.Webpath = "{WEB_PATH}";
+  
+var Base={head:document.getElementsByTagName("head")[0]||document.documentElement,Myload:function(B,A){this.done=false;B.onload=B.onreadystatechange=function(){if(!this.done&&(!this.readyState||this.readyState==="loaded"||this.readyState==="complete")){this.done=true;A();B.onload=B.onreadystatechange=null;if(this.head&&B.parentNode){this.head.removeChild(B)}}}},getScript:function(A,C){var B=function(){};if(C!=undefined){B=C}var D=document.createElement("script");D.setAttribute("language","javascript");D.setAttribute("type","text/javascript");D.setAttribute("src",A);this.head.appendChild(D);this.Myload(D,B)},getStyle:function(A,B){var B=function(){};if(callBack!=undefined){B=callBack}var C=document.createElement("link");C.setAttribute("type","text/css");C.setAttribute("rel","stylesheet");C.setAttribute("href",A);this.head.appendChild(C);this.Myload(C,B)}}
+function GetVerNum(){var D=new Date();return D.getFullYear().toString().substring(2,4)+'.'+(D.getMonth()+1)+'.'+D.getDate()+'.'+D.getHours()+'.'+(D.getMinutes()<10?'0':D.getMinutes().toString().substring(0,1))}
+Base.getScript('{G_TEMPLATES_JS}/mobile/Bottom.js');
+</script>
+</div>
+</body>
+</html>

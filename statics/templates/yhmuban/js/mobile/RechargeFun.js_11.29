@@ -1,0 +1,341 @@
+$(function() {
+    var d = level ? 500 : 50;
+  
+ 	var d2 = level ? 500 : 50;
+  
+    var g = false;
+
+    var a = null;
+
+    var f = null;
+
+    var b = null;
+
+    var c = 1;
+
+	var banktype='wxpay_wap';
+
+    var e = function() {
+
+        var k = function(p, o, n, m) {
+
+            $.PageDialog.fail(p, o, n, m)
+
+        };
+
+        function l(m) {
+
+            m = Math.round(m * 1000) / 1000;
+
+            m = Math.round(m * 100) / 100;
+
+            if (/^\d+$/.test(m)) {
+
+                return m + ".00"
+
+            }
+
+            if (/^\d+\.\d$/.test(m)) {
+
+                return m + "0"
+
+            }
+
+            return m
+
+        }
+
+        var h = /^[1-9]{1}\d*$/;
+
+        var j = "";
+
+        var i = function() {
+
+            var m = a.val();
+            if (m != "") {
+
+                if (j != m) {
+
+                    if (!h.test(m)) {
+
+                        a.val(j).focus()
+
+                    } else {
+
+                        j = m;
+
+                      //  f.html('选择平台充值<em class="orange">' + l(m) + "</em>元")
+
+                    }
+
+                }
+
+            } else {
+
+                j = "";
+
+                a.focus();
+
+               // f.html('选择平台充值<em class="orange">0.00</em>元')
+
+            }
+
+        };
+         var ii = function() {
+
+            var m =  $("#init").val();
+            if (m != "") {
+
+                if (j != m) {
+
+                    if (!h.test(m)) {
+
+                         $("#init").val(j).focus()
+
+                    } else {
+
+                        j = m;
+
+                      //  f.html('选择平台充值<em class="orange">' + l(m) + "</em>元")
+
+                    }
+
+                }
+
+            } else {
+
+                j = "";
+
+                a.focus();
+
+               // f.html('选择平台充值<em class="orange">0.00</em>元')
+
+            }
+
+        };
+        $("#ulOption > li").each(function(m) {
+
+            var n = $(this),t_sel = level ? 4 : 9;
+		
+            if (m < t_sel) {
+
+                n.click(function() {
+                  	
+                    g = false;
+
+                    d = n.attr("money");
+
+                    n.children("a").addClass("z-sel");
+
+                    n.siblings().children().removeClass("z-sel").removeClass("z-initsel");
+
+                   // f.html('选择平台充值<em class="orange">' + n.attr("money") + ".00</em>元")
+
+                })
+
+            } else {
+
+                a = $("#init");
+                a.focus(function() {
+                    g = true;
+
+                    if (a.val() == "输入金额") {
+
+                        $("#init").val("")
+
+                    }
+			
+                  
+                  $("#init").parent().addClass("z-initsel").parent().siblings().children().removeClass("z-sel");
+
+                  
+                    if (b == null) {
+
+                        b = setInterval(ii, 200)
+
+                    }
+
+                }).blur(function() {
+
+                    clearInterval(b);
+
+                    b = null
+
+                })
+
+            }
+
+        });
+        $("#ulOption2 > li").each(function(m) {
+
+            var n = $(this),t_sel = level ? 4 : 9;
+			
+            if (m < t_sel) {
+
+                n.click(function() {
+
+                    g = false;
+
+                    d2 = n.attr("money");
+
+                    n.children("a").addClass("z-sel");
+
+                    n.siblings().children().removeClass("z-sel").removeClass("z-initsel");
+
+                   // f.html('选择平台充值<em class="orange">' + n.attr("money") + ".00</em>元")
+
+                })
+
+            } else {
+              a = $("#inits");
+
+                a.focus(function() {
+
+                    g = true;
+
+                    if (a.val() == "输入金额") {
+
+                        a.val("")
+
+                    }
+
+                    a.parent().addClass("z-initsel").parent().siblings().children().removeClass("z-sel");
+
+                    if (b == null) {
+
+                        b = setInterval(i, 200)
+
+                    }
+
+                }).blur(function() {
+
+                    clearInterval(b);
+
+                    b = null
+
+                })
+
+            }
+
+        });
+        $("#ulBankList > li").each(function(m) {
+
+            var n = $(this);
+
+			//if (m == 0) {
+
+            //    f = n
+
+         //   } else {
+
+                n.click(function() {
+
+                    c = m;
+
+					banktype=n.attr('urm');
+
+                    n.children("i").attr("class", "z-bank-Roundsel");
+
+                    n.siblings().children("i").attr("class", "z-bank-Round");
+
+                })
+
+          //  }
+
+        });
+        $("#ulBankList2 > li").each(function(m) {
+
+            var n = $(this);
+
+		//	if (m == 0) {
+
+           //     f = n
+
+          //  } else {
+
+                n.click(function() {
+
+                    c = m;
+
+					banktype=n.attr('urm');
+
+                    n.children("i").attr("class", "z-bank-Roundsel");
+
+                    n.siblings().children("i").attr("class", "z-bank-Round");
+
+                })
+
+            //}
+
+        });
+        $("#btnSubmit").click(function() {
+            d = g ? $("#init").val() : d;
+            if (d == "" || parseInt(d) == 0) {
+
+                k("请输入充值金额")
+
+            } else if(level && parseInt(d)<=499){
+				k("充值金额必须大于或等于500元");
+			} else {
+                    if (d< 50) {
+
+                     k("充值金额必须大于或等于50元");
+                      return;
+
+                    }
+                var m = /^[1-9]\d*\.?\d{0,2}$/;
+
+                if (m.test(d)) {
+
+                        location.href = Gobal.Webpath+"/mobile/cart/addmoney/" + d+"/"+banktype
+
+                } else {
+
+                    k("充值金额输入有误")
+
+                }
+
+            }
+
+        });
+
+        $("#btnSubmit2").click(function() {
+
+            d2 = g ? a.val() : d2;
+
+            if (d2 == "" || parseInt(d2) == 0) {
+
+                k("请输入充值金额")
+
+            } else if(level && parseInt(d2)<=499){
+				k("充值金额必须大于或等于500元");
+			} else {
+                    if (d2< 50) {
+
+                     k("充值金额必须大于或等于50元");
+                      return;
+
+                    }
+                var m = /^[1-9]\d*\.?\d{0,2}$/;
+
+                if (m.test(d2)) {
+
+                        location.href = Gobal.Webpath+"/mobile/cart/addmoney/" + d2+"/"+banktype
+
+                } else {
+
+                    k("充值金额输入有误")
+
+                }
+
+            }
+
+        });
+
+		$("#ulBankList>li:eq(0)").click();
+
+    };
+
+    Base.getScript(Gobal.Skin + "/js/mobile/pageDialog.js", e)
+
+});

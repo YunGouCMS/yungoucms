@@ -1,0 +1,522 @@
+/* 后台各页面详细UI升级样式 */
+
+/* ========== 表格样式升级 - 排除日历弹窗 ========== */
+table:not(.calendar):not(.calendar table) {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+table thead:not(.calendar thead) {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+table thead th:not(.calendar th) {
+    padding: 14px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 14px;
+    color: #fff;
+    border-bottom: none;
+    text-transform: none;
+    letter-spacing: 0.5px;
+}
+
+table tbody tr:not(.calendar tr) {
+    transition: all 0.2s ease;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+table tbody tr:last-child:not(.calendar tr) {
+    border-bottom: none;
+}
+
+table tbody tr:hover:not(.calendar tr) {
+    background-color: rgba(102, 126, 234, 0.05);
+    transform: scale(1.001);
+}
+
+table tbody td:not(.calendar td) {
+    padding: 12px 16px;
+    font-size: 14px;
+    color: #374151;
+    vertical-align: middle;
+}
+
+/* 日历弹窗使用原本样式 - 排除全局样式，但保留关键显示属性 */
+.calendar,
+div.calendar {
+    /* 保留关键显示属性 - 但允许JavaScript动态设置display */
+    position: absolute !important;
+    z-index: 999 !important;
+    /* display由JavaScript控制，不强制设置 */
+    /* 排除全局样式影响的属性 */
+    text-align: initial !important;
+    margin: initial !important;
+    border-radius: initial !important;
+    box-shadow: initial !important;
+}
+
+.calendar *,
+div.calendar * {
+    /* 排除全局样式影响的属性，但保留display等关键属性 */
+    text-align: initial !important;
+    margin: initial !important;
+    border-radius: initial !important;
+    box-shadow: initial !important;
+    transition: initial !important;
+}
+
+.calendar table {
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+    display: table !important;
+    width: auto !important;
+    background: initial !important;
+    border-radius: initial !important;
+    box-shadow: initial !important;
+}
+
+.calendar table thead {
+    background: initial !important;
+    display: table-header-group !important;
+}
+
+.calendar table tbody {
+    display: table-row-group !important;
+}
+
+.calendar table tfoot {
+    display: table-footer-group !important;
+}
+
+.calendar table td,
+.calendar table th {
+    display: table-cell !important;
+    text-align: initial !important;
+    padding: initial !important;
+    border: initial !important;
+    border-radius: initial !important;
+    font-size: initial !important;
+    font-weight: initial !important;
+    color: initial !important;
+    background: initial !important;
+    width: initial !important;
+    height: initial !important;
+    line-height: initial !important;
+    vertical-align: initial !important;
+    box-sizing: initial !important;
+    transition: initial !important;
+    box-shadow: initial !important;
+}
+
+.calendar table tr {
+    display: table-row !important;
+    transition: initial !important;
+    border-bottom: initial !important;
+}
+
+.calendar table tr:hover {
+    background-color: initial !important;
+    transform: initial !important;
+}
+
+/* ========== 表单样式升级 ========== */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 8px;
+}
+
+.form-control,
+.input-text,
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+input[type="date"],
+input[type="time"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 14px;
+    color: #374151;
+    background: #fff;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.form-control:focus,
+.input-text:focus,
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* ========== 按钮样式升级 ========== */
+.btn,
+.button,
+.butaoin,
+.butaish,
+input[type="submit"],
+input[type="button"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.btn-primary,
+.button.primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.btn-primary:hover,
+.button.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+    background: #f3f4f6;
+    color: #374151;
+    border: 1px solid #e5e7eb;
+}
+
+.btn-secondary:hover {
+    background: #e5e7eb;
+}
+
+.btn-danger {
+    background: #ef4444;
+    color: #fff;
+}
+
+.btn-danger:hover {
+    background: #dc2626;
+    transform: translateY(-2px);
+}
+
+.btn-success {
+    background: #10b981;
+    color: #fff;
+}
+
+.btn-success:hover {
+    background: #059669;
+    transform: translateY(-2px);
+}
+
+/* ========== 卡片样式 ========== */
+.card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.card-header {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #f3f4f6;
+}
+
+.card-body {
+    color: #6b7280;
+}
+
+/* ========== 分页样式 ========== */
+.pagination {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.pagination a,
+.pagination span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 36px;
+    padding: 0 12px;
+    font-size: 14px;
+    color: #374151;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.pagination a:hover {
+    background: #f9fafb;
+    border-color: #667eea;
+    color: #667eea;
+}
+
+.pagination .current,
+.pagination .active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    border-color: transparent;
+}
+
+/* ========== 标签样式 ========== */
+.badge,
+.label,
+.tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-success {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.badge-error,
+.badge-danger {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.badge-warning {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.badge-info {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+/* ========== 搜索框样式 ========== */
+.search-box {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.search-box input {
+    padding-left: 40px;
+}
+
+.search-box::before {
+    content: '🔍';
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* ========== 操作按钮组 ========== */
+.action-buttons {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.action-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.action-btn-edit {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.action-btn-edit:hover {
+    background: #bfdbfe;
+}
+
+.action-btn-delete {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.action-btn-delete:hover {
+    background: #fecaca;
+}
+
+.action-btn-view {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+.action-btn-view:hover {
+    background: #e5e7eb;
+}
+
+/* ========== 状态指示器 ========== */
+.status-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.status-dot.active {
+    background: #10b981;
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+}
+
+.status-dot.inactive {
+    background: #ef4444;
+    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+}
+
+/* ========== 加载状态 ========== */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #f3f4f6;
+    border-top-color: #667eea;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ========== 空状态 ========== */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #9ca3af;
+}
+
+.empty-state-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+    opacity: 0.5;
+}
+
+.empty-state-text {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* ========== 工具提示 ========== */
+.tooltip {
+    position: relative;
+    cursor: help;
+}
+
+.tooltip:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 6px 12px;
+    background: #1f2937;
+    color: #fff;
+    font-size: 12px;
+    border-radius: 6px;
+    white-space: nowrap;
+    z-index: 1000;
+    margin-bottom: 8px;
+}
+
+.tooltip:hover::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: #1f2937;
+    z-index: 1000;
+    margin-bottom: 2px;
+}
+
+/* ========== 响应式设计 ========== */
+@media (max-width: 768px) {
+    table {
+        font-size: 12px;
+    }
+    
+    table thead th,
+    table tbody td {
+        padding: 8px 12px;
+    }
+    
+    .card {
+        padding: 16px;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .action-btn {
+        width: 100%;
+    }
+}
+

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<base href="/">
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="renderer" content="webkit">
+<title>{wc:$webname}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<link href="{G_TEMPLATES_CSS}/mobile/comm.css" rel="stylesheet" type="text/css">
+<link href="{G_TEMPLATES_CSS}/mobile/zdy.css" rel="stylesheet" type="text/css">
+<link href="{G_TEMPLATES_CSS}/mobile/main.css" rel="stylesheet" type="text/css">
+<script src="{G_TEMPLATES_JS}/mobile/jquery190.js" language="javascript" type="text/javascript"></script>
+  <script src="{G_TEMPLATES_JS}/layer/layer.js"></script>
+<style>
+#intro li .btn-wrap{margin: 10px auto 0;}
+.sscimg img{width: 100%;height: auto;display: block;margin: 0 auto;}
+.btn_buy,.u-progress .pging,.jdt>span {background-color: {THEME_COLOR};}
+.btn_ljcy,#divGoodsNav >.current>a,.Progress-bar .Pro-bar-li li.P-bar01 em {color: {THEME_COLOR};}
+#divGoodsNav >.current>a {border-bottom: 3px solid {THEME_COLOR};}
+.btn_buy,.btn_ljcy {border: 1px solid {THEME_COLOR};}
+.Progress-bar .Pro-bar-li li.P-bar03 em {color: {THEME_COLOR_TWO};}
+.orange,.Progress-bar .Pro-bar-li li.P-bar01 em,.Progress-bar .Pro-bar-li li.P-bar03 em {color: {THEME_COLOR};}a.orgBtn,.u-progress .pging,.haveNot .guangguang,#addAll,#addAll p {background: {THEME_COLOR};}#addAll {box-shadow: 0 0 15px {THEME_COLOR};}
+</style>
+</head>
+<body>
+<div class="sscimg"> <img src="{G_TEMPLATES_IMAGE}/mobile/ssc.png"> </div>
+<div class="tabs-wrap">
+  <div class="goodsList" style="clear: both;"> {wc:loop $shoplist $k $shop}
+    <ul>
+      <li> <a href="{WEB_PATH}/mobile/mobile/item/{wc:$shop['id']}"><span id="{wc:$shop['id']}" class="z-Limg" style="position:relative;display:block;"><i class="zimgs"></i><img src="{G_UPLOAD_PATH}/{wc:$shop['thumb']}"></span></a>
+        <div style="margin-top:15px;" class="goodsListR">
+          <h2 id="{wc:$shop['id']}">{wc:$shop['title']}</h2>
+          <p class="price">价值：<em class="arial gray">{wc:$symbol['symbol_left']}{wc:$shop['money']}{wc:$symbol['symbol_right']}</em></p>
+        </div>
+        <div class="pRate item_bottom_container">
+          <div class="Progress-bar jdt_container" id="{wc:$shop['id']}">
+            <div style="color:#646464;margin-top:2px;"></div>
+            <p class="u-progress jdt" style="margin-left:0;"><span class="pgbar" style="width:{wc:$shop['canyurenshu']/$shop['zongrenshu']*100}%;"><span class="pging"></span></span></p>
+            <ul class="Pro-bar-li">
+              <li class="P-bar01"><em>{wc:$shop['canyurenshu']}</em></li>
+              <li class="P-bar02"><em>{wc:$shop['zongrenshu']}</em></li>
+              <li class="P-bar03"><em>{wc:$shop['shenyurenshu']}</em></li>
+            </ul>
+          </div>
+          <div class="buy_container">
+            <div class="star {wc:$shop['current']}" codeid="{wc:$shop['id']}" onclick="collect(this)"></div>
+            <a class="btn_ljcy" href="{WEB_PATH}/mobile/mobile/item/{wc:$shop['id']}" codeid="{wc:$shop['id']}">立即参与</a>
+            <div class="btn_buy"><a class="add " codeid="{wc:$shop['id']}" href="javascript:;"></a></div>
+          </div>
+        </div>
+      </li>
+    </ul>
+    {wc:loop:end} </div>
+</div>
+{wc:templates "mobile/index","footer"}
+<script src="{G_TEMPLATES_JS}/flycartlist/jquery.fly.min.js"></script>
+<script language="javascript" type="text/javascript">
+window.onload=function(){
+	//购物车数量
+	$.getJSON('{WEB_PATH}/mobile/ajax/cartnum',function(data){
+		if(data.num){
+			$("#btnCart").append('<em>'+data.num+'</em>');
+		}
+	});
+}
+//添加收藏 
+    function collect(obj){
+        var thisobj=$(obj);
+        var i=thisobj.attr('codeid');
+        var typeid='';
+        if(thisobj.hasClass('current')){
+            thisobj.removeClass('current');
+           typeid=2; 
+        }else{
+            thisobj.addClass('current');
+           typeid=1; 
+        }
+        $.get('{WEB_PATH}/mobile/ajax/show_collect/' + i + '/'+typeid, function(data){
+             if(data == 1){
+			  thisobj.removeClass('current');
+                 addsuccess('请先登录');
+             }else if(data == 2){
+			  thisobj.removeClass('current');
+                addsuccess('参数不对');
+             }else if(data == 3){
+                 addsuccess('已收藏');
+             }else if(data == 4){
+			  thisobj.removeClass('current');
+                 addsuccess('出了一点小意外');
+             }else if(data == 5){
+			 thisobj.removeClass('current');
+                 addsuccess('已取消');
+             }else if(data == 6){
+				thisobj.removeClass('current');
+                 addsuccess('出了一点小意外');
+             }
+        });
+    } 
+   function addsuccess(dat){
+        $("#pageDialogBG .Prompt").text("");
+        var w=($(window).width()-255)/2,
+            h=($(window).height()-45)/2;
+        $("#pageDialogBG").css({top:h,left:w,opacity:0.8});
+        $("#pageDialogBG").stop().fadeIn(1000);
+        $("#pageDialogBG .Prompt").append('<s></s>'+dat);
+        $("#pageDialogBG").fadeOut(1000);
+    }	
+	//添加到购物车
+$(document).on("click",'.add',function(event){
+	var offset = $("#btnCart").offset();
+	var codeid=$(this).attr('codeid');
+		var addcar = $(this);
+		var addcarparent = $(this).parent().parent().parent();
+		var img = addcar.parent().parent().parent().parent().find('img').attr('src');
+		var flyer = $('<img class="u-flyer" src="'+img+'">');
+		flyer.fly({
+			start: {
+				<!-- left: event.pageX, -->
+				left:addcarparent.offset().left+80,
+				top: event.clientY-200
+			},
+			end: {
+				left: offset.left,
+				top: offset.top-$(document).scrollTop()+$("#btnCart").height(),
+				width: 0,
+				height: 0
+			},
+			onEnd: function(){
+			
+				$.getJSON('{WEB_PATH}/mobile/ajax/addShopCart/'+codeid+'/1',function(data){ 
+					if(data.code==1){
+						<!-- addsuccess('添加失败');  -->
+					}else if(data.code==0){
+					var htm="<em>"+data.num+"</em>";
+					$("#btnCart").html(htm);
+						 <!-- addsuccess('添加成功');         -->
+					 }return false; 
+				 }); 
+				this.destory();
+			}
+		});
+	});
+		</script>
+<div id="pageDialogBG" class="pageDialogBG">
+  <div class="Prompt"></div>
+</div>
+</body>
+</html>

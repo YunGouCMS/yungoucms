@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>验证身份</title>
+<meta content="app-id=518966501" name="apple-itunes-app" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<link href="{G_TEMPLATES_CSS}/mobile/comm.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="{G_TEMPLATES_JS}/layui/css/layui.css">
+<script src="{G_TEMPLATES_JS}/mobile/jquery190.js" language="javascript" type="text/javascript"></script>
+<script src="{G_TEMPLATES_JS}/layui/layui.js" language="javascript" type="text/javascript"></script>
+<script id="pageJS" data="{G_TEMPLATES_JS}/mobile/MobileCheck.js" language="javascript" type="text/javascript"></script>
+<style>
+*{margin: 0;padding: 0;}
+ul{list-style: none;}
+li s {float: left;background-repeat: no-repeat;height: 19px;position: absolute;left: 10px;top: 13px;width: 18px;background: url({G_TEMPLATES_IMAGE}/loginSet.png);background-size: 20px auto;background-position: 0 -25px;}
+.newFa{height: 35px;text-align: center;line-height: 35px;font-size: 14px; color: #fff;border-radius: 5px; border: 1px solid #999; margin-top: 15px;}
+.active{background: #fff;color:#ddd;}
+.orange,.Progress-bar .Pro-bar-li li.P-bar01 em,.Progress-bar .Pro-bar-li li.P-bar03 em {color: {THEME_COLOR};}.newFa,#btnPostCode,a.orgBtn,.u-progress .pging,.haveNot .guangguang,#addAll,#addAll p {background: {THEME_COLOR};}#addAll {box-shadow: 0 0 15px {THEME_COLOR};}
+</style>
+</head>
+<body style="max-width: 640px;margin: 0 auto;">
+<div class="h5-1yyg-v1" id="content">
+  <form class="layui-form">
+            <div class="registerCon">
+                <ul style="padding:30px">
+                    <li class="accAndPwd">
+                        <div style="position:relative;display: flex;border-bottom: 1px solid #ccc;">
+                        	<input id="memberId" name="memberId" type="hidden" class="layui-input" value="">
+                        	<input id="phone" name="phone" type="hidden" class="layui-input" value="{wc:$name}">
+                        	<input type="hidden" id="inpMobile" value="{wc:$name}" />
+                            <input id="mobileCode" name="validCode" type="text" placeholder="请输入手机验证码" class="layui-input" style="border: 0;padding-left: 30px;height: 45px;">
+                            <s class="rs2"></s>
+                        </div>
+                    </li>
+                    <li class="btn-login">
+                        <div id="btnPostCode" class="layui-btn layui-btn-danger" style="width: 100%;font-size:18px;height: 40px;border-radius: 5px;margin-top: 15px;text-align: center;line-height: 40px;color: #fff;" lay-submit="" lay-filter="register">确认，下一步</div> 
+                    </li>
+                    <li style="font-size: 12px;color: #999;margin: 15px 50px;">如未收到验证短信，请在120秒后点击重新发送。</li>
+                    <li class="newFa" >重新获取</li>
+                </ul>
+            </div>
+        </form>
+{wc:templates "mobile/index","footer"}
+<script language="javascript" type="text/javascript">
+        var Path = new Object();
+        Path.Skin = "{G_TEMPLATES_STYLE}";
+        Path.Webpath = "{WEB_PATH}";
+
+        var Base = {
+            head: document.getElementsByTagName("head")[0] || document.documentElement,
+            Myload: function(B, A) {
+                this.done = false;
+                B.onload = B.onreadystatechange = function() {
+                    if (!this.done && (!this.readyState || this.readyState === "loaded" || this.readyState === "complete")) {
+                        this.done = true;
+                        A();
+                        B.onload = B.onreadystatechange = null;
+                        if (this.head && B.parentNode) {
+                            this.head.removeChild(B)
+                        }
+                    }
+                }
+            },
+            getScript: function(A, C) {
+                var B = function() {};
+                if (C != undefined) {
+                    B = C
+                }
+                var D = document.createElement("script");
+                D.setAttribute("language", "javascript");
+                D.setAttribute("type", "text/javascript");
+                D.setAttribute("src", A);
+                this.head.appendChild(D);
+                this.Myload(D, B)
+            },
+            getStyle: function(A, B) {
+                var B = function() {};
+                if (callBack != undefined) {
+                    B = callBack
+                }
+                var C = document.createElement("link");
+                C.setAttribute("type", "text/css");
+                C.setAttribute("rel", "stylesheet");
+                C.setAttribute("href", A);
+                this.head.appendChild(C);
+                this.Myload(C, B)
+            }
+        }
+
+        function GetVerNum() {
+            var D = new Date();
+            return D.getFullYear().toString().substring(2, 4) + '.' + (D.getMonth() + 1) + '.' + D.getDate() + '.' + D.getHours() + '.' + (D.getMinutes() < 10 ? '0' : D.getMinutes().toString().substring(0, 1))
+        }
+        Base.getScript('{G_TEMPLATES_JS}/mobile/Bottom.js');
+        </script>
+</div>
+</body>
+</html>

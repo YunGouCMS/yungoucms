@@ -1,0 +1,185 @@
+{wc:templates "index","header"}
+<link rel="preload" href="{G_TEMPLATES_STYLE}/css/user.message.css" as="style"/>
+
+<!-- <link rel="stylesheet" type="text/css" href="{G_TEMPLATES_STYLE}/css/Referrals.css"/> -->
+<script>
+$(function(){
+	$("#referDocument li").bind({		
+		mouseover:function(){
+			var number=$("#referDocument li").index(this)+1;
+			$(".S0"+number).removeClass("hidden");
+		},
+		mouseout:function(){
+			var number=$("#referDocument li").index(this)+1;
+			$(".S0"+number).addClass("hidden");
+		}
+	})
+})
+$(".yu_ff").mouseover(function(){
+	  $(".h_1yyg_eject").show();
+	})
+	$(".yu_ff").mouseout(function(){
+	  $(".h_1yyg_eject").hide();
+	})
+
+		     $("#m_all_sort").hide();
+	     $(".m_menu_all").mouseenter(function(){
+			    $(".m_all_sort").show();
+	     })
+		 $(".m_menu_all").mouseleave(function(){
+			    $(".m_all_sort").hide();
+	     })
+		 $(".m_all_sort").mouseenter(function(){
+			    $(this).show();
+	     })
+		 $(".m_all_sort").mouseleave(function(){
+			    $(this).hide();
+	     })
+	     $(function(){
+	       $(window).scroll(function() {	
+	      		
+	     		if($(window).scrollTop()>=130&&$(window).scrollTop()<=560){
+	     			$(".head_nav").addClass("fixedNav");	
+	     			$("#m_all_sort").fadeOut();
+	     		}else if($(window).scrollTop()>560){
+	     			$(".head_nav").addClass("fixedNav");
+	     			$("#m_all_sort").fadeOut();
+	     	} else if($(window).scrollTop()<130){
+	     			$(".head_nav").removeClass("fixedNav");
+	     	}
+	           });
+	     });
+</script>
+<style type="text/css">
+#d_clip_container,.my_clip_button,.d_clip_copy{margin:0;width:95px; height:32px; line-height:34px; text-align:center;}
+#d_clip_container{top:-32px;}
+#fe_text{resize:none;margin-bottom:10px;}
+.my_clip_button {position:absolute; border:1px solid #999; background-color:#ccc; cursor:default; font-size:9pt; }
+.my_clip_button.hover { background-color:#eee; }
+.my_clip_button.active { background-color:#aaa; }
+.d_clip_copy{ font-size:14px;color:#000;}
+#d_clip_button{filter:alpha(opacity=50); -moz-opacity:0.5; -khtml-opacity:0.5; opacity:0.5;}
+ul.process {display:flex;gap:10px;}
+.process li.p-1,.process li.p-2,.process li.p-3,.process li.p-4{background: none;margin:0;width: auto;}
+.process-box,ul.process,.process li {height:auto!important;}
+.process-box {margin-bottom:21px;}
+.tugaizi {
+    color: #db70db;
+    font-size: 19px;
+    font-weight: bold;
+    font-style: italic;
+    margin-top: -3px;
+}
+.tugaizi span {
+    color: #111111;
+    font-weight: initial;
+    padding-left: 5px;
+    font-size: 14px;
+    font-style: normal;
+}
+.W-left.fl h4{
+    color: #db70db;
+    font-size: 24px;
+    font-weight: bold;
+    padding-left: 6px;
+}
+</style>
+{wc:php:start}
+	$uid = _encrypt(get_user_uid());
+{wc:php:end}
+<div class="wrap w1200"style="overflow:hidden;margin-top:15px;">
+	<div class="W-left fl" style="width:865px">
+		<h4>{wc:fun:lan("invitation_courtesy","邀请有礼")}
+		<!--<i></i>-->
+		</h4>
+		<div id="referDocument" class="process-box">
+			<ul class="process">
+				<li class="p-1">
+				    <div class="tugaizi">1{wc:fun:lan("heavygift","重礼")}<span>{wc:fun:lan("fiveblessings","50福分")}</span></div>
+					<div class="process_con S01 hidden">
+						<span><em>◆</em><s>◆</s></span>
+						{wc:fun:lan("blessingpoints","您每邀请一位好友成功参与云购即可获得50福分。")}
+					</div>
+				</li>
+				<li>/</li>
+				<li class="p-2">
+				    <div class="tugaizi">2{wc:fun:lan("heavygift","重礼")}<span>{wc:fun:lan("cash_commission","6%现金提成")}</span></div>
+					<div class="process_con S02 hidden">
+						<span><em>◆</em><s>◆</s></span>
+						{wc:fun:lan("invitesuccess","经您邀请的所有好友，成功参与云购后，您都可以获得6%的现金奖赏，并且永久有效。")}
+					</div>				    
+				</li>
+				<li>/</li>
+				<li class="p-3">
+				    <div class="tugaizi">3{wc:fun:lan("heavygift","重礼")}<span>{wc:fun:lan("free_super","免费超级礼包抽奖")}</span></div>
+					<div class="process_con S03 hidden">
+						<span><em>◆</em><s>◆</s></span>
+						{wc:fun:lan("specificevent","您每邀请一位好友成功参与云购，就可获得一个超级礼包抽奖机会；邀请越多，获奖机率就越大，快快告诉你QQ、MSN、人人、开心、微博上的朋友吧；具体活动详情请关注云购圈中活动专区。")}
+					</div>				    
+				</li>
+				<li>/</li>
+				<li class="p-4">
+				    <div class="tugaizi">4{wc:fun:lan("heavygift","重礼")}<span>{wc:fun:lan("drive_home","宝马三系免费开回家")}</span></div>
+					<div class="process_con S04 hidden">
+						<span><em>◆</em><s>◆</s></span>
+						{wc:fun:lan("drivehome1","每月成功邀请好友数量最多的前10000名云友，都可获得（")}<a href="{G_WEB_PATH}">{G_WEB_PATH}</a>{wc:fun:lan("drivehome2","）“宝马3系”“云购码”一个，若邀请好友数量相同，则以邀请时间先后顺序为准。把宝马开回家的可能就是您哦！")}
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="referrals_banner">
+			<ul>
+			<li><img src="{G_TEMPLATES_STYLE}/images/referrals_01.jpg" border="0" alt=""></li>
+			<li><img src="{G_TEMPLATES_STYLE}/images/referrals_02.jpg" border="0" alt=""></li>
+			</ul>
+		</div>
+		{wc:if !uidcookie('uid')}
+			<div class="login_reg">
+				{wc:fun:lan("yourexclusive1","请先")}<a href="{WEB_PATH}/member/user/login">{wc:fun:lan("login","登录")}</a>{wc:fun:lan("yourexclusive2","或者")}<a href="{WEB_PATH}/member/user/register">{wc:fun:lan("register","注册")}</a>{wc:fun:lan("yourexclusive3","，获取您的专属邀请链接。")}
+			</div>
+			<div class="login_button">
+				<a href="{WEB_PATH}/member/user/login">{wc:fun:lan("lognowinvite","立即登录，邀请好友")} &gt;&gt;</a>
+			</div>
+			<div class="reg-txt">
+				{wc:fun:lan("accountyet1","还没有")}{wc:fun:_cfg('web_name_two')}{wc:fun:lan("accountyet2","帐号？")}<a href="{WEB_PATH}/member/user/register"><b>{wc:fun:lan("registernow","立即注册")}</b></a>
+			</div>
+		{wc:else}	
+			<div class="Invitation-t">{wc:fun:lan("dedicated","专用邀请链接")}</div>
+		    <div class="Invitation-C1">
+			    <p class="fs14">{wc:fun:lan("exclusiveinvita","这是您的专属邀请链接，请通过 Facebook 发送给您的好友")}</p>
+			    <div class="">
+			    <textarea disabled="disabled" name="copyShareText" id="fe_text" class="textarea">{wc:fun:lan("goodinteres","我刚发现一个很好很好玩的网站，1元就能买IPhone 4S哦，快去看看吧！")}
+{WEB_PATH}/register/{wc:$uid}</textarea>
+			    </div>			   
+				
+		    </div>
+		    <!--<div class="Invitation-C2">-->
+			   <!-- <p class="fs14">{wc:fun:lan("friendssharing","通过分享方式邀请好友，立即分享到您的QQ、MSN、人人、开心、微博上的朋友吧！")}</p>-->
+		    <!--</div>-->
+		    <!--<div class="Invitation-C3">-->
+		    <!--    <p class="fs14">{wc:fun:lan("friendsdirectly","您可以直接通过发送邮件邀请好友：")}</p>-->
+			   <!-- <ul>-->
+				  <!--  <li><a href="http://mail.126.com" target="_blank" class="M126"></a></li>-->
+				  <!--  <li><a href="http://mail.163.com" target="_blank" class="M163"></a></li>-->
+				  <!--  <li><a href="http://login.live.com" target="_blank" class="Mmsn"></a></li>-->
+				  <!--  <li><a href="http://mail.sohu.com" target="_blank" class="Msohu"></a></li>-->
+				  <!--  <li><a href="https://mail.google.com" target="_blank" class="Mgmail"></a></li>-->
+				  <!--  <li><a href="http://mail.sina.com.cn" target="_blank" class="Msina"></a></li>-->
+				  <!--  <li><a href="http://mail.cn.yahoo.com" target="_blank" class="Myahoo"></a></li>-->
+			   <!-- </ul>-->
+		    <!--</div>-->
+		{wc:if:end}
+	</div>
+	<div class="W-right fr" style="width:287px;">
+		<h4>{wc:fun:lan("kindtips","温馨提示")}</h4>
+		<div class="rig_con">
+			<ul>
+				<li><h5>{wc:fun:lan("pleasereg1","1、在哪里可以看到我的佣金？")}</h5><p>{wc:fun:lan("pleasereg2","在【我的个人中心】的【佣金明细】里可看到您的每次返现记录。佣金满100及以上可申请提现，任何时候都可充值到云购帐户参与云购。")}</p></li>
+				<li><h5>{wc:fun:lan("pleasereg3","2、哪些情况会导致佣金失效？")}</h5><p>{wc:fun:lan("pleasereg4","借助网站及其他平台，恶意获取佣金，一经查实，扣除一切佣金，清除福分账户且封号。")}</p></li>
+				<li><h5>{wc:fun:lan("pleasereg5","3、自己邀请自己也能获得佣金吗？")}</h5><p>{wc:fun:lan("pleasereg6","不可以。我们会人工核查，对于查实的作弊行为，扣除一切佣金，取消邀请佣金的资格并清除您的福分账户。")}</p></li>
+				<li class="none"><h5>{wc:fun:lan("pleasereg7","4、如何知道我有没有邀请成功")}</h5><p>{wc:fun:lan("pleasereg8","您可以在【我的个人中心】的【成功邀请的会员】里面查看。")}</p></li>
+			</ul>
+		</div>
+	</div>
+</div>
+{wc:templates "index","footer"}

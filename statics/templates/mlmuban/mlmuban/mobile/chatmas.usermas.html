@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>消息</title>
+<link rel="stylesheet" href="{G_TEMPLATES_CSS}/mobile/swiper.min.css" />
+<link rel="stylesheet" href="{G_TEMPLATES_CSS}/mobile/winning.css" />
+<link rel="stylesheet" href="{G_TEMPLATES_CSS}/mobile/yunchat.css" />
+<script src="{G_TEMPLATES_JS}/mobile/jquery190.js" language="javascript" type="text/javascript"></script>
+<style>
+.jianbian{background: -o-linear-gradient(top,{THEME_COLOR_TWO},{THEME_COLOR});}
+.jianbian{background: -webkit-gradient(linear,0 0,0 bottom,from({THEME_COLOR_TWO}),to({THEME_COLOR}));}
+</style>
+</head>
+<body>
+<div class="fixed_header jianbian pa015 diflex jube alitc cfff">
+	<div class="opcty" style="width: 20px;">0</div>
+	<span>我的消息</span>
+	<div>
+		<!-- <span class="select-icon disinblo"></span> -->
+		<span class="showjia">+</span></div>
+</div>
+<div class="newnav"><ul class="diflex">
+	<li><a href="{WEB_PATH}/mobile/yunchat/usernotice">
+		<div class="newnavicon"><img src="http://upos.yungoucms.com/statics/uploads/banner/yungoucms/t61.png" class="wid100"><span style="display: none;"></span></div>
+		<div class="newnavfont c333">通知消息</div>
+	</a></li>
+	<li><a href="{WEB_PATH}/mobile/yunchat/userfriends">
+		<div class="newnavicon"><img src="http://upos.yungoucms.com/statics/uploads/banner/20200814/43551154386531.png" class="wid100"></div>
+		<div class="newnavfont c333">我的好友</div>
+	</a></li>
+	<li class="showkefu"><a href="javascript:;">
+		<div class="newnavicon"><img src="http://upos.yungoucms.com/statics/uploads/banner/20200814/25700386386982.png" class="wid100"></div>
+		<div class="newnavfont c333">联系客服</div>
+	</a></li>
+</ul></div>
+<div class="message"><ul>
+	<!-- <li class="pa015"><a href="{WEB_PATH}/mobile/yunchat/usernews" class="diflex jube">
+		<div class="sageicon"><img src="http://upos.yungoucms.com/statics/uploads/banner/yungoucms/t6.png" class="wid100"></div>
+		<div class="sagefont diflex jube c333 size12">
+			<div class="diflex jube">联系客服<span class="c999">09-29 09:59</span></div>
+			<span class="c999">哇库哇库</span>
+		</div>
+	</a></li> -->
+</ul></div>
+<div class="popjia showjia" style="display: none;">
+	<div>
+		<div class="tanshang disinblo"></div>
+		<div class="popicont cfff">
+			<div class="diflex alitc touserwfr">
+				<div class="popicon"><img src="http://upos.yungoucms.com/statics/uploads/banner/20200814/43551154386531.png" class="wid100"></div>
+				<div class="popfont cfff">添加好友</div>
+			</div>
+			<!-- <div class="diflex alitc">
+				<div class="popicon"><img src="http://upos.yungoucms.com/statics/uploads/banner/yungoucms/t6.png" class="wid100"></div>
+				<div class="popfont cfff">创建群聊</div>
+			</div> -->
+			<!-- <div class="diflex alitc">
+				<div class="popicon"><img src="http://upos.yungoucms.com/statics/uploads/banner/yungoucms/t6.png" class="wid100"></div>
+				<div class="popfont cfff">扫一扫</div>
+			</div> -->
+		</div>
+	</div>
+</div>
+<div class="messapar showkefu" style="display: none;">
+	<div>
+		<span class="c999 disinblo size12">工作时间：8:30-21:00</span>
+		<div class="giotnu">电话客服</div>
+		<!-- <div>在线客服</div> -->
+	</div>
+</div>
+<div class="numbpar diflex alitc" style="display: none;">
+	<div>
+		<span class="disinblo">023-67898642</span>
+		<div><span class="disinblo c999 giotnu size12">取消</span><span class="disinblo jianbian" onClick="location.href='tel:{wc:$info['cell']}'">呼叫</span></div>
+	</div>
+</div>
+<input type="hidden" id="wcuid" value="{wc:$uid}"/>
+<script>PathWebpath = "{WEB_PATH}";</script>
+<script src="{G_TEMPLATES_JS}/mobile/chatms.js" language="javascript" type="text/javascript"></script>
+<script src="{G_TEMPLATES_JS}/mobile/chatmsmas.js" language="javascript" type="text/javascript"></script>
+<script>
+</script>
+</body>
+</html>

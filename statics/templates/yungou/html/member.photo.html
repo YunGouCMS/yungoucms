@@ -1,0 +1,348 @@
+{wc:templates "index","header"}
+<link rel="preload" href="{G_TEMPLATES_STYLE}/css/user.css" as="style"/>
+<link rel="preload" href="{G_TEMPLATES_STYLE}/css/user.message.css" as="style"/>
+
+<div class="main-content clearfix">
+    {wc:templates "member","left"}
+    <link rel="stylesheet" type="text/css" href="{G_TEMPLATES_STYLE}/css/user.css" />
+    <link rel="stylesheet" type="text/css" href="{G_TEMPLATES_STYLE}/css/user.message.css" />
+    <script type="text/javascript" src="{G_GLOBAL_STYLE}/global/js/admin.js"></script>
+
+    <script type="text/javascript">
+        //裁剪图片
+        function showCoords(obj) {
+            $("#x").val(obj.x); $("#y").val(obj.y); $("#w").val(obj.w); $("#h").val(obj.h);
+            if (parseInt(obj.w) > 0) {
+                var rx = $("#w160").width() / obj.w;
+                var ry = $("#w160").height() / obj.h;
+                $("#crop_preview").css({
+                    width: Math.round(rx * $("#xuwanting").width()) + "px",
+                    height: Math.round(rx * $("#xuwanting").height()) + "px",
+                    marginLeft: "-" + Math.round(rx * obj.x) + "px",
+                    marginTop: "-" + Math.round(ry * obj.y) + "px"
+                });
+                var rx2 = $("#w80").width() / obj.w;
+                var ry2 = $("#w80").height() / obj.h;
+                $("#crop_preview2").css({
+                    width: Math.round(rx2 * $("#xuwanting").width()) + "px",
+                    height: Math.round(rx2 * $("#xuwanting").height()) + "px",
+                    marginLeft: "-" + Math.round(rx2 * obj.x) + "px",
+                    marginTop: "-" + Math.round(ry2 * obj.y) + "px"
+                });
+                var rx3 = $("#w30").width() / obj.w;
+                var ry3 = $("#w30").height() / obj.h;
+                $("#crop_preview3").css({
+                    width: Math.round(rx3 * $("#xuwanting").width()) + "px",
+                    height: Math.round(rx3 * $("#xuwanting").height()) + "px",
+                    marginLeft: "-" + Math.round(rx3 * obj.x) + "px",
+                    marginTop: "-" + Math.round(ry3 * obj.y) + "px"
+                });
+            }
+        }
+        //上传文件
+        $(function () {
+            $('#file_upload').uploadify({
+                'auto': true,
+                'removeTimeout': 1,
+                'removeCompleted': true,
+                'progressData': 'speed',
+                'swf': '{G_TEMPLATES_STYLE}/js/uploadify.swf',
+                'uploader': '{WEB_PATH}/member/home/userphotoup',
+                'method': 'post',
+                'buttonText': '{wc:fun:lan("selectpicture","选择图片")}',
+                'buttonImage': '{G_TEMPLATES_STYLE}/img/upload.gif',
+                'width': 94,
+                'height': 27,
+                'multi': true,
+                'uploadLimit': 5,
+                'fileTypeDesc': 'Image Files',
+                'fileTypeExts': '*.jpeg; *.jpg; *.png',
+                'fileSizeLimit': '20000KB',
+
+                'formData': {
+                    'typeCode': '{wc:fun:time()}',
+                    'uid': '{wc:$uid}',
+                    'ushell': '{wc:$ushell}'
+                },
+                'onSelect': function () {
+                    var hide = $("#divImgTip").css("display");
+                    if (hide == "none") {
+                        $(".pic #xuwanting,.pic .jcrop-holder").remove();
+                        $("#divImgTip").show();
+                    }
+                },
+                'onUploadSuccess': function (file, data, response) {
+                    data = data.replace(/^(\s|\xA0)+|(\s|\xA0)+$/g, '');
+                    $(".photo ul li").remove();
+                    $("#divImgTip").hide();
+                    $(".pic").append(SetImgContent(data));
+                    $(".photo ul").append(SetImgphoto(data));
+                    $("#membimg").val(data);
+                    $("#xuwanting").Jcrop({
+                        aspectRatio: 1,
+                        setSelect: [160, 160, 0, 0],
+                        onChange: showCoords,
+                        onSelect: showCoords
+                    });
+                }
+            });
+        });
+        //显示上传的图片
+        function SetImgContent(data) {
+
+            if (data == '') {
+                toast('{wc:fun:lan("uploadfailed","上传失败！")}', 'error');
+                return;
+            } else {
+                var sLi = "";
+                sLi += '<img  id="xuwanting" src="{G_UPLOAD_PATH}/' + data + '">';
+                return sLi;
+            }
+        }
+        function SetImgphoto(data) {
+            if (data == '') {
+                return;
+            } else {
+                var sLi160 = "";
+                sLi160 += '<li class="li160"><div class="w160"><div id="w160">';
+                sLi160 += '<img id="crop_preview" src="{G_UPLOAD_PATH}/' + data + '">';
+                sLi160 += '</div></div>160X160 {wc:fun:lan("pixel","像素")}</li>';
+                sLi160 += '<li class="li80"><div class="w80"><div id="w80">';
+                sLi160 += '<img id="crop_preview2" src="{G_UPLOAD_PATH}/' + data + '">';
+                sLi160 += '</div></div>80X80 {wc:fun:lan("pixel","像素")}</li>';
+                sLi160 += '<li class="li30"><div class="w30"><div id="w30">';
+                sLi160 += '<img id="crop_preview3" src="{G_UPLOAD_PATH}/' + data + '">';
+                sLi160 += '</div></div>30X30 {wc:fun:lan("pixel","像素")}</li>';
+                return sLi160;
+            }
+        }
+    </script>
+
+    <style>
+        #file_upload {
+            float: left;
+            height: 28px;
+            position: absolute;
+            left: 1px;
+            0 top: 1px;
+            opacity: 0;
+        }
+
+        #file_upload-queue {
+            display: block;
+            margin: 30px 0 0 0;
+        }
+
+        /*#file_upload[type="file"] {*/
+        /*    font-size: 0;*/
+        /*}*/
+        .upload {
+            position: relative;
+        }
+
+
+        .inputdiv {
+            width: 100px;
+            background: #ead838;
+            color: #fff;
+            height: 25px;
+            border: 1px solid #ccc;
+
+            margin: 5px 0;
+            display: flex;
+            align-items: center;
+            text-indent: 10px;
+        }
+
+        .width130 {
+            width: 200px;
+            height:200px;
+            border: 1px solid #ccc;
+            
+        }
+        .upLeft{
+            margin-top: 50px;
+        }
+        
+        .uploadAvater{
+            width: 200px;
+            height: 200px;
+            border: 1px solid #ccc;
+            position: relative;
+        }
+        .uploadAvater input{
+            width: 200px;
+            height: 200px;
+            /*display: none;*/
+        }
+        .uploadAvater img{
+            width: 200px;
+            height: 200px;
+            /*display: none;*/
+            position: absolute;
+            top: 1px;
+            left: 1px;
+        }
+        
+    </style>
+    <div class="R-content">
+        {wc:templates "member","shezhi"}
+        <div id="urlxx"></div>
+        <div class="uploadCon" style="margin-top:20px;">
+            <div class="upLeft">
+                <!--<div class="gray02">{wc:fun:lan("imageupload","支持 png, jpg, jpeg 图片上传")}</div>-->
+                <!--<div class="upload" style="float:left; width:300px;">-->
+                <!--    <input type="file" name="file_upload" id="file_upload" multiple="true" />-->
+                <!--    <div class="inputdiv">{wc:fun:lan("Click_Upload","点击上传")}</div>-->
+                <!--</div>-->
+                <!--<div class="frameCut">-->
+                <!--    <div class="zhix"></div>-->
+                <!--    <div id="divImgTip" class="text">-->
+                        <!--<img id="imagePreview" src="" width="300" height="300" alt="Image preview">-->
+                <!--        {wc:fun:lan("selectlocal","选择一张本地的图片编辑后上传成为头像")}-->
+                <!--    </div>-->
+                <!--    <div class="pic">-->
+                <!--    </div>-->
+                <!--</div>-->
+                <!--<span class="tishi gray02">{wc:fun:lan("clickdrag","点击图片并拉动以选择需要裁剪的区域")}</span>-->
+                <!--<div class="savePhoto">-->
+                <!--    <form action="{wc:WEB_PATH}/member/home/userphotoinsert" method="post" id="crop_form">-->
+                <!--        <input type="hidden" id="x" name="x" />-->
+                <!--        <input type="hidden" id="y" name="y" />-->
+                <!--        <input type="hidden" id="w" name="w" />-->
+                <!--        <input type="hidden" id="h" name="h" />-->
+                <!--        <input type="hidden" id="membimg" name="img" />-->
+                <!--        <input id="crop_submit" style="width:110px;background:#ead838;border:1px solid #ead838"-->
+                <!--            type="submit" name="submit" class="bluebut" value="{wc:fun:lan('saveavatar','保存头像')}"-->
+                <!--            title="保存头像" />-->
+                <!--    </form>-->
+                <!--</div>-->
+                
+                <div class="layui-row">
+                    <div class="layui-col-md1 height200">
+                        <div class="layui-upload-list height200">
+                            <div class="layui-bottom-img">
+                                <span>+</span>
+                                <text>{wc:fun:lan("Click_Upload","点击上传")}</text>
+                            </div>
+                            <img class="layui-upload-img" width="200" height="200" src="{G_UPLOAD_PATH}/{wc:$member['img']}" id="upusertx-img">
+                                <!--dataimg="{wc:$member['img']}"-->
+                            <input type="hidden" id="upusertx-lack" width="200" height="200" name="upimage" value="{G_UPLOAD_PATH}/{wc:$member['img']}">
+                            <p id="demoText"></p>
+                            
+                            <button type="button" class="uploadAvater" onclick="uploadimg1('修改用户头像','#upusertx','','touimg')"></button>
+                        </div>
+                    </div>
+                </div>
+                <!--<input type="file" id="imageInput" accept="image/*">-->
+                <!--<div class="uploadAvater">-->
+                    
+                <!--    <img id="imagePreview" src="" alt="Image preview" style="display:none;">-->
+                <!--</div>-->
+                
+                 <input id="crop_submit" style="width:110px;background:#ead838;border:1px solid #ead838;margin-top:80px"
+                            type="submit" name="submit" class="bluebut" value="{wc:fun:lan('saveavatar','保存头像')}"
+                            title="保存头像" />
+            </div>
+            
+        </div>
+    </div>
+
+
+</div>
+
+
+
+<script type="text/javascript">
+    function upImage() {
+        return document.getElementById('imgfield').click();
+    }
+    let img=""
+     document.getElementById('upusertx-img').onload = function(e) {
+          console.log(1,$("#upusertx-lack").val());
+          img=$("#upusertx-lack").val()
+        };
+        
+        
+        $(document).on('click', '#crop_submit', function () {
+            $.post("{WEB_PATH}/member/home/userphotoinserts", { img:img,submit:1 }, function (e) {
+                var data = JSON.parse(e);
+            if (data.code == 200) {
+                location.reload(true);
+                 console.log(data);
+            }
+            });
+        });
+
+    $(".yu_ff").mouseover(function () {
+        $(".h_1yyg_eject").show();
+    })
+    $(".yu_ff").mouseout(function () {
+        $(".h_1yyg_eject").hide();
+    })
+
+    $("#m_all_sort").hide();
+    $(".m_menu_all").mouseenter(function () {
+        $(".m_all_sort").show();
+    })
+    $(".m_menu_all").mouseleave(function () {
+        $(".m_all_sort").hide();
+    })
+    $(".m_all_sort").mouseenter(function () {
+        $(this).show();
+    })
+    $(".m_all_sort").mouseleave(function () {
+        $(this).hide();
+    })
+    $(function () {
+        $(window).scroll(function () {
+
+            if ($(window).scrollTop() >= 130 && $(window).scrollTop() <= 560) {
+                $(".head_nav").addClass("fixedNav");
+                $("#m_all_sort").fadeOut();
+            } else if ($(window).scrollTop() > 560) {
+                $(".head_nav").addClass("fixedNav");
+                $("#m_all_sort").fadeOut();
+            } else if ($(window).scrollTop() < 130) {
+                $(".head_nav").removeClass("fixedNav");
+            }
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(".yu_ff").mouseover(function () {
+        $(".h_1yyg_eject").show();
+    })
+    $(".yu_ff").mouseout(function () {
+        $(".h_1yyg_eject").hide();
+    })
+
+    $("#m_all_sort").hide();
+    $(".m_menu_all").mouseenter(function () {
+        $(".m_all_sort").show();
+    })
+    $(".m_menu_all").mouseleave(function () {
+        $(".m_all_sort").hide();
+    })
+    $(".m_all_sort").mouseenter(function () {
+        $(this).show();
+    })
+    $(".m_all_sort").mouseleave(function () {
+        $(this).hide();
+    })
+    $(function () {
+        $(window).scroll(function () {
+
+            if ($(window).scrollTop() >= 130 && $(window).scrollTop() <= 560) {
+                $(".head_nav").addClass("fixedNav");
+                $("#m_all_sort").fadeOut();
+            } else if ($(window).scrollTop() > 560) {
+                $(".head_nav").addClass("fixedNav");
+                $("#m_all_sort").fadeOut();
+            } else if ($(window).scrollTop() < 130) {
+                $(".head_nav").removeClass("fixedNav");
+            }
+        });
+    });
+</script>
+{wc:templates "index","footer"}

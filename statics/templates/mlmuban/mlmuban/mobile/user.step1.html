@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+<title>找回密码 - {wc:$webname}</title>
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<link href="{G_TEMPLATES_CSS}/mobile/comm.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">var pageConfig={baseURL:'',memberId:'',ossURL:'http://images.muwall.com/'};</script>
+<link rel="stylesheet" href="{G_TEMPLATES_JS}/layui/css/layui.css">
+<script src="{G_TEMPLATES_JS}/mobile/jquery190.js" language="javascript" type="text/javascript"></script>
+<script src="{G_TEMPLATES_JS}/layui/layui.js" language="javascript" type="text/javascript"></script>
+<script src="{G_TEMPLATES_JS}/base.js" language="javascript" type="text/javascript"></script>
+<script src="{G_TEMPLATES_JS}/mobile/base.js" language="javascript" type="text/javascript"></script>
+<link rel="stylesheet" href="{G_TEMPLATES_CSS}/mobile/login.css">
+<script src="{G_TEMPLATES_JS}/mobile/gt.js" language="javascript" type="text/javascript"></script>
+<style>
+li.btn-return a,.orange,.Progress-bar .Pro-bar-li li.P-bar01 em,.Progress-bar .Pro-bar-li li.P-bar03 em{
+    color: {THEME_COLOR};
+}
+.getCode,a.orgBtn,.u-progress .pging,.haveNot .guangguang,#addAll,#addAll p{
+    background: {THEME_COLOR};
+}
+li.btn-return a {
+    border:1px solid {THEME_COLOR};
+}#addAll {box-shadow: 0 0 15px {THEME_COLOR};}
+</style>
+</head>
+<body>
+<!-- 弹出层 -->
+<div id="pageDialogBG" class="pageDialogBG" style="display:none;"></div>
+<div id="pageDialog_confirm" class="pageDialog" style="width:255px;height:126px;position:fixed;z-index:9999;left:50%;top:50%;transform:translate(-50%, -50%);display:none;">
+	<div class="clearfix m-round u-tipsEject">
+		<div class="u-tips-txt"></div>
+		<div class="u-Btn"></div>
+	</div>
+</div>
+<div class="h5-1yyg-v11">
+<form class="layui-form">
+        <div class="registerCon">
+            <ul>
+                <li class="title">找回密码</li>
+                <li class="acc">
+                    <label for="txtAccount">账号</label>
+                    <input type="tel" id="phone" name="phone" placeholder="手机" class="lEmail">
+                </li>
+				<li class='Lcodes'>
+				    <div id="embed-captcha"></div>
+					<p id="wait" class="show"></p>
+				</li>
+                <li class="code" style="display: block;">
+                    <input type="text" id="validCode" name="validCode" placeholder="请输入验证码" class="lcode">
+                    <button id="couter" class="getCode" type="button">获取验证码</button>
+                </li>
+                <li class="code" style="display: block;">
+                    <label for="txtPassword">密码</label>
+                    <input type="password" id="pwd" name="pwd" placeholder="请输入密码" class="lPwd">
+                    <a href="javascript:;">
+                    	<em id="toggle_psw" class="psw_type"></em>
+                    </a>
+                </li>
+                <li class="btn-login">
+                    <div id="save" class="layui-btn layui-btn-danger" style="width: 100%;font-size:18px;background: {THEME_COLOR}" lay-submit lay-filter="save">提交</div>
+                </li>
+                <li class="btn-return">
+                    <a href="{WEB_PATH}/mobile/user/login">又想起来了</a>
+                </li>
+            </ul>
+        </div>
+    </form>
+  {wc:templates "mobile/index","footer"}
+  <script language="javascript" type="text/javascript">
+        var Path = new Object();
+        Path.Skin = "{G_TEMPLATES_STYLE}";
+        Path.Webpath = "{WEB_PATH}";
+        Path.imgpath = "{G_WEB_PATH}/statics";
+
+        var Base = {
+            head: document.getElementsByTagName("head")[0] || document.documentElement,
+            Myload: function(B, A) {
+                this.done = false;
+                B.onload = B.onreadystatechange = function() {
+                    if (!this.done && (!this.readyState || this.readyState === "loaded" || this.readyState === "complete")) {
+                        this.done = true;
+                        A();
+                        B.onload = B.onreadystatechange = null;
+                        if (this.head && B.parentNode) {
+                            this.head.removeChild(B)
+                        }
+                    }
+                }
+            },
+            getScript: function(A, C) {
+                var B = function() {};
+                if (C != undefined) {
+                    B = C
+                }
+                var D = document.createElement("script");
+                D.setAttribute("language", "javascript");
+                D.setAttribute("type", "text/javascript");
+                D.setAttribute("src", A);
+                this.head.appendChild(D);
+                this.Myload(D, B)
+            },
+            getStyle: function(A, B) {
+                var B = function() {};
+                if (callBack != undefined) {
+                    B = callBack
+                }
+                var C = document.createElement("link");
+                C.setAttribute("type", "text/css");
+                C.setAttribute("rel", "stylesheet");
+                C.setAttribute("href", A);
+                this.head.appendChild(C);
+                this.Myload(C, B)
+            }
+        }
+
+        function GetVerNum() {
+            var D = new Date();
+            return D.getFullYear().toString().substring(2, 4) + '.' + (D.getMonth() + 1) + '.' + D.getDate() + '.' + D.getHours() + '.' + (D.getMinutes() < 10 ? '0' : D.getMinutes().toString().substring(0, 1))
+        }
+        Base.getScript('{G_TEMPLATES_JS}/mobile/Bottom.js?v=' + GetVerNum());
+        </script>
+</div>
+  <script type="text/javascript" src="{G_TEMPLATES_JS}/mobile/find_pass.js"></script>
+	<script type="text/javascript">
+		$(function(){	 
+			$(document).keydown(function(e) {
+				if (e.keyCode == 13) {
+	  				$("#save").click();
+				}
+			});
+		});
+	</script>
+<script type="text/javascript">
+		$(function(){	 
+			$(document).keydown(function(e) {
+				if (e.keyCode == 13) {
+	  				$("#login").click();
+				}
+			});
+		});
+	</script>
+
+  <script>
+    var handlerEmbed = function (captchaObj) {
+        $("#embed-submit").click(function (e) {
+            var validate = captchaObj.getValidate();
+            if (!validate) {
+                $("#notice")[0].className = "show";
+                setTimeout(function () {
+                    $("#notice")[0].className = "hide";
+                }, 2000);
+                e.preventDefault(); 
+            }
+        });
+        // 将验证码加到id为captcha的元素里，同时会有三个input的值：geetest_challenge, geetest_validate, geetest_seccode
+        captchaObj.appendTo("#embed-captcha");
+        captchaObj.onReady(function () {
+            $("#wait")[0].className = "hide";
+        });
+        // 更多接口参考：http://www.geetest.com/install/sections/idx-client-sdk.html
+    };
+    $.ajax({
+        // 获取id，challenge，success（是否启用failback）
+        url: "{WEB_PATH}/mobile/ajax/StartCaptchaServlet/t=" + (new Date()).getTime(), // 加随机数防止缓存
+        type: "get",
+        dataType: "json",
+        success: function (data) {
+            // 使用initGeetest接口
+            // 参数1：配置参数
+            // 参数2：回调，回调的第一个参数验证码对象，之后可以使用它做appendTo之类的事件
+            initGeetest({
+                gt: data.gt,
+                challenge: data.challenge,
+                new_captcha: data.new_captcha,
+                product: "embed", // 产品形式，包括：float，embed，popup。注意只对PC版验证码有效
+                offline: !data.success // 表示用户后台检测极验服务器是否宕机，一般不需要关注
+                // 更多配置参数请参见：http://www.geetest.com/install/sections/idx-client-sdk.html#config
+            }, handlerEmbed);
+        }
+    });
+</script>
+</body>
+</html>

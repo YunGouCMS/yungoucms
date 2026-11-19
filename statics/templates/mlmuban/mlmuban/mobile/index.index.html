@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="renderer" content="webkit">
+    <title>{wc:$webname}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<link href="{G_TEMPLATES_CSS}/comm.css" rel="stylesheet" type="text/css" />
+<link href="{G_TEMPLATES_CSS}/goods.css" rel="stylesheet" type="text/css" />
+<link href="{G_TEMPLATES_CSS}/index.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="{G_TEMPLATES_CSS}/animate.css">
+<link rel="stylesheet" href="{G_TEMPLATES_CSS}/style.css">
+<link rel="stylesheet" href="{G_TEMPLATES_CSS}/swiper.min.css">
+<link href="{G_TEMPLATES_CSS}/main.css" rel="stylesheet" type="text/css">
+<script src="{G_TEMPLATES_JS}/mobile/jquery190.js" language="javascript" type="text/javascript"></script>
+<script src="{G_TEMPLATES_JS}/js/js.cookie.js"></script>
+<script src="{G_TEMPLATES_JS}/mobile/lodash.js"></script>
+<script src="{G_TEMPLATES_JS}/js/response.js"></script>
+<script src="{G_TEMPLATES_JS}/js/swiper.min.js"></script>
+<script src="{G_TEMPLATES_JS}/mobile/countdown.js"></script>
+<script src="{G_TEMPLATES_JS}/js/simpop.min.js"></script>
+<script src="{G_TEMPLATES_JS}/js/jquery.lazyload.min.js"></script>
+<script src="{G_TEMPLATES_JS}/js/jquery.marquee.min.js"></script>
+<script src="{G_TEMPLATES_JS}/layer_mobile/layer.js"></script>
+<script language="javascript" type="text/javascript" src="{G_TEMPLATES_JS}/js/pageDialog.js"></script>
+<script id="pageJS" data="{G_TEMPLATES_JS}/mobile/Index.js" language="javascript" type="text/javascript"></script>
+<script>
+var DuoBao = {};
+var __data__ = (function(){
+  return JSON.parse('{}');
+})();
+var __user__ = (function(){
+  return JSON.parse('{}');
+})();
+var __touchorclick__ = (function(){
+  if ('ontouchend' in document)
+    return 'touchend';
+  else
+    return 'click';
+})();
+</script>
+<style>
+  .star {
+    width: 28px;
+    height: 23px;
+    left: 3px;
+    background-image: url(../../statics/templates/mlmuban/images/mobile/star.png);
+    background-size: 100% 100%;
+    top: 5px;
+    cursor: pointer;
+}
+  .star.current {
+    background-image: url(../../statics/templates/mlmuban/images/mobile/stars.png);
+}
+p.close{
+    position: static;
+    margin-top: 15px;
+}
+.tips{
+    width: 80vmin;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#divLottery .u-time em,.m-lott-li li .z-user{color: {THEME_COLOR}}
+</style>
+    
+  <!-- Facebook Pixel Code -->
+<!-- <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '421100112316713');
+  fbq('track', 'PageView');
+</script> -->
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=421100112316713&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
+</head>
+  <body>
+    <div class='bg_popup'>
+        <div class='img_popup'>
+            <img src='' />
+        </div>
+        <div class='url_save'>
+            <img src='' />
+        </div>
+        <div class='tips'>
+            <img src='' />
+            <p class="close">×</p>
+        </div>
+    </div>
+
+<div class="container">
+    <style>
+.appHeader{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    left: 0;
+    height: 44px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    padding: 0 10px;
+    color: white;
+    z-index: 1999;
+}
+.t_btn{
+    width:10.667vmin;
+    font-size:16px;
+    /*height:20px;*/
+}
+.t_btn img{
+    height:16px;
+    width:auto;
+}
+.mid-title{
+    /*width: 21.333vmin;*/
+    width: 25vmin;
+    font-size: 16px;
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+  background:url('{G_WEB_PATH}/logo.png') center no-repeat;
+    background-size:contain;
+}
+.mid-title img{width: 13vmin;}
+      .tap{
+          display: none;
+      	width: 65px;
+        height: 65px;
+        z-index: 1000;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-image: url(../../statics/templates/teyunbao/images/mobile/tap.png);
+        background-size: 100%;
+      }
+      a.add {
+          border-radius: 50%;
+      }
+.appHeader,.bg-top,.jdt>span,.swiper-pagination-bullet-active,.u-progress .pging,.pBtn a.buyBtn,.btn_default,#btnCart em {background: {THEME_COLOR};}
+.btn_buy {border: .267vmin solid {THEME_COLOR};}
+.btn_buy,#anMarquee,.orange,.Progress-bar .Pro-bar-li li.P-bar01 em,.Progress-bar .Pro-bar-li li.P-bar03 em ,li.current a,.pt_left dd.current a,#divGoodsNav >.current>a,.P-bar01,.P-bar03{color: {THEME_COLOR};}
+.swiper-pagination-bullet,a.add{border: 1px solid {THEME_COLOR};}
+.swiper {margin: 0 15px;border-radius: 10px;}
+.pt_left dd.current a {border-left: .533vmin solid {THEME_COLOR};}
+#divGoodsNav >.current>a {
+    border-bottom: 3px solid {THEME_COLOR};
+}
+.hf {margin-top:0;padding-top: 54px;}
+.headtop {
+    position: fixed;
+    width: 100%;
+    display: flex;
+    padding: 7px 15px;
+    z-index: 10000;
+    background: {THEME_COLOR};
+}
+.headtop > img {
+    width: 29px;
+    height: 29px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+.headtop > div {
+     display: flex;
+     background: #fff;
+     width: 100%;
+    margin-left: 15px;
+    border-radius: 35px;
+    align-items: center;
+    padding: 2px 2px 2px 10px;
+    height: 30px;
+    justify-content: space-between;
+}
+.headtop > div > div.inpudiv {
+    display: flex;
+}
+.headtop > div > div.sousuo {
+    border-radius: 35px;
+    color: #fff;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    background: {THEME_COLOR};
+}
+.headtop > div img {
+    width: 20px;
+    height: 20px;
+}
+.headtop:before {
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAIgSURBVHja7NtNa9RQFAbgp8Uf4H/wf7hVEXThVhEXgq5cVHQlCILu/Fq6KoIgoogotn5URay0Fa2oVcFpB1vRcVOwU2tLxXExEYpImXYmmSTHdx/OnCc3ubm5mZ6hjZsaypUlfMEMplHFR3xCDbOYwwKWN5Sg4Uk8wwjGUUka/dXKwUUE+IanuIvHmEjO+rpSFIAFPMRV3E+Gc0eSd4A3uJQ0XkmjQF4BBnEBt7CcZqG8AVzDWTzJqmBeAG7jJIazLtxtgJc4jhvd+gHdAqgnZ/xMO1NYUQEG0Ye3ebj2ejOs9QOHsC0vzWc5AsaxH8/zNt9mMQL6sTmPzWcBcBj7MJ/XR820LoE69uJ63hcZaQB8xq5keSoawCR25OkunyVABVsTBNEAqtiCKQVLJ2aBGrYXsflOANSxE+8UNO0C7MGYAqcdgL5uLmO7DXARp5Ug6wF4jYNKkrUCLGK35mvqkABH8UqJshaAIZxXsrQK8B0HlDCtApyQ0s5MEQAmyjLlrRfgiJS3p/IMcE9z10ZEgAaOKXlWA7iJ0cgApwRI7yoPPSORAc4Jkn8BvMdAZIB+/IwKsIjLAuVvgAeaX1WGBbgiWFYCzONOZIBhzU2OsAADAqZ3xcLnUWSAqgJtaacBMKbELz1aARgVNH8AXkQGWMKHyAA1fI0MMK3FPxiVGUBkgKnoADP/AYID1KIDzEYHmIsOsBAZoKfRaETu3+8BAJt2e7BtnTL9AAAAAElFTkSuQmCC);
+    left: 0;
+}
+.headtop:after {
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAIHSURBVHja7NrNi01xGAfwz51oyoLJihqkmR0bSk1CKWaSBckOCztWFkQWVhZsKP4CWUlJUl7SyIIayktkKGNklK6NZBjGyLW4v1PTZFaTzPjOt87udrt9uuf3PM95Tq23raOGuZiH+ViIRWjHMizHUizBYrT6jzIHDfwo1ycMTfLZlgLTiVXowhp0zGSAWm/blH5/K1ZgA7qxFguSACamHZuwExvLbRUFMD6dBWIXVk5XgJa/+N0DOInV2IEbaQBVxnAZW7Ael9IAxuduuS3W4VoiQJV72IrteJIIUOVK6SeOYjgRAEbLYdn1Lw7K6QBQpb8clAfwLRGgytlSLR6nAsDD0l6fSwWAL9iLQ6kAVU6VTnI4FUDpJLvxPhUA+rAZr1MBqlLZUwatSADlH9CDN6kAMFhmiXoqALzAtqlWh5kMAA+wJxmgmigPJgPAaZxPBoD9eJYMMILd+J4KAE9xJBmgep7QmwwA+/A1GWAAx5MBqtL4PBlgDIeTAWhun24lA8AxzZdAYgHu42oyAJxIB+ibrDlKAYAz6QDX8TIZ4Kc/rNqSAODCxHE5DeAtbicDwMV0gJuam+dYgLrmS1qxAFVJjAa4Uw1IqQD9ynI1FWBMc60WC1CNydEAj9IBXmE0GeAD6skAvzCUDGAWgMF0gHezAOEA9XSAj+kAn9MBRmqNRiNa4PcARrZpuclzArgAAAAASUVORK5CYII=);
+    right: 0;
+}
+.headtop:before, .headtop:after {
+    content: "";
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    top: 44px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+.gonggao {margin-top:2vmin;}
+.g-main {margin: 15px 15px 0;border: 0;background: url(/statics/templates/mlmuban/images/img_lucky_home_newest_bg.png) no-repeat;
+    background-size: 100%;display:flex;height: 150px;}
+.clearfix {margin-top:10px;overflow: scroll;}
+.clearfix li {background: #fff;border: 0;}
+.m-tt1 a {color: #fff;
+    border-radius: 15px;
+    height: 25px;
+    font-size: 12px;
+    line-height: 25px;
+    text-align: center;
+    margin: 0 10px;
+    padding: 0;background: {THEME_COLOR};}
+.m-tt1 {width:100px;background:rgba(0,0,0,0);display: flex;
+    align-items: end;
+    margin-bottom: 42px;
+    border: 0;}
+.m-lott-li {width:calc(100% - 100px);}
+.m-lott-li li {min-width:93px;border-radius:5px;margin-right:10px;height:auto;}
+</style>
+<script>
+    $('.appHeader .mid-title').click(function(){
+        location.href="/"
+    })
+    $('.t_btn:first-child').click(function(){
+        history.back();
+    })
+</script>
+    <main class="db-main db-main-index">
+    <!-- 焦点图 -->
+    <div class="container-top">
+    <!--<div class="bg-top"></div>-->
+    <div class="headtop">
+        <img src="https://qh.huggfe.cn/statics/uploads/touimg/20250321/79745050547507.png" onclick="window.location.href='/mobile/home'">
+        <div onclick="window.location.href='/mobile/mobile/search'">
+            <div class="inpudiv">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADQElEQVRYR+2WSWjUYBiG3y/TVnsQEURcUBAPIrhTq3QyY7NNFfUkFNwQEVEED3UBi+CGoAiFKhSXg+ihCtVTW4Uxk8TpJK1gBXGDKnpQUBBRcMGqbT5J6cjozPRPldqL//X93/d78v1bCKM8aJTrIxSAme5cRP39Sxg0F0AlgKUAPBC62Of7fnnk+oqqqnd/8jFCANPKHAPRHgBjQXgNRieAFwyKEjiAAZieksRHdEVuHi7EkACmlXkMojkAboFQbyjy7dwCHR3dU3q/fVlPEp0AUAKg2VDljcOBKAqQctxWZqwBodFQ5LqhQpOeN4m+cisBS5n9LQktfjEsREGApOWulAg3mLk2ocWuhg0zHe8amNeOKRk7NR6veB3GlwdgmuZ4ipRbTOgyFHlXmJDsnGBJvvb1vgL4gqHGtobx5gEkU+5mScKZskjZ7OXLK1+GCcmdk7QyhyWiQ+TzbF2PPRH58wBSltcIYkVX5QUicyHdtDtWAVI7s7Q+oVVdEWXkA9hemsFvDVVeKzIX0ltaWsomTJz6mZhO6Vp0rygjfw/Y7kefuaFGix0WmYvppu06gWaosiLKKATwgJkfJrTYOpG5kN7d3V36/kPvZ2Jc0jV5mygjD+Cm7Z4lRqWhyYtF5kK6ZXmqT2yBud7QYsEFNeTIB3DcHcRoIJ/n6XrsuSjgdz17CgBsMFT5ssifvwTpzkXo9zuJqE1XorWigFzdcZzJfVwaHN1PTKQklOg9kb/gTTj4AB0AaLWhRq+LQrK6aXvtAK8Co87Q5MYwvqJvQfYh8sEVNWrsrigsZXs7GdxEhLYIptUqysxekSfQh34N7UwKIA2g8yThol4d7coNTabT0yN+JMGMegCzBgMfoaSkVo8ve/zXAEHATSuziYiaAIwD8AbAHQY/I1AcwMLBIt9BaCLGOwaOEhAaQvhDEhRIddyej77v1T7TEpKoAswzwOhhcA8DPeWl5eeyr59pu/sAnAwLEQogTCtz55iWtwvEp8NAjAjAwNI57nZinBVBjBhAABGmEyMKMLB/bG83gxuKdWLEAQY64WT2g+l4AKGrcvBr/3P8E4CBPWG7Bwk4YqjyLzX/GUCxk/Qf4H8HfgCJR0Aw0lQQfwAAAABJRU5ErkJggg==">
+                apple
+            </div>
+            <div class="sousuo">搜索</div>
+        </div>
+    </div>
+    <ul class="hf">
+        {wc:loop $shop_ad $ad}
+        {wc:if $ad['type'] == 1 && $ad['status'] ==1}
+        <li> <a href="{wc:$ad['link']}">
+          <img src="{G_UPLOAD_PATH}/{wc:$ad['img']}"/>
+          <font>{wc:$ad['title']}</font>
+          </a> </li>
+        {wc:if:end}
+        {wc:loop:end}
+    </ul>
+    <div class="swiper">
+    <div class="swiper-container swiper1">
+      <div class="swiper-wrapper">
+        {wc:loop $shop_ad $ads}
+        {wc:if $ads['type'] == 0}
+               <div class="swiper-slide">
+          <a href="{wc:$ads['link']}">
+            <img alt="{wc:$ads['title']}" src="{G_UPLOAD_PATH}/{wc:$ads['img']}">
+          </a>
+        </div>
+        {wc:if:end}
+        {wc:loop:end}
+          
+      </div>
+      <div class="swiper-pagination swp1"></div>
+    </div>
+    </div>
+    <script> 
+    $(function(){
+		var mySwiper = new Swiper('.swiper1', {
+			pagination:{
+				el:'.swp1'
+			},
+			speed:600,
+			loop:true,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+// 			effect : 'coverflow',
+// 			coverflowEffect: {
+// 				rotate: 0,
+// 				stretch: -30,
+// 				depth: 200,
+// 				modifier: 2,
+// 				slideShadows : false
+// 			},  
+			
+		})
+	})
+    
+    </script>
+    </div>
+    <!-- 公告轮播 -->
+   <div class='gonggao'>
+       <div class='laba'></div>
+        
+       <div id='anMarquee' >    【{wc:$webname}】公告：{wc:$banner}</div>
+   </div>
+
+<!-- 最新揭晓 -->
+    <section class="g-main">
+        <div class="m-tt1">
+            <!--<h2 class="fl"></h2>-->
+            <a class="m-tt1" href="{WEB_PATH}/mobile/mobile/lottery">最新开盒</a>
+            <!--<div class="fr u-more">-->
+            <!--    <a href="{WEB_PATH}/mobile/mobile/lottery" class="u-rs-m1"><b class="z-arrow"></b></a>-->
+            <!--</div>-->
+        </div>
+        <article class="h5-1yyg-w310 m-round m-lott-li" id="published">
+             <ul class="clearfix" id="divLottery">
+               {wc:loop $shopqishu $k $qishu}
+			   {wc:php:start}
+			   $qishu['q_user'] = unserialize($qishu['q_user']);
+			   $qishu['username']=empty($qishu['q_user']['username'])?$qishu['q_user']['mobile']:$qishu['q_user']['username'];
+			   $qishu['username'] = is_numeric($qishu['username'])?substr_replace($qishu['username'],'****',3,4):$qishu['username'];
+			   {wc:php:end}
+			   {wc:if $qishu['q_showtime']=='N'}
+               <li>
+                <a href="{WEB_PATH}/mobile/mobile/item/{wc:$qishu['id']}" class="u-lott-pic">
+                            <img src="{G_UPLOAD_PATH}/{wc:$qishu['thumb']}" alt="" border="0">
+                               
+                </a>
+                <p><em>获得者</em><span><a href="{WEB_PATH}/mobile/mobile/userindex/{wc:$qishu['q_uid']}" class="z-user">{wc:$qishu['username']}</a></span></p>
+            </li>
+            {wc:else}
+            {wc:if:end}
+            {wc:loop:end}
+            <!--<li><a href="/mobile/mobile/lottery">查看更多</a></li>-->
+            </ul>
+        </article>
+    </section>
+
+    <section class="g-main">
+        <div class="m-tt1">
+            <span class="m-tt1">即将揭晓</span>
+            <!-- <div>查看更多></div> -->
+        </div>
+        <article class="h5-1yyg-w310 m-round m-lott-li">
+            <ul class="clearfix" style='display: flex;width: max-content;' id="unveiled">
+                <li>
+                    <div class="u-lott-pic"><img src="" alt=""></div>
+                    <div class="z-user">
+                        <p>标题</p>
+                        <p>进度条</p>
+                        <p>剩余几人</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="u-lott-pic"><img src="" alt=""></div>
+                    <div class="z-user">
+                        <p>标题</p>
+                        <p>进度条</p>
+                        <p>剩余几人</p>
+                    </div>
+                </li>
+            </ul>
+        </article>
+    </section>
+    
+  <div class="tabs-wrap" style="min-height:1000px;">
+    <div id="fldh" class="zxjx" style="border-bottom: 1px solid rgb(220, 220, 220); position: relative;max-width: 640px;">
+   <!--     <dl style="overflow: auto;display:none;overflow: scroll;display: flex;width: 100%;padding-left: 10px;">-->
+   <!--         <dd class="a1" style="position: relative;padding: 10px;margin-right: 5px;width: auto;white-space: nowrap;"><a href="{WEB_PATH}/mobile/mobile/glist"><span style="font-size: 13px;font-weight: 700;">所有商品</span><img style="width:24px;    margin: 0 auto;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAOCAYAAABU4P48AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAALlSURBVHja1Ja/i11VFIW/7/g0KCQwEH+ANsY4QkBwKqexkCg62Bgs1FZMJ0xrESsJjNhpE7C0VbBQcYTRZgQRhYBkiqABCxEiGpImPIRZFveec899k38g9z3u3efc/fbeZ621N88k3E2Xt85vgayrO4GzFqC4B+xY/IkCKBQZbLAIOjyLcA/jGiil+VpG31KG35bq4x1sQR6geJ7im+qDFH5VPqT4Q5Ty2icsgHXgx4Q1CgQRzgGvBr4RPgZ2SQ5JAetRIYCEaV+G3Wo7xHPwHN46frorPAK8rbwTeLiLcSryCvCG5nOABbADrNGCBiKowBZhC/kT/AzylbgP3p4TlVaCcU4hjPG6Aw73J8QXgXPI88C9ycggA4NjhAVwifA1cHsBnB1TjeeyFTHkEvFRyDa4DSxJDsArkoPglQJ/BP4WbkWWwKFwQjgeckJYE9eBM8AZydMMMSFljnbNnVGKAxgn0U3g+8WETz15RnAr3pXmRuQxdIO4UTOlE4Md2ulwzgoUrRQ7fTXFWb8k1eA+Bhf2zERqU5cj4k1O6RaTbX/PZGf2bjp2ZkVn2rVneZDlBCFL5Oda8LsxN5oEKh2toHTWXJ1xKmWqNbCCOLM2dCa85hEgOYrw8LxI+KcWfBXYFHdb2znvmqGOsbRMaex4dq7AZmUF2bl3N1Wcs0NC4F/CNvB+9Suj91XIy8BzkC8Nh8SOTOmUMonCKgNmRNvhPB9hU/npm6sCYaqU/gLfAx5HPupTLFYS7YP7kVOSt8DXSU4PhTmN276D6iJDg3ik34/O4AlJ0XHPLEn5Vv0U+ALyXxOQE1KLFjgTeoZr6AXgAviM8BLyguFZ5Di1u9NB3kZnujlBw3kum9SJ/bvwXWBP3MXcbHK0UKqIA3HgetFCriLm0KnKZeCy4QO0AE8BG4EnIaeFx8SHgJOE+8VjwCJhKSzFmyHXpVwHrgG/iQfAL8CNdrxMxdWxmgAlM1l5t/35+X8AfrIojJhGQ88AAAAASUVORK5CYII="></a></dd>-->
+			
+			<!--{wc:getlist sql="select `cateid`,`name`,`pic_url` from `@#_category` where `model`='1' and `parentid` = '0' order by `order` desc"}-->
+			<!--{wc:loop $data $categoryx}-->
+			<!--<dd class="a1" style="padding: 10px 10px 15px;margin-right: 5px;width: auto;white-space: nowrap;"><a href="{WEB_PATH}/mobile/mobile/glist/{wc:$categoryx['cateid']}"><span style="font-size: 13px;">{wc:$categoryx['name']}</span></a></dd>-->
+			<!--{wc:loop:end}-->
+			<!--{wc:getlist:end}-->
+				
+   <!--     </dl>-->
+        <ul class="lbul" id="divGoodsNav">
+            <li class="fenlel" style="border-right: 1px solid #dcdcdc;" order="">
+                <a style="color: #999;" href="javascript:;"><span class="sh"><i></i><i style="margin-top: 3px;"></i><i style="margin-top: 3px;"></i></span><span style="font-weight:bold"><font color="#3A3A39">分类</font></span></a>
+                <div class="dl" style="display:none;background: #fffffc;">
+                    <dl style="overflow: auto;">
+                    <dd class="a1"><a href="{WEB_PATH}/mobile/mobile/glist"><p><img src="{G_TEMPLATES_IMAGE}/all.png"></p><span>所有商品</span></a></dd>
+					
+					{wc:getlist sql="select `cateid`,`name`,`pic_url` from `@#_category` where `model`='1' and `parentid` = '0' order by `order` desc"}
+					{wc:loop $data $categoryx}
+					<dd class="a1"><a href="{WEB_PATH}/mobile/mobile/glist/{wc:$categoryx['cateid']}"><p><img src="{G_UPLOAD_PATH}/{wc:$categoryx['pic_url']}"></p><span>{wc:$categoryx['name']}</span></a></dd>
+					{wc:loop:end}
+					{wc:getlist:end}
+					
+                    </dl>
+                    <div style="margin: 0 auto; width: 20px;margin: 0 auto;line-height:20px;box-sizing: border-box;">
+                        <img src="{G_TEMPLATES_IMAGE}/shang.png" style="width:20px; margin-top: 10px;padding: 10px 0;" id="shang">
+                    </div>
+                </div>
+            </li>
+             <li id="jiexiaos" class="current select" order="40">
+                <a href="javascript:;"><span style="font-weight:bold"><font color="#3A3A39">人气</font></span></a>
+            </li>
+            <li class="select" order="10">
+                <a href="javascript:;"><span style="font-weight:bold"><font color="#3A3A39">开盒</font></span></a>
+            </li>
+            <li class="select" order="20">
+                <a href="javascript:;"><span style="font-weight:bold"><font color="#3A3A39">最新</font></span></a>
+            </li>
+            <li class="">
+                <a href="{WEB_PATH}/mobile/mobile/search"><span class="sh"><i class="search"></i></span><span style="font-weight:bold"><font color="#3A3A39">搜索</font></span></a>
+            </li>
+
+        </ul>
+    </div>
+    <div class="tabs-content">
+      <ul class="ul" style="clear: both;">
+      
+      </ul>
+ 
+    <!--footer class="footer">
+        <a id="btnTop" href="javascript:;" class="z-top" style="display:none;"><b class="z-arrow"></b></a>
+    <a href='/mobile/mobile/glist' style='font-size:16px'>查看更多>></a>
+    </footer-->
+    </div>
+  </div>
+</main>
+ 
+</div>
+<script src="{G_TEMPLATES_JS}/mobile/main.js"></script>
+      <input id="urladdress" value="" type="hidden" />
+   <input id="pagenum" value="" type="hidden" />
+   <div class="loading2">
+    <img src='data:image/gif;base64,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'>
+    <em>正在加载</em>
+   </div>
+    {wc:templates "mobile/index","footer"}
+
+<script language="javascript" type="text/javascript">
+  var Path = new Object();
+   Path.Skin="{G_TEMPLATES_STYLE}";  
+  Path.Webpath = "{WEB_PATH}";
+  Path.path = "{WEB_PATH}";
+  Path.imgpath = "{G_UPLOAD_PATH}";
+  Path.submitcode = '';
+  
+var Base={head:document.getElementsByTagName("head")[0]||document.documentElement,Myload:function(B,A){this.done=false;B.onload=B.onreadystatechange=function(){if(!this.done&&(!this.readyState||this.readyState==="loaded"||this.readyState==="complete")){this.done=true;A();B.onload=B.onreadystatechange=null;if(this.head&&B.parentNode){this.head.removeChild(B)}}}},getScript:function(A,C){var B=function(){};if(C!=undefined){B=C}var D=document.createElement("script");D.setAttribute("language","javascript");D.setAttribute("type","text/javascript");D.setAttribute("src",A);this.head.appendChild(D);this.Myload(D,B)},getStyle:function(A,B){var B=function(){};if(callBack!=undefined){B=callBack}var C=document.createElement("link");C.setAttribute("type","text/css");C.setAttribute("rel","stylesheet");C.setAttribute("href",A);this.head.appendChild(C);this.Myload(C,B)}}
+function GetVerNum(){var D=new Date();return D.getFullYear().toString().substring(2,4)+'.'+(D.getMonth()+1)+'.'+D.getDate()+'.'+D.getHours()+'.'+(D.getMinutes()<10?'0':D.getMinutes().toString().substring(0,1))}
+Base.getScript('{G_TEMPLATES_JS}/mobile/Bottom.js?v=23324'+GetVerNum());
+</script>
+<script src="{G_TEMPLATES_JS}/js/pulltorefresh.js"></script>
+
+<script>
+    $(function(){
+        $(document).ajaxSend(function () {
+            $('.loading2').show();
+        }).ajaxComplete(function () {
+            setTimeout("$('.loading2').hide();",200);   
+        });
+    $('.hf li').on('click',function(){
+      var text=$(this).children().children('font').text();
+      if(text=="联系客服"){
+        showQR(0);         
+      }else if(text=="邀请好友"){
+        url_save();
+      }
+    });
+    })
+
+ </script>
+<style>
+#pageDialogBG{-webkit-border-radius:5px; width:255px;height:45px;color:#fff;font-size:16px;text-align:center;line-height:45px;}
+</style>
+<script type="text/javascript" src="{G_TEMPLATES_JS}/mobile/IndexQuFun.js"></script>
+<div id="pageDialogBG" class="pageDialogBG">
+    <div class="Prompt"></div>
+</div>
+
+
+<script type="text/javascript">
+    $(function(){
+    const ptr = PullToRefresh.init({
+      mainElement: 'main',
+      instructionsPullToRefresh: '下拉即可刷新...',
+      instructionsReleaseToRefresh: '释放即可刷新...',
+      instructionsRefreshing: '加载中',
+      onRefresh() {
+        window.location.reload();
+      }
+    });
+    
+    
+  /*
+        $('.gonggao').click(function(){
+                location.href='/mobile/mobile/notice';
+        })*/
+
+       /* if(0){
+      $('.bg_popup .tips > img')[0].src = '/statics/uploads/imgs/tips.png?v=1';
+            $('.bg_popup').show();
+            $('p.close').click(function(){
+                $('.bg_popup').hide();
+    $('.bg_popup .tips > img')[0].src = '';
+            })
+        }*/
+        var is_user='{wc:$member}'?'{wc:$member}':false;
+        url_save = function(){
+            if(is_user){
+				$.post("{WEB_PATH}/mobile/invite/mycode_new",function(s){
+					var sdata = JSON.parse(s)
+				    $('.url_save img')[0].src = JSON.parse(s).data;//分享二维码
+				    $('p.close').hide();
+				    $('.bg_popup').show();
+				    $('.bg_popup').click(function(){$(this).hide();$(this).children().children().attr('src','')});
+				}); 
+            }else{
+              layer.open({
+                content: '请登录'
+                ,skin: 'msg'
+                ,time: 2
+              });
+            }            
+        }
+        showQR = function(type){
+            var url1 = '{G_UPLOAD_PATH}/{wc:$web_gzwm}';//qq二维码
+            var url2 = '{G_UPLOAD_PATH}/{wc:$web_wxkfewm}';//微信二维码
+            var url3 = '';//
+            var imgurls = new Array();
+            imgurls[0] = url1;
+            imgurls[1] = url2;
+            imgurls[2] = url3;
+            $('.img_popup img')[0].src = imgurls[type];
+            $('p.close').hide();
+            $('.bg_popup').show();
+            $('.bg_popup').click(function(){$(this).hide();$(this).children().children().attr('src','')});
+        }
+        $('#anMarquee').marquee({duration: 10000});
+        $(".f_home").click(function(e){
+            e.preventDefault();
+        });
+        $(document).on("click",'.add1',function(){
+            var codeid=$(this).attr('codeid');
+            window.location.href="{WEB_PATH}/mobile/mobile/item/"+codeid; 
+        });
+        //添加到购物车
+        $(document).on("click",'.add',function(){
+      $.ajaxSetup({ global: false });
+            var codeid=$(this).attr('codeid');
+            $.getJSON('{WEB_PATH}/mobile/ajax/addShopCart/'+codeid+'/1',function(data){
+                if(data.code==1){
+                    addsuccess('添加失败');
+                }else if(data.code==0){
+                    // 更新购物车数量
+                    $.getJSON('{WEB_PATH}/mobile/ajax/cartnum',function(data){
+                        $("#btnCart em").remove();
+            $("#btnCart").append('<em>'+data.num+'</em>');
+                    });
+                    var img = $('#' + codeid + ' img');
+                    var src = img.attr("src");
+                    var cart = $("#btnCart");
+                    var arr = [
+                        img.attr("src"),
+                        img.offset().left + "px",
+                        img.offset().top + "px",
+                        cart.offset().left + 35 + "px",
+                        cart.offset().top + 5 + "px"
+                    ];
+                    imgFun(arr);
+                }
+       // $.ajaxSetup({ global: true });
+                return false;
+            });
+      
+        });
+        function imgFun(arr){
+            var fImg = $("img#forFun");
+            var fStyle = $("style#funStyle");
+            var Fir = fImg.length;
+            if (Fir) {
+                fImg.remove();
+                fStyle.remove();
+            }
+            var newImg = "<img id='forFun' src='" + arr[0] + "' style='left:" + arr[1] + ";top:" + arr[2] + "'>";
+            // 首页配置
+            var style = "<style id='funStyle'>@-webkit-keyframes forFun {0% {width: 120px;height: 120px}99.99% {width: 15px;height: 15px;left: " + arr[3] + ";top: " + arr[4] + ";border-radius: 50%;-webkit-transform: rotate(180deg)}100% {width: 0;height: 0}}</style>";
+            $("body").append(newImg).append(style);
+        }
+        function addsuccess(dat){
+            $("#pageDialogBG .Prompt").text("");
+            var w=($(window).width()-255)/2,
+                h=($(window).height()-45)/2;
+            $("#pageDialogBG").css({top:h,left:w,opacity:0.8});
+            $("#pageDialogBG").stop().fadeIn(1000);
+            $("#pageDialogBG .Prompt").append('<s></s>'+dat);
+            $("#pageDialogBG").fadeOut(1000);
+            //更新购物车数量
+            $.getJSON('{WEB_PATH}/mobile/ajax/cartnum',function(data){
+                $("#btnCart em").remove();
+                $("#btnCart").append('<em>'+data.num+'</em>');
+            });
+        }
+        $(window).scroll(function(){
+            if($(window).scrollTop()>220){
+                $('.goodsNav').css('position','fixed');
+                $('.goodsNav').css('top','0px');
+            }else{
+                $('.goodsNav').css('position','relative');
+                $('.goodsNav').css('top','');
+            }
+        });
+        //商品分类
+        var dl=$("#divGoodsNav dl"),
+            last=$("#divGoodsNav li:last"),
+            first=$("#divGoodsNav dd:first");
+        $("#divGoodsNav li:last a:first").click(function(){   
+            if(dl.css("display")=='none'){
+                dl.show();
+                last.addClass("gSort");
+                first.addClass("sOrange");      
+            }else{
+                dl.hide();
+                last.removeClass("gSort");
+                first.removeClass("sOrange");
+            }
+        });
+        $("#divGoodsNav li.select").click(function() {
+            $("#divGoodsNav .dl").hide();
+            var l = $(this).index();
+            $("#divGoodsNav li").removeClass().eq(l).addClass('current');
+            var parm = $("#divGoodsNav li").eq(l).attr('order');
+            $("#divGoodsLoading").css('display', 'block');
+            //滚动到头位置
+            if (document.getElementById("fldh").style.position == 'fixed') {
+                document.documentElement.scrollTop = document.body.scrollTop = 445;
+            }
+            $('.ul li').remove();
+            var init = loadRenqi("list/" + parm);
+        });
+        $("#divGoodsNav  dd").click(function(){
+            var s=$(this).index();
+            var t=$("#divGoodsNav .gSort dd a").eq(s).html();
+            var id=$("#divGoodsNav .gSort dd a").eq(s).attr('id');
+            $("#divGoodsNav .gSort a:first").html(t+'<s class="arrowUp"></s>');
+            var l=$("#divGoodsNav .current").index(),
+                parm=$("#divGoodsNav li").eq(l).attr('order');
+            if(id){
+                $("#divGoodsLoading").css('display','block');
+                $(".goodsList ul").remove();
+                location.href  = '{WEB_PATH}/mobile/mobile/glist/' + id + '/10';
+            //    glist_json(id+'/'+parm);
+            }else{
+            //    glist_json("list/"+parm);
+                location.href  = '{WEB_PATH}/mobile/mobile/glist';
+                $(".goodsList ul").remove();
+            } 
+            dl.hide();
+            last.removeClass("gSort");
+            first.removeClass("sOrange");
+        });
+    var isbottom = false;
+    $(window).scroll(function () {
+      // 滚动条距离底部200px加载下一页
+      if (!isbottom && ($(window).scrollTop() >= $(document).height() - $(window).height() - 200)) {
+        isbottom = true;
+        var url = $("#urladdress").val();
+        var page=$("#pagenum").val();
+        if(page)loadRenqi(url + '/' + page);
+      }
+    });
+    loadRenqi("list/40");
+    function loadRenqi(page){
+      var html = $('.ul').html();
+      $.getJSON("{WEB_PATH}/mobile/mobile/initajax/" + page, function(d){
+        
+        if(d.length>0){
+            console.log(page);
+            var fg = page.split("/");
+            $("#urladdress").val(fg[0] + '/' + fg[1]);
+          for(var i=0;i<d.length;i++){  
+            html += "<li id='" + d[i].id + "'>";
+            html += "<a id='prize_url' href='javascript:;' class='add1' codeid=" + d[i].id + " >";
+            html += "<img style='display: ;' data-original='{G_UPLOAD_PATH}/" + d[i].thumb + "' id='prize_image' src='{G_UPLOAD_PATH}/" + d[i].thumb + "'>";
+            html += "<div class='tap'></div>";
+            html += "<h6 id='prize_title'>（第" + d[i].qishu + "期）" + d[i].title + "</h6></a>";
+            html += "<div class='item_bottom_container'>";
+            html += "<div class='jdt_container'>";
+            html += "<div>价值：￥<label id='jd'>" + d[i].money + "</label></div>";
+            html += "<span class='jdt' style='margin-left:0rem;'><span style='width:" + (d[i].canyurenshu/d[i].zongrenshu*100) + "%;'></span></span>";
+            html+='<ul class="Pro-bar-li">';
+			html+='<li class="P-bar01"><em>'+d[i].canyurenshu+'</em></li>';
+			html+='<li class="P-bar02"><em>'+d[i].zongrenshu+'</em></li>';
+			html+='<li class="P-bar03"><em>'+d[i].shenyurenshu+'</em></li>';
+			html+='</ul>';
+            html += "</div>";
+           html +=  '<div class="buy_container"><div class="star '+d[i].current+'" codeid="' +d[i].id+ '" onClick="collect(this)"></div>';
+            html += "<div class='btn_buy add1'  codeid=" + d[i].id + ">立即开盒</div>";
+            html += "<div class='add_container'>";
+            html += "<a href='javascript:;' class='add' codeid='" + d[i].id + "'><s></s></a>";
+            html += "</div>";
+            html += "</div></div>";
+            html += "</li>";
+            $('.ul').html(html);
+            $("#pagenum").val(d[0].page);
+            
+          }
+          if(d.length == 10) isbottom = false;
+          else isbottom = true;
+        }
+      })
+    }
+    //       function getLotteryInfo(){
+    //  $.getJSON('/mobile/ajax/getLotteryList/0/10/1/' + Date.now().toString().slice(0,-3), function(d){
+    //    if(d.code == 0){
+    //      var q = d.listItems
+    //      var htm = ''
+    //      for( i in q)htm += '<div class="swiper-slide"><span class="lottery-item">恭喜<em class="orange">' + q[i].q_user + '</em>获得' + q[i].title + '</span></div>'
+    //      $('#lottery-wrap').html(htm)
+    //      var mySwiper1 = new Swiper('.swiper2', {
+    //        direction: 'vertical',
+    //        loop:true,
+    //        autoplay: {
+    //          delay: 3000,
+    //          disableOnInteraction: false,
+    //        }
+    //      })
+    //    }
+    //  })
+    // }
+    //getLotteryInfo()
+    
+    });
+      //添加收藏 
+  function collect(obj){
+        var thisobj=$(obj);
+        var i=thisobj.attr('codeid');
+        var typeid='';
+        if(thisobj.hasClass('current')){
+          thisobj.removeClass('current');
+          typeid=2; 
+        }else{
+          thisobj.addClass('current');
+          typeid=1; 
+        }
+        $.get('{WEB_PATH}/mobile/ajax/show_collect/' + i + '/'+typeid, function(data){
+             if(data == 1){
+               	 thisobj.removeClass('current');
+                 //addsuccess('请先登录！');
+                 location.href="{WEB_PATH}/mobile/user/login"
+             }else if(data == 2){
+                addsuccess('参数不对！');
+             }else if(data == 3){
+                 addsuccess('已收藏！');
+             }else if(data == 4){
+                 addsuccess('出了一点小意外！');
+             }else if(data == 5){
+                 addsuccess('已取消！');
+             }else if(data == 6){
+                 addsuccess('出了一点小意外！');
+             }
+        });
+    } 
+    function addsuccess(dat){
+        $("#pageDialogBG .Prompt").text("");
+        var w=($(window).width()-255)/2,
+            h=($(window).height()-45)/2;
+        $("#pageDialogBG").css({top:h,left:w,opacity:0.8});
+        $("#pageDialogBG").stop().fadeIn(1000);
+        $("#pageDialogBG .Prompt").append('<s></s>'+dat);
+        $("#pageDialogBG").fadeOut(1000);
+    }
+  $(document).ready(function(){
+    $.ajaxSetup({global:false})
+    $.post("{WEB_PATH}/api/ptgoodslist/getUndrawnList",{},function(res){
+        res = JSON.parse(res)
+        var list = res.data.listItems
+        var html = "";
+        for(var i =0;i<list.length;i++){
+            var item = list[i]
+            html += `
+                <li>
+                    <a id='prize_url' href='javascript:;' class='add1' codeid="`+item.id+`" >
+                    <div class="u-lott-pic"><img src="`+item.thumb+`" alt=""></div>
+                    <div class="z-user">
+                        <p>`+item.title+`</p>
+                        <div class="jdt">
+                            <div style="background-color: red;height: 100%;width:`+item.schedule * 100+`%;"></div>
+                        </div>
+                        <p>剩余`+item.shenyurenshu+`人</p>
+                    </div>
+                    </a>
+                </li>
+            `
+        }
+        $("#unveiled").html(html)
+    })
+  })
+  //$.ajaxSetup({global:false})
+    $('.g-main .img-title').click(function(){
+        location.href="{WEB_PATH}/mobile/mobile/lottery"
+    })
+    var dl=$("#divGoodsNav .dl"),
+        last=$("#divGoodsNav li:first"),
+        first=$("#divGoodsNav dd:first");
+    $("#divGoodsNav li:first a:first").click(function(){
+        if(dl.css("display")=='none'){
+            dl.show();
+            last.addClass("gSort");
+            first.addClass("sOrange");          
+        }else{
+            dl.hide();
+            last.removeClass("gSort");
+            first.removeClass("sOrange");
+        }
+    });
+    $("#shang").click(function(){
+        dl.hide();
+    })
+    $("#divGoodsNav  dd").click(function(){
+        dl.hide();
+        last.removeClass("gSort");
+        first.removeClass("sOrange");
+    });
+</script>
+  
+  </body>
+</html>

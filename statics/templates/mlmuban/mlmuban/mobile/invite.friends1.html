@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0"/>
+<title>邀请管理 - {wc:$webname}</title>
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<link href="{G_TEMPLATES_CSS}/mobile/comm.css" rel="stylesheet" type="text/css" />
+<link href="{G_TEMPLATES_CSS}/mobile/member.css" rel="stylesheet" type="text/css" />
+<link href="{G_TEMPLATES_CSS}/mobile/member_index.css" rel="stylesheet" type="text/css" />
+<link href="{G_TEMPLATES_CSS}/mobile/invite.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{G_TEMPLATES_STYLE}/js/ZeroClipboard.js"></script>
+<script src="{G_TEMPLATES_JS}/mobile/jquery190.js" language="javascript" type="text/javascript"></script>
+<style>
+    .orange,.active {
+    color: {THEME_COLOR};
+}
+</style>
+</head>
+<body>
+<div class="title-area-main">
+          <p class="title-text"> <span> <span class="back-icon iconfont icon-left-arrow" onclick="history.back()"></span> <span class="item-title active">好友列表 </span> </span> </p>
+        </div>
+<div class="h5-1yyg-v11">
+  <!-- 栏目页面顶部 -->
+  <!-- 内页顶部 -->
+  <!-- 栏目页面顶部 -->
+  <!-- 栏目导航 -->
+  <section class="clearfix g-member" style="padding-top: 50px;">
+
+  <div class="R-content">
+    <div id="divInviteInfo" class="get-tips gray01" style="">成功邀请 <span class="orange">{wc:$involvedtotal}</span> 位会员注册，已有 <span class="orange">{wc:$involvednum}</span> 位会员参与消费</div>
+    <div id="divList" class="list-tab SuccessCon">
+      <ul class="listTitle">
+        <li>用户名</li>
+        <li>时间</li>
+        <li>消费状态</li>
+      </ul>
+      {wc:if $involvedtotal!=0}
+      {wc:loop $invifriends $key $val}
+      <ul>
+        <li> <a href="{WEB_PATH}/mobile/mobile/userindex/{wc:$val['uid']}" target="_blank" class="blue">{wc:$val['sqlname']}</a></li>
+        <li>{wc:fun:date('Y.m.d H:i:s',$val['time'])}</li>
+        <li>{wc:$records[$val['uid']]}</li>
+      </ul>
+      {wc:loop:end}
+      {wc:else}
+      <div class="tips-con"><i></i>您还未有邀请谁哦</div>
+    </div>
+    {wc:if:end} </div>
+  <div id="divPageNav" class="page_nav"></div>
+</div>
+</section>
+{wc:templates "mobile/index","footer"}
+<script language="javascript" type="text/javascript">
+  var Path = new Object();
+  Path.Skin="{G_TEMPLATES_STYLE}";  
+  Path.Webpath = "{WEB_PATH}";
+  
+var Base={head:document.getElementsByTagName("head")[0]||document.documentElement,Myload:function(B,A){this.done=false;B.onload=B.onreadystatechange=function(){if(!this.done&&(!this.readyState||this.readyState==="loaded"||this.readyState==="complete")){this.done=true;A();B.onload=B.onreadystatechange=null;if(this.head&&B.parentNode){this.head.removeChild(B)}}}},getScript:function(A,C){var B=function(){};if(C!=undefined){B=C}var D=document.createElement("script");D.setAttribute("language","javascript");D.setAttribute("type","text/javascript");D.setAttribute("src",A);this.head.appendChild(D);this.Myload(D,B)},getStyle:function(A,B){var B=function(){};if(callBack!=undefined){B=callBack}var C=document.createElement("link");C.setAttribute("type","text/css");C.setAttribute("rel","stylesheet");C.setAttribute("href",A);this.head.appendChild(C);this.Myload(C,B)}}
+function GetVerNum(){var D=new Date();return D.getFullYear().toString().substring(2,4)+'.'+(D.getMonth()+1)+'.'+D.getDate()+'.'+D.getHours()+'.'+(D.getMinutes()<10?'0':D.getMinutes().toString().substring(0,1))}
+Base.getScript('{G_TEMPLATES_JS}/mobile/Bottom.js');
+</script>
+<script>
+    var clip = null;
+    function copy(id){ return document.getElementById(id); }
+    function initx(){
+        clip = new ZeroClipboard.Client();
+        clip.setHandCursor(true);
+        ZeroClipboard.setMoviePath("{G_TEMPLATES_STYLE}/js/ZeroClipboard.swf");
+        clip.addEventListener('mouseOver',function (client){
+            clip.setText(copy('txtInfo').value );
+        });
+        clip.addEventListener('complete',function(client,text){
+            alert("邀请复制成功");
+        });
+        clip.glue('d_clip_button','d_clip_container');
+    }
+    $(function(){
+        initx();
+    })
+
+</script>
+</div>
+</body>
+</html>

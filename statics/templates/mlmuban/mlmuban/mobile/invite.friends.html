@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0"/>
+<title>邀请管理</title>
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<link href="{G_TEMPLATES_CSS}/mobile/comm.css" rel="stylesheet" type="text/css" />
+<link href="{G_TEMPLATES_CSS}/mobile/member.css" rel="stylesheet" type="text/css" />
+<link href="{G_TEMPLATES_CSS}/mobile/invite.css" rel="stylesheet" type="text/css" />
+<link href="{G_TEMPLATES_CSS}/mobile/invite_friends.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{G_TEMPLATES_STYLE}/js/ZeroClipboard.js"></script>
+<script src="{G_TEMPLATES_JS}/mobile/jquery190.js" language="javascript" type="text/javascript"></script>
+<link rel="stylesheet" href="/statics/plugin/fancyBox/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen"/>
+<script type="text/javascript" src="/statics/plugin/fancyBox/jquery.fancybox.pack.js?v=2.1.5"></script>
+  <style>
+    .account p{
+       color: #ffffff!important;
+    }
+     .gift {
+        margin: 1.5rem auto
+    }
+
+    .gift1{
+        background-color: #f8f8f8;
+        line-height: 1.5rem;
+        margin-left: 0;margin-right: 0;
+        width: 100%;
+        border-radius: 0;
+        margin: 0rem auto
+    }
+    #btnQRCode p,.invite-list li dd em {color:{THEME_COLOR};}
+    .account {
+        background: -moz-linear-gradient(left, {THEME_COLOR}, {THEME_COLOR_TWO});
+        background: -webkit-linear-gradient(left, {THEME_COLOR}, {THEME_COLOR_TWO});
+    }
+  </style>
+</head>
+<body>
+<section class="account clear">
+        <dt>
+            <p class="title">余额</p>
+            <p class="secret content" data-secret="{wc:$total}元">{wc:$total}元</p>
+        </dt>
+        <dd>
+            <p>累计收入</p>
+            <p class="secret" data-secret="{wc:$shourutotal}元">{wc:$shourutotal}元</p>
+        </dd>
+        <dd>
+            <p>充值/提现</p> 
+            <p class="secret" data-secret="{wc:$zhichutotal}元">{wc:$zhichutotal}元</p>
+        </dd>
+        <div id="toggle_secret" class="toggle_secret"></div>
+    </section>
+<section class="gift">
+        <a id="btnQRCode" class="fancybox.image" href="{WEB_PATH}/mobile/invite/mycode_new/{wc:$member['uid']}" title="只需好友扫描注册即成你好友哦^_^">
+            <p>点这里分享朋友圈可获得 {wc:$user_fufen['fufen_yongjin']*100}% 佣金</p>
+        </a>
+    </section>
+  <!--section id="copyUrl" class="gift gift1">
+        <a style="display: block;" href="javascript:;">
+            <p style="color: #666;font-weight: 400;font-size: 0.8rem;padding-top: 0.8rem">点击复制短链接，轻松赚佣金</p>
+            <p style="color: #333;font-size: 1.2rem;padding-bottom: 0.8rem" id="url-short">http://t.cn/ESAKaZM</p>
+        </a>
+    </section--> 
+<section class="invite-list">
+        <ul>
+            
+          <li>
+                <dl class="clear">
+                    <dd class="left">
+                        <a href="{WEB_PATH}/mobile/invite/cashout/#linkRecharge">佣金充值</a>
+                    </dd>
+                    <dd>
+                        <a href="{WEB_PATH}/mobile/invite/friends1">好友列表<em style="top: 6px;">{wc:$involvedtotal}</em></a>
+                    </dd>
+                </dl>
+            </li>
+          <li>
+                <dl class="clear">
+                    <dd class="left">
+                        <a href="{WEB_PATH}/mobile/invite/cashout/">余额提现</a>
+                    </dd>
+                    <dd>
+                        <a href="{WEB_PATH}/mobile/invite/commissions/">佣金明细</a> 
+                    </dd>
+                </dl>
+            </li>
+          
+          
+        </ul>
+    </section>
+	
+	
+	
+	
+<div class="h5-1yyg-v11">
+  <!-- 栏目页面顶部 -->
+  <!-- 内页顶部 -->
+  <!-- 栏目页面顶部 -->
+  <!-- 栏目导航 -->
+ 
+{wc:templates "mobile/index","footer"}
+<script language="javascript" type="text/javascript">
+  var Path = new Object();
+  Path.Skin="{G_TEMPLATES_STYLE}";  
+  Path.Webpath = "{WEB_PATH}";
+  
+var Base={head:document.getElementsByTagName("head")[0]||document.documentElement,Myload:function(B,A){this.done=false;B.onload=B.onreadystatechange=function(){if(!this.done&&(!this.readyState||this.readyState==="loaded"||this.readyState==="complete")){this.done=true;A();B.onload=B.onreadystatechange=null;if(this.head&&B.parentNode){this.head.removeChild(B)}}}},getScript:function(A,C){var B=function(){};if(C!=undefined){B=C}var D=document.createElement("script");D.setAttribute("language","javascript");D.setAttribute("type","text/javascript");D.setAttribute("src",A);this.head.appendChild(D);this.Myload(D,B)},getStyle:function(A,B){var B=function(){};if(callBack!=undefined){B=callBack}var C=document.createElement("link");C.setAttribute("type","text/css");C.setAttribute("rel","stylesheet");C.setAttribute("href",A);this.head.appendChild(C);this.Myload(C,B)}}
+function GetVerNum(){var D=new Date();return D.getFullYear().toString().substring(2,4)+'.'+(D.getMonth()+1)+'.'+D.getDate()+'.'+D.getHours()+'.'+(D.getMinutes()<10?'0':D.getMinutes().toString().substring(0,1))}
+Base.getScript('{G_TEMPLATES_JS}/mobile/Bottom.js');
+</script>
+  <script src="{G_TEMPLATES_JS}/mobile/clipboard.min.js"></script>
+<script>
+    var clip = null;
+    $.post("{WEB_PATH}/mobile/invite/mycode_new",function(s){
+			var sdata = JSON.parse(s)
+		    $('#btnQRCode').attr("href",JSON.parse(s).data);
+		});
+    function copy(id){ return document.getElementById(id); }
+    function initx(){
+        clip = new ZeroClipboard.Client();
+        clip.setHandCursor(true);
+        ZeroClipboard.setMoviePath("{G_TEMPLATES_STYLE}/js/ZeroClipboard.swf");
+        clip.addEventListener('mouseOver',function (client){
+            clip.setText(copy('txtInfo').value );
+        });
+        clip.addEventListener('complete',function(client,text){
+            alert("邀请复制成功");
+        });
+        clip.glue('d_clip_button','d_clip_container');
+    }
+    $(function(){
+        initx();
+         
+    })
+
+	
+	
+	  $('#toggle_secret').click(function (e) {
+            var elm = $(this),
+                secretElm = $('.secret');
+
+            elm.toggleClass(function () {
+                if (!elm.hasClass('hide'))
+                    secretElm.html('****');
+                else {
+                    secretElm.each(function (e) {
+                        var x = $(this),
+                            secret = x.data('secret');
+
+                        x.html(secret);
+                    })
+                }
+
+                return "hide";
+            })
+        });
+		 $("#btnQRCode").fancybox({
+            openEffect  : 'none',
+            closeEffect	: 'none',
+            closeClick : true
+        });
+$(function(){
+	$.getJSON('http://m.hi5080.cn/app/home/getShortUrl', function(data) {
+        		if (data.code > 0) {
+        			$.PageDialog.fail(data.code_msg);
+        		}
+        		if (data.url_short) {
+	        		$('#url-short').html(data.url_short);
+	                var clipboard = new Clipboard('#copyUrl', {
+	                    text: function() {
+	                        return data.url_short;
+	                    }
+	                });
+	                clipboard.on('success', function() {
+	                    layer.msg("复制成功!");
+	                });
+        		}
+        	});
+});
+
+</script>
+</div>
+</body>
+</html>

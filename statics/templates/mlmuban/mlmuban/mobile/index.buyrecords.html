@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>{wc:$key}</title>
+<meta content="app-id=518966501" name="apple-itunes-app" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<link href="{G_TEMPLATES_CSS}/mobile/comm.css" rel="stylesheet" type="text/css" />
+<link href="{G_TEMPLATES_CSS}/mobile/goods.css" rel="stylesheet" type="text/css" />
+<script src="{G_TEMPLATES_JS}/mobile/jquery190.js" language="javascript" type="text/javascript"></script>
+<script id="pageJS" data="{G_TEMPLATES_JS}/mobile/BuyRecord.js" language="javascript" type="text/javascript"></script>
+</head>
+<style>
+.buy_records_luckDiv{width: 100%;height: 100%;position: fixed;top: 0;left: 0;background: rgba(0, 0, 0, 0.4);display: none;}
+.buy_records_luck{width: 100%;border-top-left-radius: 10px;border-top-right-radius: 10px;background-color: #fff;min-height: 30rem;display: none;position: fixed;top: 50%;left: 0;}
+.buy_records_luck>div{width: 100%;display: flex;justify-content: space-between;}
+.buy_records_luck div>span{font-weight: 700;font-size: 16px;margin: 10px;}
+.buy_records_luck div p span:nth-child(1){display: block;font-size: 12px;padding:0 5px;border-radius: 10px;margin: 10px;float: left;}
+.buy_records_luck div p span:nth-child(2){font-size: 16px;margin: 10px;float: right;}
+.buy_records_lucknum{width: 100%;}
+.buy_records_lucknum li{width: 25%;float: left;text-align: center;padding: 10px 0;font-size: 16px;font-weight: 700;}
+.rInfo button {float: right;background: none;border-radius: 5px;padding: 2px 5px;margin-right: 10px;font-size:16px;}
+.buy_records_luck div p span:nth-child(1),.rInfo button {border: 1px solid {THEME_COLOR};}
+.buy_records_luck div p span:nth-child(1),.rInfo button,.orange,.aui-nav .aui-bar-tab .active-warning p,.orange,.Progress-bar .Pro-bar-li li.P-bar01 em,.Progress-bar .Pro-bar-li li.P-bar03 em {color: {THEME_COLOR};}
+.haveNot .guangguang,a.orgBtn,.u-progress .pging,.haveNot .guangguang,#addAll,#addAll p {background-color: {THEME_COLOR};}
+#addAll {box-shadow: 0 0 15px {THEME_COLOR};}
+</style>
+<body>
+<div class="h5-1yyg-v1" id="loadingPicBlock">
+  <input name="hidCodeID" type="hidden" id="hidCodeID" value="18101" />
+  <input name="hidIsEnd" type="hidden" id="hidIsEnd" value="1" />
+  <section id="buyRecordPage" class="goodsCon"> {wc:if $co < 1}
+    <div id="divNone" class="haveNot z-minheight" style="margin-top: 0;padding-top: 100px;"><s></s>
+      <p>抱歉，暂时还没有记录！</p>
+      <a href="{G_WEB_PATH}">
+      <p class="guangguang">我去参与</p>
+      </a> </div>
+    {wc:else}
+    <div id="divRecordList" class="recordCon z-minheight" style="display:block;"> {wc:loop $cords $c}
+      <ul>
+        <li class="rBg"><a href="{WEB_PATH}/mobile/mobile/userindex/{wc:$c['uid']}"> {wc:php:start}
+          $touxiangq=get_user_key($c['uid'],'img');
+          {wc:php:end} <img style="border-radius: 110px;" id="imgUserPhoto" src="
+                        {wc:if $touxiangq!='photo/member.jpg'}
+                             {G_UPLOAD_PATH}/{wc:$touxiangq}
+                        {wc:else}
+                             {G_UPLOAD_PATH}/{wc:$touxiangq}
+                        {wc:if:end}"   border="0"/> </a> </li>
+        <li class="rInfo">
+            <a href="{WEB_PATH}/mobile/mobile/userindex/{wc:$c['uid']}">{wc:$c['username']}</a> 
+            <!--<button onclick="records('{wc:$c['username']}','{wc:$c['gonumber']}','{wc:$c['id']}')">查看幸运码</button>-->
+            <!--<br>-->
+          <span class="orange">参与了 {wc:$c['gonumber']}.00 人次</span></br><em class="arial">{wc:fun:date("Y-m-d H:i:s",$c['time'])}</em> </li>
+        <i></i>
+      </ul>
+      {wc:loop:end}
+      {wc:if:end} </div>
+  </section>
+<div class="buy_records_luckDiv"></div>
+<div class="buy_records_luck">
+		<div>
+			<span id="sun_name"></span>
+			<p>
+				<span id="sun_number"></span>
+				<span class="closeLuck">X</span>
+			</p>
+		</div>
+		<ul class="buy_records_lucknum clearfix" id="buy_records_lucknum" style="overflow: scroll;height: 16rem;">
+		</ul>
+	</div>
+</div>
+{wc:templates "mobile/index","footer"}
+</body>
+<script>
+function records(name,number,orderid){   
+					$("#sun_name").html(name);
+					$("#sun_number").html("本期参与了"+number+"次");
+					$(".buy_records_luckDiv").show()
+					$(".buy_records_luck").show(500)
+					$("body").css('background', 'rgba(0,0,0,0.3)')
+					$.get("{WEB_PATH}/mobile/ajax/get_code/"+orderid, function(result){
+								var strs= new Array(); //定义一数组 
+								strs=result.split(","); //字符分割 
+								var htm='';
+								for (i=0;i<strs.length ;i++ ) 
+								{ 
+									htm+='<li class="luckNumLi">'+strs[i]+'</li>';
+								
+								} 
+								$(".buy_records_lucknum").html(htm);
+								//$("div").html(result);
+						}); 
+					$(".closeLuck").click(function () {
+						$("body").css('background', '')
+						$(".buy_records_luckDiv").hide()
+						$(".buy_records_luck").hide()
+						$(".buy_records_lucknum").html('')
+					})
+		}
+</script>
+</html>

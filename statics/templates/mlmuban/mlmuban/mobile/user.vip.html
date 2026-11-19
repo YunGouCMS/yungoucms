@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0"/>
+<title>VIP回收商</title>
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<link href="{G_TEMPLATES_CSS}/mobile/comm.css" rel="stylesheet" type="text/css" />
+<link href="{G_TEMPLATES_CSS}/mobile/member.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="{G_TEMPLATES_CSS}/mobile/member_index.css"/>
+<link href="{G_TEMPLATES_CSS}/mobile/invite.css" rel="stylesheet" type="text/css" />
+<script src="{G_TEMPLATES_JS}/mobile/jquery190.js" language="javascript" type="text/javascript"></script>
+<script src="{G_TEMPLATES_JS}/mobile/BottomFun.js" language="javascript" type="text/javascript"></script>
+<script src="{G_TEMPLATES_JS}/mobile/jweixin.js" language="javascript" type="text/javascript"></script>
+<style type="text/css">
+.order-item-btn,a.orgBtn,.u-progress .pging,.haveNot .guangguang,#addAll,#addAll p{background-color: {THEME_COLOR};}
+.active,.order-tab .active,.order-item-state,.orange,.Progress-bar .Pro-bar-li li.P-bar01 em,.Progress-bar .Pro-bar-li li.P-bar03 em {color: {THEME_COLOR};}
+.order-tab .active span {border-bottom: .1rem solid {THEME_COLOR}}#addAll {box-shadow: 0 0 15px {THEME_COLOR};}
+</style>
+</head>
+<body style="background: #f4f4f4;">
+<div class="title-area-main">
+  <p class="title-text"> <span> <span class="back-icon iconfont icon-left-arrow" onClick="history.back()"></span> <span class="item-title active">VIP回收商</span> </span> </p>
+</div>
+<div class="h5-1yyg-v11">
+  <section class="clearfix g-member" style="padding-top: 60px;">
+    <div class="shareCon m-round">
+      <div class="m_banner"></div>
+      <dl>
+        <dt>邀请好友成功参与后，即可获得高额佣金！</dt>
+        <dd><a style="background: {THEME_COLOR};color:#fff;" id="btnShare" href="javascript:;" class="orangeBtn">立即赚钱</a></dd>
+      </dl>
+    </div>
+    <div class="m-round m-member-nav">
+      <ul id="ulFun">
+        <li><a href="{WEB_PATH}/mobile/home/bindphone"><b class="z-arrow xz"></b>绑定手机</a></li>
+        <li><a href="{WEB_PATH}/mobile/home/ordercheck"><b class="z-arrow xz"></b>收货记录</a></li>
+        <li><a href="javascript:void(0);" class="qrcode"><b class="z-arrow xz"></b>我的专属二维码</a></li>
+      </ul>
+    </div>
+  </section>
+  {wc:templates "mobile/index","footer"}
+  <script language="javascript" type="text/javascript">
+  var Path = new Object();
+  Path.Skin="{G_TEMPLATES_STYLE}";  
+  Path.Webpath = "{WEB_PATH}";
+  
+var Base={head:document.getElementsByTagName("head")[0]||document.documentElement,Myload:function(B,A){this.done=false;B.onload=B.onreadystatechange=function(){if(!this.done&&(!this.readyState||this.readyState==="loaded"||this.readyState==="complete")){this.done=true;A();B.onload=B.onreadystatechange=null;if(this.head&&B.parentNode){this.head.removeChild(B)}}}},getScript:function(A,C){var B=function(){};if(C!=undefined){B=C}var D=document.createElement("script");D.setAttribute("language","javascript");D.setAttribute("type","text/javascript");D.setAttribute("src",A);this.head.appendChild(D);this.Myload(D,B)},getStyle:function(A,B){var B=function(){};if(callBack!=undefined){B=callBack}var C=document.createElement("link");C.setAttribute("type","text/css");C.setAttribute("rel","stylesheet");C.setAttribute("href",A);this.head.appendChild(C);this.Myload(C,B)}}
+function GetVerNum(){var D=new Date();return D.getFullYear().toString().substring(2,4)+'.'+(D.getMonth()+1)+'.'+D.getDate()+'.'+D.getHours()+'.'+(D.getMinutes()<10?'0':D.getMinutes().toString().substring(0,1))}
+Base.getScript('{G_TEMPLATES_JS}/mobile/Bottom.js');
+</script>
+</div>
+</body>
+</html>
+<div class="qr" style="display:none;background-color:rgba(0,0,0,0.7);z-index:99999999;width:100%;height:100%;margin:0 auto;text-align:center;position:fixed;top:0px;left:0px;vertical-align: middle;"><img src="{WEB_PATH}/mobile/invite/mycode_new" style="border-radius:15px;height:60%;margin-top:30%;"></div>
+<script language="javascript"  type="text/javascript">
+	$(function(){
+	$(".qrcode").click(function(){
+	//获取窗口可视大小
+        $(".qr").show();
+	});
+	$(".qr").click(function(){
+	//获取窗口可视大小
+        $(".qr").hide();
+	});
+	$("#btnShare").click(function(){
+		//获取窗口可视大小
+			$(".qr").show();
+		});
+	});
+</script>
