@@ -10,6 +10,8 @@ YunGouCMS is a **PHP + MySQL** group-buy (云购夺宝 / 一元购) e‑commerce
 
 Free official authorization: https://copy.taolong.com/
 
+Data API: https://api.taolong.com/blockchain
+
 ---
 
 ## Features

@@ -10,6 +10,8 @@ YunGouCMS（云购夺宝/一元购系统）是一套基于 **PHP + MySQL** 的�
 
 免费正版授权：https://copy.taolong.com/
 
+API数据采集：https://api.taolong.com/blockchain
+
 ---
 
 ## 系统特点
