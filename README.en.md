@@ -14,6 +14,41 @@ Data API: https://api.taolong.com/blockchain
 
 ---
 
+## Screenshots
+
+### Desktop home
+
+![Desktop home](docs/images/pc-home.png)
+
+### Desktop product details
+
+![Desktop product details](docs/images/pc-product-detail.png)
+
+### Mobile
+
+| Home | Product details | User center (signed out) |
+|:---:|:---:|:---:|
+| <img src="docs/images/mobile-home.png" alt="Mobile home" width="250"> | <img src="docs/images/mobile-product-detail.png" alt="Mobile product details" width="250"> | <img src="docs/images/mobile-profile.png" alt="Mobile user center (signed out)" width="250"> |
+
+<details>
+<summary>More screenshots: product lists and desktop login</summary>
+
+#### Mobile product list
+
+<img src="docs/images/mobile-products.png" alt="Mobile product list" width="300">
+
+#### Desktop product list
+
+![Desktop product list](docs/images/pc-products.png)
+
+#### Desktop login
+
+![Desktop login](docs/images/pc-login.png)
+
+</details>
+
+---
+
 ## Features
 
 - **Group-buy / one-yuan shopping**: Full modules for staged group-buy products, orders, user shares, members, and cart

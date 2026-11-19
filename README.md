@@ -14,6 +14,41 @@ API数据采集：https://api.taolong.com/blockchain
 
 ---
 
+## 界面预览
+
+### PC 首页
+
+![PC 首页](docs/images/pc-home.png)
+
+### PC 商品详情
+
+![PC 商品详情](docs/images/pc-product-detail.png)
+
+### 移动端
+
+| 首页 | 商品详情 | 个人中心（未登录） |
+|:---:|:---:|:---:|
+| <img src="docs/images/mobile-home.png" alt="手机首页" width="250"> | <img src="docs/images/mobile-product-detail.png" alt="手机商品详情" width="250"> | <img src="docs/images/mobile-profile.png" alt="手机个人中心（未登录）" width="250"> |
+
+<details>
+<summary>更多截图：商品列表与 PC 登录</summary>
+
+#### 手机商品列表
+
+<img src="docs/images/mobile-products.png" alt="手机商品列表" width="300">
+
+#### PC 商品列表
+
+![PC 商品列表](docs/images/pc-products.png)
+
+#### PC 登录
+
+![PC 登录](docs/images/pc-login.png)
+
+</details>
+
+---
+
 ## 系统特点
 
 - **夺宝/一元购业务**：商品分期夺宝、订单、晒单、会员、购物车等完整业务模块
