@@ -1,8 +1,14 @@
 # YunGouCMS 云购夺宝系统
 
+**简体中文** | [English](README.en.md)
+
+[官方网站](https://www.yungoucms.com/) · [在线演示](https://purple.yungoucms.com/) · [免费正版授权](https://copy.taolong.com/)
+
 **版权所有 © YunGouCMS**
 
 YunGouCMS（云购夺宝/一元购系统）是一套基于 **PHP + MySQL** 的夺宝电商业务系统。采用单入口 MVC 结构，支持 PATH_INFO 伪静态，便于在 Nginx/Apache 环境下快速部署。系统具备**多语言**与**数据 API 采集**等特色能力，适合多地区运营与第三方数据对接。
+
+免费正版授权：https://copy.taolong.com/
 
 ---
 
@@ -89,7 +95,7 @@ YunGouCMS（云购夺宝/一元购系统）是一套基于 **PHP + MySQL** 的�
 ## 相关说明
 
 - 项目入口为根目录 `index.php`，URL 使用 PATH_INFO（例如 `/api/checkcode/image/80_27/`、`/go/index/init`），无需 `/?/` 形式。
-- 对外发布前仍须审查文本、媒体及上传图标的内容和许可；GitHub 授权、提交与上传均未完成。
+- 当前仓库已上传脱敏源码快照，不包含完整运行配置、数据库及用户上传数据；不等同于可直接部署的完整发行包。
 
 ---
 

@@ -1,8 +1,14 @@
 # YunGouCMS — Group-Buy / One-Yuan Shopping System
 
+[简体中文](README.md) | **English**
+
+[Official Website](https://www.yungoucms.com/) · [Live Demo](https://purple.yungoucms.com/) · [Free Official Authorization](https://copy.taolong.com/)
+
 **Copyright © YunGouCMS**
 
 YunGouCMS is a **PHP + MySQL** group-buy (云购夺宝 / 一元购) e‑commerce system. It uses a single-entry MVC structure and PATH_INFO–style URLs, and is easy to deploy on Nginx or Apache. It includes **multi-language** support and **data API collection** for multi-region operation and third-party data integration.
+
+Free official authorization: https://copy.taolong.com/
 
 ---
 
@@ -89,7 +95,7 @@ YunGouCMS is a **PHP + MySQL** group-buy (云购夺宝 / 一元购) e‑commerce
 ## Notes
 
 - The entry point is the root `index.php`. URLs use PATH_INFO (for example `/api/checkcode/image/80_27/` or `/go/index/init`), not `/?/`.
-- Text, media, and upload icons still require content and licensing review before publication. GitHub authorization, commits, and uploads have not yet been completed.
+- This repository contains a sanitized source snapshot. Runtime configuration, database files, and user uploads are excluded; it is not a complete, ready-to-deploy distribution.
 
 ---
 
