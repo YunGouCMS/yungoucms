@@ -12,6 +12,14 @@ YunGouCMS（云购夺宝/一元购系统）是一套基于 **PHP + MySQL** 的�
 
 API数据采集：https://api.taolong.com/blockchain
 
+### 演示站后台
+
+- 后台地址：https://purple.yungoucms.com/admin
+- 演示账号：`admin`
+- 演示密码：`admin888`
+
+> 以上为公开演示账号，仅供体验。请勿在演示站填写真实个人信息或上传敏感数据；正式部署时请设置独立的管理员账号和强密码。
+
 ---
 
 ## 界面预览

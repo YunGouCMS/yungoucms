@@ -12,6 +12,14 @@ Free official authorization: https://copy.taolong.com/
 
 Data API: https://api.taolong.com/blockchain
 
+### Admin demo
+
+- Admin URL: https://purple.yungoucms.com/admin
+- Demo username: `admin`
+- Demo password: `admin888`
+
+> These are public demo credentials for evaluation only. Do not enter real personal information or upload sensitive data to the demo site. Use a separate administrator account and a strong password for your own deployment.
+
 ---
 
 ## Screenshots
