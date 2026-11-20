@@ -102,7 +102,8 @@ Data API: https://api.taolong.com/blockchain
 │   ├── funcs/             # Common functions and language packs
 │   └── caches/            # Cache and logs (must be writable)
 ├── statics/               # Static assets and templates; uploads are runtime data
-└── database/              # Working-tree SQL contains business data; not for direct publication
+├── index/                 # Compiled front-end distribution, no Vue source project
+└── database/schema.sql    # Structure for 111 empty tables, no business data
 ```
 
 ---
@@ -112,7 +113,8 @@ Data API: https://api.taolong.com/blockchain
 **The current working tree is not a public, ready-to-install release.** Publication review is ongoing. Do not upload this directory, its existing Git history, production configuration, or the SQL files under `database/` as-is. The old history contains sensitive material; `.gitignore` does not remove it from past commits. A future release must use a separately reviewed snapshot with independent history, without replacing the existing `main` branch.
 
 - The current admin route is `/admin`, served by `system/modules/admin/`. The old admin directory is retired and must not be recovered from old commits. Bot-member, fake-order and designated-winner features, as well as the admin login quick-access panel, have been removed and should not be restored from older instructions.
-- The intended database release contains the schema for 111 tables and separately reviewed anonymized sample data only. The existing business SQL under `database/` is **not** release data. A `database/schema.sql` was generated in the isolated review directory but is not yet part of a release.
+- [database/schema.sql](database/schema.sql) contains only CREATE TABLE statements for 111 tables extracted from the site's `database/init.sql`, with no user, order, administrator, or other records. Importing it creates empty tables, not a ready-to-run initialization dataset. No live database export or modification was performed.
+- `index/` contains compiled front-end distribution files only. Archives, Vue/uni-app source projects, and source maps are excluded; `mobilebefore/` is not published.
 - Database/Redis example configuration and empty-credential WeChat Pay and QQ login configurations currently exist **only in the isolated review directory**, not in this production tree. Never publish production `system/config/database.inc.php`, payment keys, certificates, login identifiers, or JWT signing keys. Configure each integration privately before enabling it.
 - The candidate inventory is for review, not an approved release manifest. Text matches and static media still require inspection; do not bundle the uploads directory wholesale. Production credentials and historically exposed secrets must be reviewed and rotated by the responsible operator.
 
@@ -140,7 +142,7 @@ Data API: https://api.taolong.com/blockchain
 ## Notes
 
 - The entry point is the root `index.php`. URLs use PATH_INFO (for example `/api/checkcode/image/80_27/` or `/go/index/init`), not `/?/`.
-- This repository contains a sanitized source snapshot. Runtime configuration, database files, and user uploads are excluded; it is not a complete, ready-to-deploy distribution.
+- This repository contains a sanitized source snapshot and a schema-only SQL file. Runtime configuration, database records, and user uploads are excluded; it is not a complete, ready-to-deploy distribution.
 
 ---
 

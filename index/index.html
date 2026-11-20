@@ -1,0 +1,40 @@
+<!DOCTYPE html><html lang=zh-CN><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><title>YunGouCMS</title><script>var coverSupport = 'CSS' in window && typeof CSS.supports === 'function' && (CSS.supports('top: env(a)') || CSS.supports('top: constant(a)'))
+			document.write('<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0' + (coverSupport ? ', viewport-fit=cover' : '') + '" />')</script><link rel=stylesheet href=/index/static/index.css><meta content=yes name=apple-mobile-web-app-capable><link rel=apple-touch-icon href=/index/static/images/logo.png><meta property=og:type content=article><meta property=og:title content=YunGouCMS><meta property=fb:app_id content=""><meta property=og:url content=""><meta property=og:image content=""><meta property=og:description content=""><meta content=always name=referrer><link rel=stylesheet type=text/css href=https://www.cmpassport.com/h5/js/jssdk_auth/css/ydrz-layer.css></head><body><noscript><strong>Please enable JavaScript to continue.</strong></noscript><div id=app></div><script async id=googlegtag src=""></script><script async id=googlegandroid src=""></script><script async id=googlegios src=""></script><script async id=googlegpush src=""></script><script>(function(d, s, id){
+				function itjfface(){
+					var thinitjf = localStorage.getItem('jfindexinit') || ''
+					if (thinitjf != '') {
+						clearInterval(facetimer);
+						thinitjf = JSON.parse(thinitjf);
+						document.querySelector('script[id="googlegtag"]').setAttribute('src', thinitjf.data.google_statistics_url);
+						document.querySelector('script[id="googlegandroid"]').setAttribute('src', thinitjf.data.google_statistics_android);
+						document.querySelector('script[id="googlegios"]').setAttribute('src', thinitjf.data.google_statistics_ios);
+						document.querySelector('script[id="googlegpush"]').setAttribute('src', thinitjf.data.google_statistics_push);
+						document.querySelector('meta[property="og:description"]').setAttribute('content', thinitjf.data.config.web_des);
+						var googlescript = document.createElement("script");
+						googlescript.type = "text/javascript";
+						googlescript.text = thinitjf.data.google_statistics_content;
+						document.body.appendChild(googlescript);
+						if (thinitjf.data.config.login_facebook_account) {
+							document.querySelector('meta[property="fb:app_id"]').setAttribute('content', thinitjf.data.config.login_facebook_account);
+							window.fbAsyncInit = function() {
+							    FB.init({
+							      appId      : thinitjf.data.config.login_facebook_account, // 替换为你的Facebook App ID
+							      cookie     : true,
+							      xfbml      : true,
+							      version    : 'v19.0' // 使用的Facebook API版本
+							    });
+							    FB.AppEvents.logPageView();   
+							};
+							var js, fjs = d.getElementsByTagName(s)[0];
+							if (d.getElementById(id)) {return;}
+							js = d.createElement(s); js.id = id;
+							js.src = "https://connect.facebook.net/en_US/sdk.js";
+							fjs.parentNode.insertBefore(js, fjs);
+						}
+						
+					}
+				}
+				var facetimer = setInterval(function(){
+					itjfface()
+				},500)
+			}(document, 'script', 'facebook-jssdk'));</script><script src=/index/static/js/chunk-vendors.4140f780.js></script><script src=/index/static/js/index.c8cc77d8.js></script></body></html>

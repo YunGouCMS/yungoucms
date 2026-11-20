@@ -1,4 +1,3 @@
-
 # 忽略整个目录
 system/config/
 statics/uploads/
@@ -6,7 +5,6 @@ statics/plugin/qrcode/
 system/caches/
 codes/
 h5/
-index/
 vendor/
 mobile1/
 .vscode/
@@ -45,7 +43,21 @@ cron-run
 *.bak
 *.map
 *.xls
-/database/
+/database/*
+!/database/schema.sql
+
+# 不公开 Vue/uni-app 原始工程、源码映射或压缩备份
+mobilebefore*/
+*.vue
+*.nvue
+node_modules/
+*.rar
+*.7z
+*.tar
+*.tgz
+*.bz2
+*.xz
+*.zst
 /system/modules/api/lib/qq/storage/
 /requset.txt
 /success.txt
